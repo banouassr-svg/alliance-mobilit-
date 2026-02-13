@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Pro - Alliance Mobilité</title>
+    <meta name="description" content="Espace réservé aux partenaires professionnels d'Alliance Mobilité pour gérer leurs missions et profils.">
+    <meta name="keywords" content="espace pro déménageur, gestion missions déménagement, profil professionnel déménagement">
+    <meta name="geo.region" content="FR-IDF" />
+    <meta name="geo.placename" content="Île-de-France" />
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1A2D40',
+                        'accent-gold': '#D4AF37',
+                        'accent-light-gold': '#F3D8B0',
+                        'neutral-dark': '#000000',
+                        'neutral-light': '#F8F9FA',
+                        'success-green': '#4CAF50',
+                        'error-red': '#EF4444',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--neutral-dark);
+            background-color: var(--neutral-light);
+        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 2px 30px rgba(26, 45, 64, 0.08);
+        }
+        
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 45, 64, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+        .login-overlay.hidden { opacity: 0; pointer-events: none; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1A2D40 0%, #D4AF37 50%, #F3D8B0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .mission-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(26, 45, 64, 0.06);
+        }
+        .mission-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(26, 45, 64, 0.1);
+        }
+        
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+        }
+        .status-pending { background-color: rgba(59, 130, 246, 0.1); color: rgb(59, 130, 246); }
+        .status-completed { background-color: rgba(16, 185, 129, 0.1); color: rgb(16, 185, 129); }
+        .status-canceled { background-color: rgba(239, 68, 68, 0.1); color: rgb(239, 68, 68); }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-neutral-light text-neutral-dark">
+
+<!-- Login Overlay -->
+<div id="login-overlay" class="login-overlay">
+    <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-md w-full mx-4 relative" data-aos="zoom-in">
+        <a href="index.html" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 text-neutral-dark hover:text-accent-gold hover:bg-neutral-light" title="Retour à l'accueil">
+            <i data-feather="x" class="w-6 h-6"></i>
+        </a>
+        <div class="text-center mb-8">
+            <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-primary-dark">
+                <i data-feather="lock" class="w-10 h-10 text-white"></i>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-2 text-neutral-dark">Espace Professionnel</h2>
+            <p class="text-slate-600">Accès réservé à nos partenaires</p>
+        </div>
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label for="username" class="block text-sm font-semibold mb-2 text-neutral-dark">Identifiant</label>
+                <div class="relative">
+                    <input type="text" id="username" name="username" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl transition-all duration-300 focus:border-accent-gold focus:shadow-md text-slate-800" placeholder="Entrez votre identifiant" required autocomplete="username">
+                    <i data-feather="user" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                </div>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-semibold mb-2 text-neutral-dark">Mot de passe</label>
+                <div class="relative">
+                    <input type="password" id="password" name="password" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl transition-all duration-300 focus:border-accent-gold focus:shadow-md text-slate-800" placeholder="Entrez votre mot de passe" required autocomplete="current-password">
+                    <button type="button" id="toggle-password" class="absolute right-3 top-1/2 transform -translate-y-1/2 transition-colors text-slate-400 hover:text-accent-gold">
+                        <i data-feather="eye" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="login-error" class="hidden bg-error-red/10 border border-error-red/30 text-error-red px-4 py-3 rounded-lg text-sm">
+                Identifiant ou mot de passe incorrect. Veuillez réessayer.
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-6 py-4 rounded-xl text-lg font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-lg transform hover:scale-105">
+                Se connecter
+            </button>
+        </form>
+        <div class="mt-6 text-center text-sm text-slate-500">
+            <p>Pas encore partenaire ? <a href="professionals.html" class="text-accent-gold hover:underline">Rejoignez-nous</a></p>
+            <p class="mt-2">Mot de passe oublié ? <a href="mailto:alliancemobilite@gmail.com" class="text-accent-gold hover:underline">Contactez-nous</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar -->
+<nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+        <a href="index.html" class="flex items-center space-x-3 group">
+            <img src="logo.svg" alt="Alliance Mobilité" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
+            <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300">Alliance Mobilité</span>
+        </a>
+    </div>
+    <div class="hidden md:flex items-center space-x-4">
+        <a href="index.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+            <i data-feather="home" class="w-4 h-4"></i>
+            <span class="font-medium">Accueil</span>
+        </a>
+        <a href="comercial.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+            <i data-feather="briefcase" class="w-4 h-4"></i>
+            <span class="font-medium">Espace Commercial</span>
+        </a>
+<a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
+            <i data-feather="user-plus" class="w-4 h-4"></i>
+            <span class="font-medium">Rejoindre</span>
+        </a>
+        <button id="logout-btn" class="bg-primary-dark text-white px-5 py-2 rounded-lg hover:bg-accent-gold transition-colors duration-300 flex items-center space-x-2 hidden">
+            <i data-feather="log-out" class="w-4 h-4"></i>
+            <span class="font-medium">Déconnexion</span>
+        </button>
+    </div>
+    <button id="mobile-menu-button" class="md:hidden p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
+        <i data-feather="menu" class="w-7 h-7"></i>
+    </button>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-gradient-to-br from-primary-dark to-neutral-dark bg-opacity-98 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out">
+    <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300">
+        <i data-feather="x" class="w-8 h-8"></i>
+    </button>
+            <a href="index.html" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Accueil</a>
+            <a href="index.html#about" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Qui sommes-nous</a>
+            <a href="index.html#services" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Nos Services</a>
+            <a href="index.html#quote" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Demande de devis</a>
+<a href="index.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+        <i data-feather="home" class="w-6 h-6"></i>
+        <span>Accueil</span>
+    </a>
+    <a href="comercial.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+        <i data-feather="briefcase" class="w-6 h-6"></i>
+        <span>Espace Commercial</span>
+    </a>
+</div>
+
+<main class="pt-20">
+    <!-- Header Section -->
+    <section class="bg-primary-dark text-white py-16 md:py-20 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/hero-fond.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+            <div class="absolute inset-0 bg-primary-dark/75"></div>
+        </div>
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+            <div class="text-center" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 bg-accent-gold/20 text-accent-gold rounded-full text-sm font-semibold backdrop-filter backdrop-blur-lg">
+                    Espace Professionnel
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6">
+                    Tableau de <span class="text-accent-gold">Bord</span>
+                </h1>
+                <p class="text-xl max-w-3xl mx-auto opacity-90 mb-10">
+                    Gérez vos missions, votre profil et vos statistiques en tant que partenaire Alliance Mobilité.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile & Stats Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Profile Card -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-slate-200" data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-gradient-to-br from-accent-gold to-accent-light-gold flex items-center justify-center mr-4">
+                            <i data-feather="user" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary-dark">Mon Entreprise</h3>
+                            <p class="text-slate-600">Partenaire depuis 2023</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <p class="flex items-center text-slate-600">
+                            <i data-feather="mail" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                            contact@monentreprise.fr
+                        </p>
+                        <p class="flex items-center text-slate-600">
+                            <i data-feather="phone" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                            +33 6 12 34 56 78
+                        </p>
+                        <p class="flex items-center text-slate-600">
+                            <i data-feather="map-pin" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                            Île-de-France
+                        </p>
+                    </div>
+                    <div class="mt-6">
+                        <button class="w-full bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-6 py-3 rounded-xl text-lg font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-lg transform hover:scale-105">
+                            Modifier mon profil
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6" data-aos="fade-left">
+                    <div class="bg-gradient-to-br from-primary-dark to-neutral-dark text-white rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-accent-gold/20 flex items-center justify-center mr-4">
+                                <i data-feather="check-circle" class="w-6 h-6 text-accent-gold"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Missions complétées</h3>
+                        </div>
+                        <div class="text-4xl font-extrabold mb-2">0</div>
+                        <p class="text-sm text-slate-300">0 ce mois-ci</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-accent-gold to-accent-light-gold text-primary-dark rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-dark/20 flex items-center justify-center mr-4">
+                                <i data-feather="award" class="w-6 h-6 text-primary-dark"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Note moyenne</h3>
+                        </div>
+                        <div class="text-4xl font-extrabold mb-2">0/5</div>
+                        <p class="text-sm text-primary-dark/80">Basée sur 0 avis</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-white to-neutral-light rounded-2xl p-6 shadow-lg border-2 border-slate-200">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-accent-gold/20 flex items-center justify-center mr-4">
+                                <i data-feather="clock" class="w-6 h-6 text-accent-gold"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Missions en cours</h3>
+                        </div>
+                        <div class="text-4xl font-extrabold mb-2 text-primary-dark">0</div>
+                        <p class="text-sm text-slate-600">Aucune mission planifiée</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-white to-neutral-light rounded-2xl p-6 shadow-lg border-2 border-slate-200">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-accent-gold/20 flex items-center justify-center mr-4">
+                                <i data-feather="dollar-sign" class="w-6 h-6 text-accent-gold"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Revenus estimés</h3>
+                        </div>
+                        <div class="text-4xl font-extrabold mb-2 text-primary-dark">0€</div>
+                        <p class="text-sm text-slate-600">Ce mois-ci</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Announcements Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 bg-accent-light-gold text-accent-gold rounded-full text-sm font-semibold">
+                    Annonces disponibles
+                </div>
+                <h2 class="text-4xl font-extrabold text-neutral-dark mb-4">
+                    Enchérir sur des <span class="gradient-text">Missions</span>
+                </h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    Consultez les annonces publiées et soumettez vos offres pour remporter les missions.
+                </p>
+            </div>
+
+            <div id="available-announcements" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Announcements will be dynamically inserted here -->
+            </div>
+            <div id="no-available-announcements" class="text-center py-16 p-8 bg-neutral-light rounded-3xl shadow-inner border border-slate-100 hidden" data-aos="fade-up">
+                <i data-feather="briefcase" class="w-16 h-16 text-slate-400 mx-auto mb-4 opacity-70"></i>
+                <p class="text-xl text-slate-600 font-semibold">Aucune annonce disponible pour le moment</p>
+                <p class="text-md text-slate-500 mt-2">Les nouvelles annonces apparaîtront ici lorsqu'elles seront publiées.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missions Section -->
+    <section class="py-16 md:py-24 bg-neutral-light">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+                <h2 class="text-3xl font-extrabold text-neutral-dark" data-aos="fade-right">Mes Missions</h2>
+                <div class="mt-4 md:mt-0" data-aos="fade-left">
+                    <select class="px-4 py-2 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300">
+                        <option>Toutes les missions</option>
+                        <option>En cours</option>
+                        <option>Terminées</option>
+                        <option>Annulées</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+                <div class="text-center py-16 p-8 bg-white rounded-2xl shadow-lg border-2 border-slate-200" data-aos="fade-up">
+                    <i data-feather="clipboard" class="w-16 h-16 text-slate-400 mx-auto mb-4 opacity-70"></i>
+                    <p class="text-xl text-slate-600 font-semibold">Aucune mission pour le moment</p>
+                    <p class="text-md text-slate-500 mt-2">Les missions apparaîtront ici lorsqu'elles vous seront attribuées.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <!-- Footer - Même fond que la section stats (hero-fond) -->
+    <footer class="bg-primary-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/hero-fond.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <div class="absolute inset-0 bg-primary-dark/75"></div>
+        </div>
+        <div class="container mx-auto px-6 md:px-12 py-12 md:py-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="truck" class="w-8 h-8 text-accent-gold"></i>
+                        <h3 class="text-2xl font-extrabold">Alliance Mobilité</h3>
+                    </div>
+                    <p class="text-white/80 leading-relaxed mb-4">
+                        Votre partenaire de confiance pour un déménagement sans souci. Rejoignez notre réseau de professionnels.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Liens Rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="comercial.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Espace Commercial
+                        </a></li>
+                        <li><a href="index.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Accueil
+                        </a></li>
+                        <li><a href="index.html#about" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Qui sommes-nous
+                        </a></li>
+                        <li><a href="index.html#services" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Nos Services
+                        </a></li>
+                        <li><a href="index.html#quote" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Demande de devis
+                        </a></li>
+                        <li><a href="professionals.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Rejoindre le Réseau
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Contact</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="map-pin" class="w-5 h-5 mr-3 text-accent-gold mt-1 flex-shrink-0"></i>
+                            <span class="text-white/80">14 rue Jules Guesde<br>94190 Villeneuve Saint-George</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="phone" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
+                            <a href="tel:+33668144698" class="text-white/80 hover:text-accent-gold transition-colors duration-300">+33 6 68 14 46 98</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
+                            <a href="mailto:alliancemobilite1@gmail.com" class="text-white/80 hover:text-accent-gold transition-colors duration-300 break-all">alliancemobilite1@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/20 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-white/60 text-sm mb-4 md:mb-0">
+                        © 2024 Alliance Mobilité. Tous droits réservés.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Mentions légales</a>
+                        <span class="text-white/40">|</span>
+                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Politique de confidentialité</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+        // Initialize Feather Icons for footer
+        feather.replace();
+    // Initialize AOS
+    AOS.init({
+        duration: 1200,
+        once: true,
+        offset: 100
+    });
+
+    // Initialize Feather Icons
+    feather.replace();
+    // Credentials for professional login
+    const PROFESSIONAL_USERNAME = 'Rayan94190';
+    const PROFESSIONAL_PASSWORD = 'Mh3rxanc';
+// Check if user is logged in
+    function isLoggedIn() {
+        return localStorage.getItem('professionalLoggedIn') === 'true';
+    }
+
+    // Login function
+    function login() {
+        localStorage.setItem('professionalLoggedIn', 'true');
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('logout-btn').classList.remove('hidden');
+        renderAvailableAnnouncements();
+    }
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem('professionalLoggedIn');
+        document.getElementById('login-overlay').classList.remove('hidden');
+        document.getElementById('logout-btn').classList.add('hidden');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    }
+
+    // Login form handler
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('login-error');
+
+        if (username === PROFESSIONAL_USERNAME && password === PROFESSIONAL_PASSWORD) {
+            errorDiv.classList.add('hidden');
+            login();
+        } else {
+            errorDiv.classList.remove('hidden');
+            document.getElementById('password').value = '';
+        }
+    });
+
+    // Toggle password visibility
+    document.getElementById('toggle-password').addEventListener('click', () => {
+        const passwordInput = document.getElementById('password');
+        const icon = document.querySelector('#toggle-password i');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.setAttribute('data-feather', 'eye-off');
+        } else {
+            passwordInput.type = 'password';
+            icon.setAttribute('data-feather', 'eye');
+        }
+        feather.replace();
+    });
+
+    // Logout button
+    document.getElementById('logout-btn').addEventListener('click', logout);
+
+    // --- Announcement Management Functions ---
+    function getPublicAnnouncements() {
+        const announcements = localStorage.getItem('alliancemobiliteAnnouncements');
+        return announcements ? JSON.parse(announcements) : [];
+    }
+
+    function savePublicAnnouncements(announcements) {
+        localStorage.setItem('alliancemobiliteAnnouncements', JSON.stringify(announcements));
+    }
+
+    function renderAvailableAnnouncements() {
+        const container = document.getElementById('available-announcements');
+        const noAnnouncementsMessage = document.getElementById('no-available-announcements');
+        const announcements = getPublicAnnouncements().filter(ann => ann.status === 'open');
+
+        if (announcements.length === 0) {
+            container.classList.add('hidden');
+            noAnnouncementsMessage.classList.remove('hidden');
+        } else {
+            container.classList.remove('hidden');
+            noAnnouncementsMessage.classList.add('hidden');
+            container.innerHTML = announcements.map(announcement => {
+                const bidsCount = announcement.bids ? announcement.bids.length : 0;
+                const minBid = announcement.bids && announcement.bids.length > 0 
+                    ? Math.min(...announcement.bids.map(b => parseFloat(b.amount))) 
+                    : null;
+                return `
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-slate-200 hover:border-accent-gold transition-all duration-300" data-aos="fade-up" data-announcement-id="${announcement.id}">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-2xl font-bold text-primary-dark mb-2">${announcement.moveType}</h3>
+                                <p class="text-slate-700 flex items-center mb-1">
+                                    <i data-feather="user" class="w-4 h-4 mr-2 text-accent-gold"></i>
+                                    Client: <strong>${announcement.clientName}</strong>
+                                </p>
+                            </div>
+                            <span class="status-badge status-pending">Ouverte</span>
+                        </div>
+
+                        <div class="space-y-3 mb-4">
+                            <p class="flex items-center text-slate-600">
+                                <i data-feather="calendar" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                                Date souhaitée : <strong>${new Date(announcement.moveDate).toLocaleDateString('fr-FR')}</strong>
+                            </p>
+                            <p class="flex items-center text-slate-600">
+                                <i data-feather="map-pin" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                                <span>De <strong>${announcement.fromLocation}</strong> à <strong>${announcement.toLocation}</strong></span>
+                            </p>
+                            <p class="flex items-center text-slate-600">
+                                <i data-feather="dollar-sign" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                                <span>Budget estimé : <strong>${announcement.estimatedBudget}€</strong></span>
+                            </p>
+                            ${bidsCount > 0 ? `
+                                <p class="flex items-center text-accent-gold font-semibold">
+                                    <i data-feather="users" class="w-5 h-5 mr-3"></i>
+                                    ${bidsCount} offre${bidsCount > 1 ? 's' : ''} • Meilleure offre: <strong>${minBid}€</strong>
+                                </p>
+                            ` : `
+                                <p class="text-sm text-slate-500 italic">Aucune offre pour le moment</p>
+                            `}
+                            ${announcement.details ? `
+                                <div class="bg-neutral-light p-4 rounded-lg text-sm text-slate-700 border border-slate-100 mt-3">
+                                    <p class="font-semibold mb-1">Détails :</p>
+                                    <p>${announcement.details}</p>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <div class="border-t border-slate-200 pt-4">
+                            <form class="bid-form" data-announcement-id="${announcement.id}" onsubmit="event.preventDefault(); submitBid(${announcement.id});">
+                                <div class="flex gap-3">
+                                    <input 
+                                        type="number" 
+                                        class="flex-1 px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300 focus:border-accent-gold focus:shadow-md" 
+                                        placeholder="Montant de votre offre (€)" 
+                                        min="1" 
+                                        step="0.01"
+                                        required
+                                        id="bid-amount-${announcement.id}"
+                                        name="bidAmount"
+                                    >
+                                    <button 
+                                        type="submit" 
+                                        class="bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-6 py-3 rounded-xl font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-lg transform hover:scale-105"
+                                    >
+                                        Enchérir
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            feather.replace();
+        }
+    }
+
+    window.submitBid = function(announcementId) {
+        const amountInput = document.getElementById('bid-amount-' + announcementId);
+        if (!amountInput) {
+            alert('Erreur: champ introuvable');
+            return;
+        }
+        const amount = parseFloat(amountInput.value);
+
+        if (isNaN(amount) || amount <= 0) {
+            alert('Veuillez entrer un montant valide');
+            return;
+        }
+
+        const announcements = getPublicAnnouncements();
+        const announcementIndex = announcements.findIndex(ann => ann.id === announcementId);
+        
+        if (announcementIndex === -1) {
+            alert('Annonce introuvable');
+            return;
+        }
+
+        if (!announcements[announcementIndex].bids) {
+            announcements[announcementIndex].bids = [];
+        }
+
+        // Ajouter l'enchère
+        const newBid = {
+            id: Date.now(),
+            amount: amount,
+            professionalName: 'Mon Entreprise', // Vous pouvez récupérer le nom depuis le profil
+            date: new Date().toISOString()
+        };
+
+        announcements[announcementIndex].bids.push(newBid);
+        savePublicAnnouncements(announcements);
+
+        // Réinitialiser le champ
+        amountInput.value = '';
+
+        // Recharger l'affichage
+        renderAvailableAnnouncements();
+
+        // Afficher un message de succès
+        alert(`Votre offre de ${amount}€ a été soumise avec succès !`);
+    };
+
+    // Check login status on page load
+    if (isLoggedIn()) {
+        login();
+        
+        // Rafraîchir les annonces toutes les 2 secondes
+        setInterval(() => {
+            if (isLoggedIn()) {
+                renderAvailableAnnouncements();
+            }
+        }, 2000);
+    } else {
+        document.getElementById('login-overlay').classList.remove('hidden');
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.pageYOffset > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function openMobileMenu() {
+        mobileMenu.classList.remove('-translate-x-full');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.add('-translate-x-full');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuButton.addEventListener('click', openMobileMenu);
+    closeMenuButton.addEventListener('click', closeMobileMenu);
+</script>
+</body>
+</html>

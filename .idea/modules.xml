@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alliance Mobilité - Votre Déménagement Simplifié</title>
+    <meta name="description" content="Alliance Mobilité est votre partenaire expert pour un déménagement sans stress. Découvrez nos packs personnalisés et obtenez un devis gratuit pour votre transition.">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+      theme: {
+      extend: {
+      colors: {
+      'primary-dark': '#1A2D40', // Bleu Nuit
+      'accent-gold': '#D4AF37',   // Doré
+      'accent-light-gold': '#F3D8B0', // Lighter Doré for gradients/secondary elements
+      'neutral-dark': '#000000',  // Pure Black for text
+      'neutral-light': '#F8F9FA', // Background white/light gray
+      'success-green': '#4CAF50', // Standard green for positive feedback
+      'error-red': '#EF4444',     // Standard red for errors
+      }
+      }
+      }
+      }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <style>
+      html {
+      scroll-behavior: smooth;
+      }
+      body {
+      font-family: 'Inter', sans-serif;
+      color: #000000; /* Pure Black */
+      overflow-x: hidden;
+      background-color: #F8F9FA; /* neutral-light */
+      }
+      h1, h2, h3, h4, h5, h6 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+
+      /* Navbar glassmorphism effect */
+      nav {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+      transition: all 0.3s ease;
+      }
+      nav.scrolled {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Vanta.js background */
+      #vanta-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      }
+      .vanta-container {
+      position: relative;
+      z-index: 1;
+      }
+
+      /* Floating animation */
+      @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      }
+      .float-animation {
+      animation: float 6s ease-in-out infinite;
+      }
+
+      /* Gradient text */
+      .gradient-text {
+      background: linear-gradient(135deg, #1A2D40 0%, #D4AF37 100%); /* primary-dark to accent-gold */
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      }
+
+      /* Card hover effects */
+      .service-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Pulse animation */
+      @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(26, 45, 64, 0.4); } /* primary-dark with opacity */
+      50% { box-shadow: 0 0 40px rgba(26, 45, 64, 0.8); }
+      }
+      .pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      /* Stats counter animation */
+      .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #FFFFFF; /* Changed to white */
+      }
+
+      /* Testimonial card */
+      .testimonial-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* Back to top button */
+      #back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 0.3s ease;
+      }
+      #back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      }
+
+      /* Form input focus effect */
+      input:focus, textarea:focus, select:focus {
+      transform: scale(1.02);
+      transition: transform 0.2s ease;
+      border-color: #D4AF37; /* accent-gold */
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); /* accent-gold with opacity */
+      }
+
+      /* Shimmer effect */
+      @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+      }
+      .shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      background-size: 1000px 100%;
+      animation: shimmer 3s infinite;
+      }
+
+      /* Parallax effect */
+      .parallax {
+      transform: translateZ(0);
+      will-change: transform;
+      }
+
+      /* FAQ accordion */
+      .faq-item {
+      transition: all 0.3s ease;
+      }
+      .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      }
+      .faq-item.active .faq-content {
+      max-height: 500px;
+      }
+
+      /* Loading spinner */
+      .spinner {
+      border: 3px solid rgba(212, 175, 55, 0.1); /* accent-gold with opacity */
+      border-top-color: #D4AF37; /* accent-gold */
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+      to { transform: rotate(360deg); }
+      }
+
+      /* Particle background */
+      .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      }
+      .particle {
+      position: absolute;
+      background: rgba(26, 45, 64, 0.3); /* primary-dark with opacity */
+      border-radius: 50%;
+      animation: float-particle 20s infinite;
+      }
+      @keyframes float-particle {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <i data-feather="truck" class="w-8 h-8 md:w-10 md:h-10 animate-pulse text-accent-gold"></i>
+        <a href="index.html" class="text-2xl md:text-3xl font-extrabold tracking-tight transition-colors duration-300 text-primary-dark hover:text-accent-gold">Alliance Mobilité</a>
+      </div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#hero" class="font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+          Accueil
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+        </a>
+        <a href="#about" class="font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+          Qui sommes-nous
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+        </a>
+        <a href="#services" class="font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+          Nos Services
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+        </a>
+        <a href="#quote" class="font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+          Demande de devis
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+        </a>
+        <div class="flex items-center space-x-3">
+          <a href="auction.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-accent-gold hover:bg-accent-light-gold">
+            <i data-feather="lock" class="w-4 h-4"></i>
+            <span class="font-medium">Espace Pro</span>
+          </a>
+          <a href="commercials-dashboard.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
+            <i data-feather="briefcase" class="w-4 h-4"></i>
+            <span class="font-medium">Espace Commercial</span>
+          </a>
+          <a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
+            <i data-feather="user-plus" class="w-4 h-4"></i>
+            <span class="font-medium">Rejoindre</span>
+          </a>
+        </div>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden p-2 text-neutral-dark focus:outline-none transition-colors duration-300 hover:text-accent-gold">
+        <i data-feather="menu" class="w-7 h-7"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-opacity-98 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out bg-neutral-dark">
+      <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white focus:outline-none transition-colors duration-300 hover:text-accent-gold">
+        <i data-feather="x" class="w-8 h-8"></i>
+      </button>
+      <a href="#hero" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Accueil</a>
+      <a href="#about" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Qui sommes-nous</a>
+      <a href="#services" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Nos Services</a>
+      <a href="#quote" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Demande de devis</a>
+      <a href="auction.html" class="text-primary-dark px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--accent-gold), var(--accent-light-gold));" onmouseover="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white';" onmouseout="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)'">
+        <i data-feather="lock" class="w-6 h-6"></i>
+        <span>Espace Pro</span>
+      </a>
+      <a href="commercials-dashboard.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+        <i data-feather="briefcase" class="w-6 h-6"></i>
+        <span>Espace Commercial</span>
+      </a>
+      <a href="professionals.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+        <i data-feather="user-plus" class="w-6 h-6"></i>
+        <span>Rejoindre</span>
+      </a>
+    </div>
+
+    <main class="pt-20">
+      <!-- Hero Section with Vanta.js -->
+      <section id="hero" class="relative text-white py-24 md:py-36 overflow-hidden min-h-screen flex items-center justify-center bg-primary-dark">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" alt="Déménagement professionnel" class="w-full h-full object-cover opacity-10">
+          <div class="absolute inset-0 opacity-90 bg-primary-dark"></div>
+        </div>
+        <div id="vanta-bg"></div>
+        <div class="particles" id="particles"></div>
+        <div class="vanta-container relative z-10 text-center max-w-5xl mx-auto px-6" data-aos="fade-up" data-aos-duration="1200">
+          <div class="float-animation">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight mb-8 tracking-tight">
+              Alliance Mobilité :<br>
+              Votre Déménagement <span class="gradient-text text-white">Simplifié & Sans Stress</span>
+            </h1>
+          </div>
+          <p class="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed">
+            Nous connectons les particuliers aux meilleurs professionnels du déménagement, assurant une transition fluide et sécurisée. Votre satisfaction est notre priorité.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="#quote" class="group inline-flex items-center justify-center text-white px-10 py-5 rounded-xl text-xl font-bold transition-all duration-300 shadow-2xl transform hover:scale-110 pulse-glow bg-accent-gold hover:bg-neutral-dark">
+              Obtenez un Devis Gratuit
+              <i data-feather="arrow-right" class="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
+            </a>
+            <a href="#services" class="inline-flex items-center justify-center bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg text-white px-10 py-5 rounded-xl text-xl font-bold hover:bg-opacity-30 transition-all duration-300 border-2 border-white border-opacity-50">
+              Découvrir nos packs
+            </a>
+          </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <i data-feather="chevron-down" class="w-8 h-8 text-white"></i>
+        </div>
+      </section>
+
+      <!-- Statistics Section -->
+      <section id="stats-section" class="py-16 md:py-20 text-white relative overflow-hidden bg-primary-dark">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+      </div>
+      <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div data-aos="zoom-in" data-aos-delay="100">
+            <div class="stat-number" data-target="98" data-suffix="%">98%</div>
+            <p class="text-lg font-semibold mt-2">Clients satisfaits</p>
+          </div>
+          <div data-aos="zoom-in" data-aos-delay="200">
+            <div class="stat-number" data-target="150" data-prefix="+">+150</div>
+            <p class="text-lg font-semibold mt-2">Partenaires</p>
+          </div>
+          <div data-aos="zoom-in" data-aos-delay="300">
+            <div class="stat-number" data-target="98" data-suffix="%">98%</div>
+            <p class="text-lg font-semibold mt-2">% Satisfaction</p>
+          </div>
+          <div data-aos="zoom-in" data-aos-delay="400">
+            <div class="stat-number" data-target="24" data-suffix="h">24h</div>
+            <p class="text-lg font-semibold mt-2">Réactivité</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 md:py-28 bg-white relative">
+      <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-accent-gold to-transparent opacity-5"></div>
+      <div class="container mx-auto px-6 md:px-12 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div data-aos="fade-right" data-aos-duration="1000">
+            <div class="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-accent-light-gold text-accent-gold">
+              À propos de nous
+            </div>
+            <h2 class="text-5xl font-extrabold mb-8 leading-tight text-neutral-dark">
+              Qui sommes-nous ? <span class="gradient-text">Notre Mission.</span>
+            </h2>
+            <div class="space-y-6">
+              <p class="text-lg leading-relaxed text-slate-600">
+                Alliance Mobilité est une entreprise d'apporteur d'affaires dédiée à simplifier le processus de déménagement pour les particuliers. Nous comprenons que déménager peut être une source de stress, c'est pourquoi nous agissons comme votre partenaire de confiance pour vous connecter avec un réseau vérifié de déménageurs professionnels.
+              </p>
+              <p class="text-lg leading-relaxed text-slate-600">
+                Notre mission est de vous offrir une expérience de déménagement transparente, efficace et sereine, en vous garantissant des services de qualité adaptés à vos besoins et à votre budget. Nous mettons l'accent sur la transparence, la fiabilité et un service client irréprochable.
+              </p>
+              <div class="p-6 rounded-2xl border-l-4 bg-neutral-light border-l-primary-dark">
+                <p class="text-lg font-semibold text-neutral-dark">
+                  ✨ Notre valeur ajoutée : Une sélection rigoureuse, des devis personnalisés, un accompagnement sur mesure.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="relative" data-aos="fade-left" data-aos-duration="1000">
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Équipe d'Alliance Mobilité" class="w-full h-auto object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-40"></div>
+            </div>
+            <div class="absolute -bottom-6 -left-6 p-6 rounded-2xl shadow-xl transform rotate-6 hover:rotate-0 transition-transform duration-300 bg-accent-gold">
+              <div class="text-4xl font-bold text-white">98%</div>
+              <div class="text-white font-semibold">Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Services/Packs Section -->
+    <section id="services" class="py-20 md:py-28 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 blur-3xl bg-primary-dark"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-10 blur-3xl bg-accent-gold"></div>
+      <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <div class="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-accent-light-gold text-accent-gold">
+            Nos Solutions
+          </div>
+          <h2 class="text-5xl font-extrabold mb-6 text-neutral-dark">
+            Nos Packs de Déménagement <span class="gradient-text">Sur Mesure</span>
+          </h2>
+          <p class="text-xl max-w-3xl mx-auto text-slate-600 leading-relaxed">
+            Découvrez nos solutions conçues pour répondre à tous les besoins, du déménagement économique au service premium tout inclus.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Pack Essentiel -->
+          <div class="service-card bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-neutral-light" data-aos="zoom-in" data-aos-delay="200" onmouseover="this.style.borderColor='var(--primary-dark)'" onmouseout="this.style.borderColor='var(--neutral-light)'">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Pack Essentiel" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+              <div class="absolute top-4 right-4 text-white px-4 py-2 rounded-full text-sm font-bold bg-neutral-dark">Économique</div>
+            </div>
+            <div class="p-8">
+              <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-transform duration-300 bg-primary-dark">
+                  <i data-feather="package" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-3xl font-bold mb-2 text-neutral-dark">Pack Essentiel</h3>
+                <p class="text-slate-600">
+                  Idéal pour les petits budgets. Préparez vous-même vos cartons, nous nous occupons du transport et du déchargement.
+                </p>
+              </div>
+              <ul class="text-slate-700 space-y-4 mb-8">
+                <li class="flex items-center">
+                  <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                  </div>
+                  Transport et main-d'œuvre
+                </li>
+                <li class="flex items-center">
+                  <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                  </div>
+                  Protection des meubles
+                </li>
+                <li class="flex items-center text-slate-400">
+                  <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="x" class="w-4 h-4 text-gray-400"></i>
+                  </div>
+                  Emballage / Déballage (optionnel)
+                </li>
+              </ul>
+              <a href="#quote" class="block w-full text-center bg-gradient-to-r from-primary-dark to-neutral-dark text-white px-6 py-4 rounded-xl hover:from-accent-gold hover:to-accent-light-gold transition-all duration-300 font-semibold shadow-lg transform hover:scale-105">
+                Demander un devis
+              </a>
+            </div>
+          </div>
+
+          <!-- Pack Confort -->
+          <div class="service-card rounded-3xl shadow-2xl overflow-hidden border-2 relative transform scale-105 border-accent-gold" data-aos="zoom-in" data-aos-delay="300" style="background: linear-gradient(to bottom right, #FFFFFF, #F6F4EF);">
+            <div class="absolute top-0 right-0 text-white px-6 py-2 transform rotate-12 translate-x-2 -translate-y-2 shadow-lg bg-gradient-to-r from-accent-gold to-accent-light-gold">
+              <span class="font-bold">Populaire</span>
+            </div>
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Pack Confort" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-transform duration-300 shadow-lg bg-gradient-to-br from-accent-gold to-accent-light-gold">
+                  <i data-feather="box" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-3xl font-bold mb-2 text-primary-dark">Pack Confort</h3>
+                <p class="text-slate-600">
+                  La solution la plus populaire. Nous gérons l'emballage de vos objets fragiles et le démontage des meubles.
+                </p>
+              </div>
+              <ul class="text-slate-700 space-y-4 mb-8">
+                <li class="flex items-center">
+                  <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                  </div>
+                  Pack Essentiel inclus
+                </li>
+                <li class="flex items-center">
+                  <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                  </div>
+                  Emballage objets fragiles
+                </li>
+                <li class="flex items-center">
+                  <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                  </div>
+                  Démontage/remontage meubles
+                </li>
+              </ul>
+              <a href="#quote" class="block w-full text-center text-white px-6 py-4 rounded-xl transition-all duration-300 font-bold shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark">
+                Demander un devis
+              </a>
+            </div>
+          </div>
+
+          <!-- Pack Premium -->
+          <div class="service-card bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-neutral-light hover:border-bleu-doux" data-aos="zoom-in" data-aos-delay="400" onmouseover="this.style.borderColor='var(--primary-dark)'" onmouseout="this.style.borderColor='var(--neutral-light)'">
+            <div class="relative h-56 overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" alt="Pack Premium" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+              <div class="absolute top-4 right-4 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-primary-dark to-neutral-dark">Premium</div>
+            </div>
+            <div class="p-8">
+              <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary-dark to-neutral-dark">
+                  <i data-feather="award" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-3xl font-bold mb-2 text-primary-dark">Pack Premium</h3>
+                <p class="text-slate-600">
+                  Le luxe d'un déménagement clé en main. Nous nous occupons de tout, de A à Z.
+                </p>
+              </div>
+              <ul class="text-slate-700 space-y-4 mb-8">
+                <li class="flex items-center">
+                  <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                  </div>
+                  Pack Confort inclus
+                </li>
+                <li class="flex items-center">
+                  <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                  </div>
+                  Emballage total
+                </li>
+                <li class="flex items-center">
+                  <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                    <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                  </div>
+                  Mise en place et déballage
+                </li>
+              </ul>
+              <a href="#quote" class="block w-full text-center bg-gradient-to-r from-primary-dark to-neutral-dark text-white px-6 py-4 rounded-xl hover:from-accent-gold hover:to-accent-light-gold transition-all duration-300 font-semibold shadow-lg transform hover:scale-105">
+                Demander un devis
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 md:py-28 text-white relative overflow-hidden bg-gradient-to-br from-primary-dark to-neutral-dark">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\" fill=\"%23D4AF37\" fill-opacity=\"0.4\" fill-rule=\"evenodd\"/%3E%3C/svg%3E');"></div>
+    </div>
+    <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-block mb-4 px-4 py-2 bg-opacity-20 rounded-full text-sm font-semibold backdrop-filter backdrop-blur-lg bg-accent-gold/20 text-accent-gold">
+          Témoignages
+        </div>
+        <h2 class="text-5xl font-extrabold mb-6">
+          Ce Que Disent <span class="text-accent-gold">Nos Clients</span>
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="testimonial-card rounded-2xl p-8 transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center mb-6">
+            <div class="flex text-accent-gold">
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+            </div>
+          </div>
+          <p class="text-lg mb-6 italic">"Service exceptionnel ! L'équipe a été très professionnelle et le déménagement s'est déroulé sans le moindre problème. Je recommande vivement !"</p>
+          <div class="flex items-center">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-accent-gold to-accent-light-gold">
+              <span class="text-white font-bold">SM</span>
+            </div>
+            <div>
+              <div class="font-bold">Sophie Martin</div>
+              <div class="text-sm text-slate-400">Paris</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card rounded-2xl p-8 transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center mb-6">
+            <div class="flex text-accent-gold">
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+            </div>
+          </div>
+          <p class="text-lg mb-6 italic">"Très satisfait du service. Le devis était clair, le prix transparent et les déménageurs étaient à l'heure et efficaces. Parfait !"</p>
+          <div class="flex items-center">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-accent-gold to-accent-light-gold">
+              <span class="text-white font-bold">JD</span>
+            </div>
+            <div>
+              <div class="font-bold">Jean Dubois</div>
+              <div class="text-sm text-slate-400">Lyon</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card rounded-2xl p-8 transform hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center mb-6">
+            <div class="flex text-accent-gold">
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+              <i data-feather="star" class="w-5 h-5 fill-current"></i>
+            </div>
+          </div>
+          <p class="text-lg mb-6 italic">"Un déménagement sans stress grâce à Alliance Mobilité. L'accompagnement était parfait et tout s'est bien passé. Merci !"</p>
+          <div class="flex items-center">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-accent-gold to-accent-light-gold">
+              <span class="text-white font-bold">ML</span>
+            </div>
+            <div>
+              <div class="font-bold">Marie Laurent</div>
+              <div class="text-sm text-slate-400">Marseille</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="container mx-auto px-6 md:px-12 max-w-4xl">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <div class="inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-accent-light-gold text-accent-gold">
+          Questions Fréquentes
+        </div>
+        <h2 class="text-5xl font-extrabold mb-6 text-primary-dark">
+          Vous Avez des <span class="gradient-text">Questions ?</span>
+        </h2>
+      </div>
+      <div class="space-y-4">
+        <div class="faq-item bg-slate-50 rounded-2xl p-6 cursor-pointer hover:bg-slate-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-slate-900">Comment obtenir un devis gratuit ?</h3>
+            <i data-feather="chevron-down" class="w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+          </div>
+          <div class="faq-content mt-4">
+            <p class="text-slate-600 leading-relaxed">Remplissez simplement notre formulaire en ligne avec les détails de votre déménagement. Nous vous contacterons sous 24h avec un devis personnalisé et gratuit, sans engagement.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-slate-50 rounded-2xl p-6 cursor-pointer hover:bg-slate-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-slate-900">Quels sont les délais de réponse ?</h3>
+            <i data-feather="chevron-down" class="w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+          </div>
+          <div class="faq-content mt-4">
+            <p class="text-slate-600 leading-relaxed">Nous nous engageons à vous répondre sous 24 heures ouvrées. Pour les demandes urgentes, n'hésitez pas à nous appeler directement au +33 6 68 14 46 98.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-slate-50 rounded-2xl p-6 cursor-pointer hover:bg-slate-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-slate-900">Les professionnels sont-ils assurés ?</h3>
+            <i data-feather="chevron-down" class="w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+          </div>
+          <div class="faq-content mt-4">
+            <p class="text-slate-600 leading-relaxed">Oui, tous nos partenaires professionnels sont vérifiés, assurés et certifiés. Nous sélectionnons rigoureusement chaque déménageur pour garantir votre tranquillité d'esprit.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-slate-50 rounded-2xl p-6 cursor-pointer hover:bg-slate-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-slate-900">Puis-je modifier mon devis après acceptation ?</h3>
+            <i data-feather="chevron-down" class="w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+          </div>
+          <div class="faq-content mt-4">
+            <p class="text-slate-600 leading-relaxed">Bien sûr ! Nous comprenons que les besoins peuvent évoluer. Contactez-nous et nous ajusterons votre devis en fonction de vos nouvelles exigences.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Request Form Section -->
+  <section id="quote" class="py-20 md:py-28 text-white relative overflow-hidden bg-gradient-to-br from-primary-dark to-neutral-dark">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(212, 175, 55, 0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    </div>
+    <div class="container mx-auto px-6 md:px-12 max-w-4xl relative z-10">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <div class="inline-block mb-4 px-4 py-2 bg-opacity-20 rounded-full text-sm font-semibold backdrop-filter backdrop-blur-lg bg-accent-gold/20 text-accent-gold">
+          Devis Gratuit
+        </div>
+        <h2 class="text-5xl font-extrabold text-white mb-6">
+          Demandez Votre Devis <span class="text-accent-gold">Gratuit et Rapide</span>
+        </h2>
+        <p class="text-xl max-w-2xl mx-auto opacity-90 leading-relaxed">
+          Remplissez notre formulaire simple pour obtenir une estimation personnalisée de votre déménagement. C'est rapide, facile et sans engagement.
+        </p>
+      </div>
+
+      <form id="quote-form" class="bg-white bg-opacity-95 backdrop-filter backdrop-blur-lg p-8 md:p-12 rounded-3xl shadow-2xl space-y-6 border border-white border-opacity-20" data-aos="fade-up" data-aos-delay="200">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="firstName" class="block text-slate-700 text-sm font-semibold mb-2">Prénom *</label>
+            <input type="text" id="firstName" name="firstName" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" placeholder="Votre prénom" required>
+          </div>
+          <div>
+            <label for="lastName" class="block text-slate-700 text-sm font-semibold mb-2">Nom *</label>
+            <input type="text" id="lastName" name="lastName" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" placeholder="Votre nom" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-slate-700 text-sm font-semibold mb-2">Adresse E-mail *</label>
+          <input type="email" id="email" name="email" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" placeholder="email@exemple.com" required>
+        </div>
+
+        <div>
+          <label for="phone" class="block text-slate-700 text-sm font-semibold mb-2">Numéro de téléphone</label>
+          <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 text-slate-800 transition-all duration-300" placeholder="+33 X XX XX XX XX">
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="moveDate" class="block text-slate-700 text-sm font-semibold mb-2">Date de déménagement souhaitée</label>
+            <input type="date" id="moveDate" name="moveDate" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 text-slate-800 transition-all duration-300">
+          </div>
+          <div>
+            <label for="moveType" class="block text-slate-700 text-sm font-semibold mb-2">Type de déménagement *</label>
+            <select id="moveType" name="moveType" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 text-slate-800 transition-all duration-300" required>
+              <option value="">Sélectionnez un type</option>
+              <option value="local">Local (moins de 100 km)</option>
+              <option value="regional">Régional (100-500 km)</option>
+              <option value="national">National (plus de 500 km)</option>
+              <option value="international">International</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="details" class="block text-slate-700 text-sm font-semibold mb-2">Détails supplémentaires (taille, particularités...)</label>
+          <textarea id="details" name="details" rows="5" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 text-slate-800 transition-all duration-300 resize-none" placeholder="Décrivez votre besoin pour un devis plus précis..."></textarea>
+        </div>
+
+        <div class="text-center pt-4">
+          <button type="submit" class="group inline-flex items-center justify-center text-white px-10 py-5 rounded-xl text-xl font-bold transition-all duration-300 shadow-2xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark">
+            <span id="submit-text">Envoyer ma demande</span>
+            <i data-feather="send" class="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+
+<script>
+// Initialize AOS
+AOS.init({
+duration: 1200,
+once: true,
+offset: 100
+});
+
+// Initialize Feather Icons
+feather.replace();
+
+// Vanta.js initialization
+let vantaEffect;
+if (typeof VANTA !== 'undefined') {
+vantaEffect = VANTA.GLOBE({
+el: "#vanta-bg",
+mouseControls: true,
+touchControls: true,
+gyroControls: false,
+minHeight: 200.00,
+minWidth: 200.00,
+scale: 1.00,
+scaleMobile: 1.00,
+color: 0x1A2D40, // primary-dark
+color2: 0xD4AF37, // accent-gold
+backgroundColor: 0x1A2D40, // primary-dark
+});
+}
+
+// Create particles
+function createParticles() {
+const particlesContainer = document.getElementById('particles');
+if (!particlesContainer) return;
+
+for (let i = 0; i < 20; i++) {
+const particle = document.createElement('div');
+particle.className = 'particle';
+particle.style.width = Math.random() * 5 + 2 + 'px';
+particle.style.height = particle.style.width;
+particle.style.left = Math.random() * 100 + '%';
+particle.style.animationDelay = Math.random() * 20 + 's';
+particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+particlesContainer.appendChild(particle);
+}
+}
+createParticles();
+
+// Navbar scroll effect
+let lastScroll = 0;
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+const currentScroll = window.pageYOffset;
+if (currentScroll > 100) {
+navbar.classList.add('scrolled');
+} else {
+navbar.classList.remove('scrolled');
+}
+lastScroll = currentScroll;
+});
+
+// Mobile menu toggle
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const closeMenuButton = document.getElementById('close-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+function openMobileMenu() {
+mobileMenu.classList.remove('-translate-x-full');
+document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+mobileMenu.classList.add('-translate-x-full');
+document.body.style.overflow = '';
+}
+
+mobileMenuButton.addEventListener('click', openMobileMenu);
+closeMenuButton.addEventListener('click', closeMobileMenu);
+
+// Back to top button
+const backToTop = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+if (window.pageYOffset > 300) {
+backToTop.classList.add('visible');
+} else {
+backToTop.classList.remove('visible');
+}
+});
+
+backToTop.addEventListener('click', () => {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+item.addEventListener('click', () => {
+const isActive = item.classList.contains('active');
+document.querySelectorAll('.faq-item').forEach(i => {
+i.classList.remove('active');
+const icon = i.querySelector('i[data-feather="chevron-down"]');
+if (icon) {
+icon.style.transform = 'rotate(0deg)';
+}
+});
+if (!isActive) {
+item.classList.add('active');
+const icon = item.querySelector('i[data-feather="chevron-down"]');
+if (icon) {
+icon.style.transform = 'rotate(180deg)';
+}
+}
+feather.replace();
+});
+});
+
+// Form submission
+const quoteForm = document.getElementById('quote-form');
+if (quoteForm) {
+quoteForm.addEventListener('submit', (e) => {
+e.preventDefault();
+const submitText = document.getElementById('submit-text');
+const originalText = submitText.textContent;
+submitText.textContent = 'Envoi en cours...';
+
+// Simulate form submission
+setTimeout(() => {
+submitText.textContent = 'Demande envoyée !';
+quoteForm.reset();
+setTimeout(() => {
+submitText.textContent = originalText;
+}, 3000);
+}, 1500);
+});
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+
+// Refresh feather icons on dynamic content
+setInterval(() => {
+feather.replace();
+}, 1000);
+</script>
+        </body>
+        </html>

@@ -1,0 +1,1543 @@
+
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Alliance Mobilité - Votre Déménagement Simplifié</title>
+    <meta name="description" content="Alliance Mobilité est votre partenaire expert pour un déménagement sans stress en Île-de-France. Découvrez nos packs personnalisés et obtenez un devis gratuit pour votre transition.">
+    <meta name="keywords" content="déménagement, déménageur, déménagement Île-de-France, déménagement Paris, déménagement pas cher, devis déménagement, entreprise déménagement">
+    <meta name="geo.region" content="FR-IDF" />
+    <meta name="geo.placename" content="Île-de-France" />
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1A2D40', // Bleu Nuit
+                        'accent-gold': '#D4AF37',   // Doré
+                        'accent-light-gold': '#F3D8B0', // Lighter Doré for gradients/secondary elements
+                        'neutral-dark': '#000000',  // Pure Black for text
+                        'neutral-light': '#F8F9FA', // Background white/light gray
+                        'success-green': '#4CAF50', // Standard green for positive feedback
+                        'error-red': '#EF4444',     // Standard red for errors
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #000000;
+            overflow-x: hidden;
+            background-color: #F8F9FA;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+        /* Navbar glassmorphism effect */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 30px rgba(26, 45, 64, 0.08);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.3s ease;
+        }
+        nav.scrolled {
+            box-shadow: 0 4px 40px rgba(26, 45, 64, 0.12);
+        }
+/* Vanta.js background */
+        #vanta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .vanta-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #1A2D40 0%, #D4AF37 50%, #F3D8B0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+        }
+        
+        /* Hero text shadow for readability */
+        .hero-title {
+            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(212, 175, 55, 0.1);
+        }
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, #F3D8B0 0%, #D4AF37 50%, #F3D8B0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Card hover effects */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(26, 45, 64, 0.08);
+        }
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(26, 45, 64, 0.12), 0 0 0 1px rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Pulse animation */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(26, 45, 64, 0.4); } /* primary-dark with opacity */
+            50% { box-shadow: 0 0 40px rgba(26, 45, 64, 0.8); }
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        /* Stats counter animation */
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #000000;
+        }
+        
+        /* Testimonial card */
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.98) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 10px 40px rgba(26, 45, 64, 0.06);
+        }
+        .testimonial-card:hover {
+            box-shadow: 0 20px 50px rgba(26, 45, 64, 0.1);
+            border-color: rgba(212, 175, 55, 0.25);
+        }
+        
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s ease;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Form input focus effect */
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #D4AF37 !important;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2) !important;
+        }
+        
+        /* Shimmer effect */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+        }
+        
+        /* Parallax effect */
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        /* FAQ - Style raffiné */
+        .faq-question {
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(26, 45, 64, 0.04);
+        }
+        .faq-question:hover {
+            box-shadow: 0 8px 25px rgba(26, 45, 64, 0.08);
+            border-color: rgba(212, 175, 55, 0.3) !important;
+        }
+        .faq-answer {
+            transition: all 0.3s ease;
+        }
+        .faq-answer.hidden {
+            display: none;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            border: 3px solid rgba(212, 175, 55, 0.1); /* accent-gold with opacity */
+            border-top-color: #D4AF37; /* accent-gold */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Particle background */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(26, 45, 64, 0.3); /* primary-dark with opacity */
+            border-radius: 50%;
+            animation: float-particle 20s infinite;
+        }
+        @keyframes float-particle {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+        /* Section badges */
+        .section-badge {
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        /* Quote form - fond blanc opaque, texte bien visible */
+        #quote-form {
+            color: #0f172a;
+        }
+        #quote-form input, #quote-form select, #quote-form textarea {
+            color: #0f172a !important;
+        }
+        /* Decorative gradient line */
+        .gradient-divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #D4AF37, #F3D8B0, transparent);
+            border-radius: 2px;
+        }
+        /* CTA button glow */
+        .cta-glow {
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
+        }
+        .cta-glow:hover {
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.5);
+        }
+        /* Stats card enhancement */
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        /* Slow zoom animation for hero */
+        @keyframes slow-zoom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-slow-zoom {
+            animation: slow-zoom 20s ease-in-out infinite;
+        }
+        /* Section avec image de fond visible */
+        .section-bg-image {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        @media (max-width: 768px) {
+            .section-bg-image { background-attachment: scroll; }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-100" style="--primary: #1A2D40; --accent: #D4AF37; --accent-light: #F3D8B0;">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 bg-white/95 backdrop-blur-xl py-3 px-6 md:px-12 flex items-center justify-between border-b border-slate-200/50">
+        <div class="flex items-center space-x-3">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <img src="logo.svg" alt="Alliance Mobilité - Logo" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
+                <span class="text-xl md:text-2xl font-extrabold tracking-tight transition-colors duration-300 text-primary-dark group-hover:text-accent-gold">Alliance Mobilité</span>
+            </a>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="index.html" class="font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+                Accueil
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+            </a>
+            <a href="index.html#about" class="font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+                Qui sommes-nous
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+            </a>
+            <a href="index.html#services" class="font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+                Nos Services
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+            </a>
+            <a href="index.html#quote" class="font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+                Demande de devis
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+            </a>
+<div class="flex items-center space-x-3">
+                <a href="comercial.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+                    <i data-feather="briefcase" class="w-4 h-4"></i>
+                    <span class="font-medium">Espace Commercial</span>
+                </a>
+                    <a href="espace-pro.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+                        <i data-feather="user" class="w-4 h-4"></i>
+                        <span class="font-medium">Espace Pro</span>
+                    </a>
+<a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
+                    <i data-feather="user-plus" class="w-4 h-4 text-white"></i>
+                    <span class="font-medium text-white">Rejoindre</span>
+                </a>
+</div>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden p-2 text-neutral-dark focus:outline-none transition-colors duration-300 hover:text-accent-gold">
+            <i data-feather="menu" class="w-7 h-7"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out bg-gradient-to-br from-primary-dark to-black">
+        <div class="absolute top-6 left-6 flex items-center space-x-2">
+            <img src="logo.svg" alt="Logo" class="w-10 h-10">
+            <span class="text-white font-bold">Alliance Mobilité</span>
+        </div>
+        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white focus:outline-none transition-colors duration-300 hover:text-accent-gold">
+            <i data-feather="x" class="w-8 h-8"></i>
+        </button>
+        <a href="#hero" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Accueil</a>
+        <a href="#about" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Qui sommes-nous</a>
+        <a href="#services" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Nos Services</a>
+        <a href="#quote" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Demande de devis</a>
+        <a href="espace-pro.html" class="text-primary-dark px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--accent-gold), var(--accent-light-gold));" onmouseover="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white';" onmouseout="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)'">
+                    <i data-feather="lock" class="w-6 h-6"></i>
+                    <span>Espace Pro</span>
+                </a>
+<a href="comercial.html" class="text-primary-dark px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--accent-gold), var(--accent-light-gold));" onmouseover="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white';" onmouseout="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)'">
+<i data-feather="briefcase" class="w-6 h-6"></i>
+                    <span>Espace Commercial</span>
+                </a>
+<a href="professionals.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+            <i data-feather="user-plus" class="w-6 h-6 text-white"></i>
+            <span>Rejoindre</span>
+        </a>
+</div>
+
+    <main class="pt-20">
+        <!-- Hero Section - Image de fond immersive -->
+        <section id="hero" class="relative text-white py-24 md:py-36 overflow-hidden min-h-screen flex items-center justify-center bg-primary-dark">
+            <!-- Image de fond immersive - Déménagement -->
+            <div class="absolute inset-0 z-0">
+                <img src="./images/hero-fond.png?v=1" alt="Déménagement professionnel - Nouvelle maison" class="w-full h-full object-cover animate-slow-zoom" style="object-position: center 75%; filter: blur(5px);">
+                <div class="absolute inset-0 bg-gradient-to-b from-primary-dark/35 via-primary-dark/25 to-primary-dark/65"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/20 to-transparent"></div>
+            </div>
+            <div class="vanta-container relative z-10 text-center max-w-5xl mx-auto px-6" data-aos="fade-up" data-aos-duration="1200">
+                <div class="float-animation">
+                    <h1 class="hero-title text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight mb-8 tracking-tight">
+                        <span class="text-white drop-shadow-lg">Alliance Mobilité :</span><br>
+                        Votre Déménagement <span class="gradient-text">Simplifié & Sans Stress</span>
+                    </h1>
+                </div>
+                <p class="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed">
+                    Nous connectons les particuliers aux meilleurs professionnels du déménagement en Île-de-France, assurant une transition fluide et sécurisée. Votre satisfaction est notre priorité.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+<a href="#quote" class="cta-glow group inline-flex items-center justify-center text-white px-10 py-5 rounded-2xl text-xl font-bold transition-all duration-300 shadow-2xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark border-2 border-white/20">
+                        Obtenez un Devis Gratuit 
+                        <i data-feather="arrow-right" class="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </a>
+                    <a href="#services" class="inline-flex items-center justify-center bg-white/10 backdrop-blur-md text-white px-10 py-5 rounded-2xl text-xl font-bold hover:bg-white/20 transition-all duration-300 border-2 border-white/40 hover:border-white/60">
+                        Découvrir nos packs
+                    </a>
+                </div>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i data-feather="chevron-down" class="w-8 h-8 text-white"></i>
+            </div>
+        </section>
+
+        <!-- Statistics Section - Dessus de l'image en fond -->
+        <section id="stats-section" class="py-16 md:py-20 text-white relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="./images/hero-fond.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+                <div class="absolute inset-0 bg-primary-dark/75"></div>
+            </div>
+            <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
+                    <div class="stat-card rounded-2xl p-6 transition-all duration-300 hover:bg-white/10" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stat-number text-white" data-target="98" data-suffix="%">98%</div>
+                    <p class="text-lg font-semibold mt-2 text-white">Clients satisfaits</p>
+</div>
+                    <div class="stat-card rounded-2xl p-6 transition-all duration-300 hover:bg-white/10" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="stat-number text-white" data-target="150" data-prefix="+" data-suffix="">+150</div>
+                        <p class="text-lg font-semibold mt-2 text-white">Partenaires</p>
+</div>
+                    <div class="stat-card rounded-2xl p-6 transition-all duration-300 hover:bg-white/10" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="stat-number text-white" data-target="98" data-suffix="%">98%</div>
+                        <p class="text-lg font-semibold mt-2 text-white">% Satisfaction</p>
+</div>
+                    <div class="stat-card rounded-2xl p-6 transition-all duration-300 hover:bg-white/10" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="stat-number text-white" data-target="24" data-suffix="h">24h</div>
+                        <p class="text-lg font-semibold mt-2 text-white">Réactivité</p>
+</div>
+</div>
+            </div>
+        </section>
+
+        <!-- About Us Section - Image de fond visible -->
+        <section id="about" class="py-20 md:py-28 relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=90" alt="Équipe déménagement" class="w-full h-full object-cover opacity-20">
+                <div class="absolute inset-0 bg-white/85"></div>
+                <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-accent-gold/10 to-transparent"></div>
+            </div>
+            <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="section-badge inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-accent-light-gold/80 text-accent-gold border border-accent-gold/20">
+                        À propos de nous
+                    </div>
+                        <h2 class="text-5xl font-extrabold mb-8 leading-tight text-neutral-dark">
+                            Qui sommes-nous ? <span class="gradient-text">Notre Mission.</span>
+                        </h2>
+                        <div class="space-y-6">
+                            <p class="text-lg leading-relaxed text-slate-600">
+                                Alliance Mobilité est une entreprise d'apporteur d'affaires basée en Île-de-France, dédiée à simplifier le processus de déménagement pour les particuliers. Nous comprenons que déménager peut être une source de stress, c'est pourquoi nous agissons comme votre partenaire de confiance pour vous connecter avec un réseau vérifié de déménageurs professionnels locaux.
+                            </p>
+<p class="text-lg leading-relaxed text-slate-600">
+                                Notre mission est de vous offrir une expérience de déménagement transparente, efficace et sereine, en vous garantissant des services de qualité adaptés à vos besoins et à votre budget. Nous mettons l'accent sur la transparence, la fiabilité et un service client irréprochable.
+                            </p>
+                            <div class="p-6 rounded-2xl border-l-4 bg-neutral-light border-l-primary-dark">
+                                <p class="text-lg font-semibold text-neutral-dark">
+                                    ✨ Notre valeur ajoutée : Une sélection rigoureuse, des devis personnalisés, un accompagnement sur mesure.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-[1.02] transition-transform duration-500 ring-4 ring-accent-gold/20">
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90" alt="Service déménagement Alliance Mobilité" class="w-full h-[400px] object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                        </div>
+                            <div class="absolute -bottom-6 -left-6 p-6 rounded-2xl shadow-xl transform rotate-6 hover:rotate-0 transition-transform duration-300 bg-accent-gold">
+                                <div class="text-4xl font-bold text-white">98%</div>
+                                <div class="text-white font-semibold">Satisfaction</div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Services/Packs Section - Fond cartons -->
+        <section id="services" class="py-20 md:py-28 relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=90" alt="Cartons déménagement" class="w-full h-full object-cover opacity-25">
+                <div class="absolute inset-0 bg-gradient-to-b from-white/92 via-white/95 to-white/92"></div>
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl bg-accent-gold/40"></div>
+                <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-15 blur-3xl bg-primary-dark/30"></div>
+            </div>
+            <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <div class="section-badge inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-accent-light-gold/80 text-accent-gold border border-accent-gold/20">
+                        Nos Solutions
+                    </div>
+                    <h2 class="text-5xl font-extrabold mb-6 text-neutral-dark">
+                        Nos Packs de Déménagement <span class="gradient-text">Sur Mesure</span>
+                    </h2>
+                    <p class="text-xl max-w-3xl mx-auto text-slate-600 leading-relaxed">
+                        Découvrez nos solutions conçues pour répondre à tous les besoins, du déménagement économique au service premium tout inclus.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pack Essentiel -->
+                    <div class="service-card bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-slate-200" data-aos="zoom-in" data-aos-delay="200" onmouseover="this.style.borderColor='#D4AF37'" onmouseout="this.style.borderColor=''">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="./images/pack-essentiel.png?v=2" alt="Transport et déménagement - Déménageurs professionnels" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700" style="object-position: center top;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute top-4 right-4 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg bg-primary-dark/90 backdrop-blur-sm">Économique</div>
+                        </div>
+                        <div class="p-8">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-transform duration-300 bg-primary-dark">
+                                    <i data-feather="package" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="text-3xl font-bold mb-2 text-neutral-dark">Pack Essentiel</h3>
+                                <p class="text-slate-600">
+                                    Idéal pour les petits budgets. Préparez vous-même vos cartons, nous nous occupons du transport et du déchargement.
+                                </p>
+                            </div>
+                            <ul class="text-slate-700 space-y-4 mb-8">
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                                    </div>
+                                    Transport et main-d'œuvre
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                                    </div>
+                                    Protection des meubles
+                                </li>
+                                <li class="flex items-center text-slate-400">
+                                    <div class="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="x" class="w-4 h-4 text-gray-400"></i>
+                                    </div>
+                                    Emballage / Déballage (optionnel)
+                                </li>
+                            </ul>
+                            <a href="#quote" class="block w-full text-center bg-gradient-to-r from-primary-dark to-neutral-dark text-white px-6 py-4 rounded-xl hover:from-accent-gold hover:to-accent-light-gold transition-all duration-300 font-semibold shadow-lg transform hover:scale-105">
+                                Demander un devis
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Pack Confort -->
+                    <div class="service-card rounded-3xl shadow-2xl overflow-hidden border-2 relative transform scale-105 border-accent-gold" data-aos="zoom-in" data-aos-delay="300" style="background: linear-gradient(to bottom right, #FFFFFF, #F6F4EF);">
+                        <div class="absolute top-0 right-0 text-white px-6 py-2 transform rotate-12 translate-x-2 -translate-y-2 shadow-lg bg-gradient-to-r from-accent-gold to-accent-light-gold">
+                            <span class="font-bold">Populaire</span>
+                        </div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="./images/pack-confort.png?v=1" alt="Montage de meubles - Emballage professionnel" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700" style="object-position: center 20%;">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-transform duration-300 shadow-lg bg-gradient-to-br from-accent-gold to-accent-light-gold">
+                                    <i data-feather="box" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="text-3xl font-bold mb-2 text-primary-dark">Pack Confort</h3>
+                                <p class="text-slate-600">
+                                    La solution la plus populaire. Nous gérons l'emballage de vos objets fragiles et le démontage des meubles.
+                                </p>
+                            </div>
+                            <ul class="text-slate-700 space-y-4 mb-8">
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                                    </div>
+                                    Pack Essentiel inclus
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                                    </div>
+                                    Emballage objets fragiles
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                                    </div>
+                                    Démontage/remontage meubles
+                                </li>
+                            </ul>
+                            <a href="#quote" class="block w-full text-center text-white px-6 py-4 rounded-xl transition-all duration-300 font-bold shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark">
+                                Demander un devis
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Pack Premium -->
+                    <div class="service-card bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-slate-200" data-aos="zoom-in" data-aos-delay="400" onmouseover="this.style.borderColor='#D4AF37'" onmouseout="this.style.borderColor=''">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90" alt="Service complet déménagement" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute top-4 right-4 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg bg-gradient-to-r from-accent-gold to-accent-light-gold">Premium</div>
+                        </div>
+                        <div class="p-8">
+                            <div class="text-center mb-6">
+                                <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 transform hover:rotate-12 transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary-dark to-neutral-dark">
+                                    <i data-feather="award" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <h3 class="text-3xl font-bold mb-2 text-primary-dark">Pack Premium</h3>
+                                <p class="text-slate-600">
+                                    Le luxe d'un déménagement clé en main. Nous nous occupons de tout, de A à Z.
+                                </p>
+                            </div>
+                            <ul class="text-slate-700 space-y-4 mb-8">
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                                    </div>
+                                    Pack Confort inclus
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                                    </div>
+                                    Emballage total
+                                </li>
+                                <li class="flex items-center">
+                                    <div class="w-6 h-6 bg-success-green/20 rounded-full flex items-center justify-center mr-3">
+                                        <i data-feather="check" class="w-4 h-4 text-success-green"></i>
+                                    </div>
+                                    Mise en place et déballage
+                                </li>
+                            </ul>
+                            <a href="#quote" class="block w-full text-center bg-gradient-to-r from-primary-dark to-neutral-dark text-white px-6 py-4 rounded-xl hover:from-accent-gold hover:to-accent-light-gold transition-all duration-300 font-semibold shadow-lg transform hover:scale-105">
+                                Demander un devis
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials Section - Fond clients satisfaits -->
+        <section class="py-20 md:py-28 text-neutral-dark relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=90" alt="Clients satisfaits" class="w-full h-full object-cover opacity-15">
+                <div class="absolute inset-0 bg-gradient-to-b from-white/90 via-white/95 to-white/90"></div>
+            </div>
+            <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+                <div class="text-center mb-16 relative z-10" data-aos="fade-up">
+                    <div class="section-badge inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-accent-light-gold/80 text-accent-gold border border-accent-gold/20">
+                        ★ Témoignages
+                    </div>
+                    <h2 class="text-5xl font-extrabold mb-6">
+                        Ce Que Disent <span class="gradient-text">Nos Clients</span>
+                    </h2>
+</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    <div class="testimonial-card rounded-2xl p-8 transform hover:scale-105 transition-all duration-300 bg-white/90 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent-gold">
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                        </div>
+                        <p class="text-lg mb-6 italic">"Service exceptionnel ! L'équipe a été très professionnelle et le déménagement s'est déroulé sans le moindre problème. Je recommande vivement !"</p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-accent-gold to-accent-light-gold">
+                                <span class="text-white font-bold">SM</span>
+                            </div>
+                            <div>
+                                <div class="font-bold">Sophie Martin</div>
+                                <div class="text-sm text-slate-400">Paris</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card rounded-2xl p-8 transform hover:scale-105 transition-all duration-300 bg-white/90 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent-gold">
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                        </div>
+                        <p class="text-lg mb-6 italic">"Très satisfait du service. Le devis était clair, le prix transparent et les déménageurs étaient à l'heure et efficaces. Parfait !"</p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-accent-gold to-accent-light-gold">
+                                <span class="text-white font-bold">JD</span>
+                            </div>
+                            <div>
+                                <div class="font-bold">Jean Dubois</div>
+                                <div class="text-sm text-slate-400">Lyon</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card rounded-2xl p-8 transform hover:scale-105 transition-all duration-300 bg-white/90 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-6">
+                            <div class="flex text-accent-gold">
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                                <i data-feather="star" class="w-5 h-5 fill-current"></i>
+                            </div>
+                        </div>
+                        <p class="text-lg mb-6 italic">"Un déménagement sans stress grâce à Alliance Mobilité. L'accompagnement était parfait et tout s'est bien passé. Merci !"</p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center mr-4 bg-gradient-to-br from-accent-gold to-accent-light-gold">
+                                <span class="text-white font-bold">ML</span>
+                            </div>
+                            <div>
+                                <div class="font-bold">Marie Laurent</div>
+                                <div class="text-sm text-slate-400">Marseille</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Quote Request Form Section - Version Complète -->
+        <section id="quote" class="py-20 md:py-28 text-white relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="./images/hero-fond.png?v=1" alt="Devis déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+                <div class="absolute inset-0 bg-primary-dark/75"></div>
+            </div>
+            <div class="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <div class="section-badge inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-accent-gold/20 text-accent-gold border border-accent-gold/30 backdrop-blur-sm">
+                        Devis Gratuit
+                    </div>
+                    <h2 class="text-5xl font-extrabold text-white mb-6">
+                        Demandez Votre Devis <span class="text-accent-gold">Gratuit et Rapide</span>
+                    </h2>
+                    <p class="text-xl max-w-2xl mx-auto opacity-90 leading-relaxed">
+                        Remplissez notre formulaire détaillé pour obtenir une estimation personnalisée de votre déménagement. C'est rapide, facile et sans engagement.
+                    </p>
+                </div>
+                <form id="quote-form" class="bg-white p-8 md:p-12 rounded-3xl space-y-6 border-2 border-slate-200 shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                    
+                    <!-- Informations Personnelles -->
+                    <div class="border-b-2 border-slate-200 pb-6">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Informations Personnelles</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-slate-900 text-sm font-semibold mb-2">Prénom *</label>
+                                <input type="text" id="firstName" name="Prénom" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 focus:border-accent-gold" placeholder="Votre prénom" required>
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-slate-900 text-sm font-semibold mb-2">Nom *</label>
+                                <input type="text" id="lastName" name="Nom" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 focus:border-accent-gold" placeholder="Votre nom" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <label for="email" class="block text-slate-900 text-sm font-semibold mb-2">Adresse E-mail *</label>
+                                <input type="email" id="email" name="Email" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 focus:border-accent-gold" placeholder="email@exemple.com" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-slate-900 text-sm font-semibold mb-2">Numéro de téléphone *</label>
+                                <input type="tel" id="phone" name="Téléphone" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 focus:border-accent-gold" placeholder="+33 X XX XX XX XX" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Détails du Déménagement -->
+                    <div class="border-b-2 border-slate-200 pb-6">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Détails du Déménagement</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="moveDate" class="block text-slate-900 text-sm font-semibold mb-2">Date de déménagement souhaitée *</label>
+                                <input type="date" id="moveDate" name="Date de déménagement" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white transition-all duration-300 focus:border-accent-gold" required>
+                            </div>
+                            <div>
+                                <label for="propertySize" class="block text-slate-900 text-sm font-semibold mb-2">Taille du logement *</label>
+                                <select id="propertySize" name="Taille du logement" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white transition-all duration-300 focus:border-accent-gold" required>
+                                    <option value="">Sélectionnez une taille</option>
+                                    <option value="studio">Studio</option>
+                                    <option value="t2">T2 (2 pièces)</option>
+                                    <option value="t3">T3 (3 pièces)</option>
+                                    <option value="t4">T4 (4 pièces)</option>
+                                    <option value="t5+">T5 et plus</option>
+                                    <option value="maison">Maison</option>
+                                    <option value="bureau">Bureau/Local professionnel</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label for="fromAddress" class="block text-slate-900 text-sm font-semibold mb-2">Adresse de départ complète *</label>
+                            <input type="text" id="fromAddress" name="Adresse de départ" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 focus:border-accent-gold" placeholder="Ex: 123 Rue de la République, 75001 Paris" required>
+                        </div>
+                        <div class="mt-6">
+                            <label for="toAddress" class="block text-slate-900 text-sm font-semibold mb-2">Adresse d'arrivée complète *</label>
+                            <input type="text" id="toAddress" name="Adresse d'arrivée" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 focus:border-accent-gold" placeholder="Ex: 456 Avenue des Champs, 69001 Lyon" required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                            <div>
+                                <label for="fromFloor" class="block text-slate-900 text-sm font-semibold mb-2">Étage départ</label>
+                                <input type="number" id="fromFloor" name="Étage départ" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 focus:border-accent-gold" placeholder="Ex: 3" min="0">
+                            </div>
+                            <div>
+                                <label for="toFloor" class="block text-slate-900 text-sm font-semibold mb-2">Étage arrivée</label>
+                                <input type="number" id="toFloor" name="Étage arrivée" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 focus:border-accent-gold" placeholder="Ex: 1" min="0">
+                            </div>
+                            <div>
+                                <label for="hasElevator" class="block text-slate-900 text-sm font-semibold mb-2">Ascenseur disponible</label>
+                                <select id="hasElevator" name="Ascenseur" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white transition-all duration-300 focus:border-accent-gold">
+                                    <option value="">Sélectionnez</option>
+                                    <option value="yes">Oui</option>
+                                    <option value="no">Non</option>
+                                    <option value="departure-only">Départ seulement</option>
+                                    <option value="arrival-only">Arrivée seulement</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Services et Options -->
+                    <div class="border-b-2 border-slate-200 pb-6">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Services et Options</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="packType" class="block text-slate-900 text-sm font-semibold mb-2">Pack souhaité *</label>
+                                <select id="packType" name="Pack" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white transition-all duration-300 focus:border-accent-gold" required>
+                                    <option value="">Sélectionnez un pack</option>
+                                    <option value="essentiel">Pack Essentiel (Transport uniquement)</option>
+                                    <option value="confort">Pack Confort (Emballage + Transport)</option>
+                                    <option value="premium">Pack Premium (Service complet)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="moveDistance" class="block text-slate-900 text-sm font-semibold mb-2">Distance du déménagement *</label>
+                                <select id="moveDistance" name="Distance" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white transition-all duration-300 focus:border-accent-gold" required>
+                                    <option value="">Sélectionnez une distance</option>
+                                    <option value="local">Local (moins de 100 km)</option>
+                                    <option value="regional">Régional (100-500 km)</option>
+                                    <option value="national">National (plus de 500 km)</option>
+                                    <option value="international">International</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div>
+                                <label for="volume" class="block text-slate-900 text-sm font-semibold mb-2">Volume approximatif</label>
+                                <select id="volume" name="Volume" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white transition-all duration-300 focus:border-accent-gold">
+                                    <option value="">Sélectionnez un volume</option>
+                                    <option value="small">Petit (moins de 20 m³)</option>
+                                    <option value="medium">Moyen (20-40 m³)</option>
+                                    <option value="large">Grand (40-60 m³)</option>
+                                    <option value="very-large">Très grand (plus de 60 m³)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="parking" class="block text-slate-900 text-sm font-semibold mb-2">Parking disponible</label>
+                                <select id="parking" name="Parking" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white transition-all duration-300 focus:border-accent-gold">
+                                    <option value="">Sélectionnez</option>
+                                    <option value="yes">Oui, parking privé</option>
+                                    <option value="street">Rue (stationnement public)</option>
+                                    <option value="limited">Parking limité/restreint</option>
+                                    <option value="no">Non disponible</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label class="block text-slate-900 text-sm font-semibold mb-3">Services supplémentaires</label>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="Services" value="démontage" class="w-5 h-5 text-accent-gold border-slate-300 rounded focus:ring-accent-gold">
+                                    <span class="text-slate-900">Démontage/R montage meubles</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="Services" value="emballage" class="w-5 h-5 text-accent-gold border-slate-300 rounded focus:ring-accent-gold">
+                                    <span class="text-slate-900">Emballage professionnel</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="Services" value="déballage" class="w-5 h-5 text-accent-gold border-slate-300 rounded focus:ring-accent-gold">
+                                    <span class="text-slate-900">Déballage et rangement</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="Services" value="fragiles" class="w-5 h-5 text-accent-gold border-slate-300 rounded focus:ring-accent-gold">
+                                    <span class="text-slate-900">Objets fragiles/spéciaux</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="Services" value="garde-meuble" class="w-5 h-5 text-accent-gold border-slate-300 rounded focus:ring-accent-gold">
+                                    <span class="text-slate-900">Garde-meuble</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="Services" value="nettoyage" class="w-5 h-5 text-accent-gold border-slate-300 rounded focus:ring-accent-gold">
+                                    <span class="text-slate-900">Nettoyage fin de chantier</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Informations Complémentaires -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Informations Complémentaires</h3>
+                        <div>
+                            <label for="details" class="block text-slate-900 text-sm font-semibold mb-2">Détails supplémentaires</label>
+                            <textarea id="details" name="Détails supplémentaires" rows="4" class="w-full px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-900 bg-white placeholder-slate-500 transition-all duration-300 resize-none focus:border-accent-gold" placeholder="Précisions sur les accès, particularités, contraintes horaires, animaux, plantes, objets de valeur..."></textarea>
+                        </div>
+                    </div>
+
+                    <div id="quote-form-errors" class="hidden p-4 rounded-xl bg-error-red/10 border-2 border-error-red text-error-red text-sm mb-4"></div>
+                    <div class="text-center pt-4">
+                        <button type="button" id="submit-btn" onclick="handleQuoteSubmit(event)" class="cta-glow group inline-flex items-center justify-center text-white px-10 py-5 rounded-2xl text-xl font-bold transition-all duration-300 shadow-2xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark border-2 border-white/20">
+                            <span id="submit-text">Envoyer ma demande</span>
+                            <i data-feather="send" class="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ Section - Fond subtil -->
+        <section id="faq" class="py-20 md:py-28 relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=90" alt="FAQ" class="w-full h-full object-cover opacity-12">
+                <div class="absolute inset-0 bg-slate-50/95"></div>
+            </div>
+            <div class="container mx-auto px-6 md:px-12 max-w-4xl relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <div class="section-badge inline-block mb-4 px-4 py-2 rounded-full text-sm font-semibold bg-accent-light-gold/80 text-accent-gold border border-accent-gold/20">
+                        Questions Fréquentes
+                    </div>
+                    <h2 class="text-5xl font-extrabold mb-6 text-primary-dark">
+                        Vous Avez des <span class="gradient-text">Questions ?</span>
+                    </h2>
+                    <p class="text-xl text-slate-600 max-w-2xl mx-auto">
+                        Trouvez rapidement les réponses aux questions les plus courantes sur nos services de déménagement.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <div class="faq-question bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 cursor-pointer transition-all duration-300 border border-slate-200/80" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center justify-between" onclick="toggleFaqAnswer(this)">
+                            <h3 class="text-xl font-bold text-slate-900">Comment obtenir un devis ?</h3>
+                            <i data-feather="chevron-down" class="faq-icon w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+                        </div>
+                        <div class="faq-answer hidden mt-4">
+                            <p class="text-slate-600 leading-relaxed">Pour obtenir un devis, vous avez plusieurs options :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-600">
+                                <li>Remplissez notre <a href="#quote" class="text-accent-gold hover:underline">formulaire en ligne</a> pour recevoir jusqu'à 3 devis personnalisés sous 24h</li>
+                                <li>Contactez-nous par téléphone au <a href="tel:+33668144698" class="text-accent-gold hover:underline">06 68 14 46 98</a> (du lundi au samedi de 9h à 19h)</li>
+                                <li>Envoyez-nous un email à <a href="mailto:alliancemobilite1@gmail.com" class="text-accent-gold hover:underline">alliancemobilite1@gmail.com</a> avec les détails de votre déménagement</li>
+                            </ul>
+                            <p class="mt-4 text-slate-600">Notre équipe analysera votre demande et vous proposera des solutions adaptées à votre budget et vos besoins spécifiques.</p>
+                        </div>
+                    </div>
+                    <div class="faq-question bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 cursor-pointer transition-all duration-300 border border-slate-200/80" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between" onclick="toggleFaqAnswer(this)">
+                            <h3 class="text-xl font-bold text-slate-900">Quels services proposez-vous ?</h3>
+                            <i data-feather="chevron-down" class="faq-icon w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+                        </div>
+                        <div class="faq-answer hidden mt-4">
+                            <p class="text-slate-600 leading-relaxed">Nous proposons une gamme complète de services pour couvrir tous vos besoins de déménagement :</p>
+                            <ul class="text-slate-600 leading-relaxed mt-2 ml-4 list-disc space-y-2">
+                                <li><strong>Pack Essentiel</strong> : Transport de vos biens avec protection des meubles inclus</li>
+                                <li><strong>Pack Confort</strong> : Emballage professionnel des objets fragiles + Transport + Démontage/remontage des meubles standards</li>
+                                <li><strong>Pack Premium</strong> : Service clé en main incluant emballage complet, transport, démontage/remontage, mise en place et déballage</li>
+                                <li><strong>Services additionnels</strong> : Garde-meuble, nettoyage après déménagement, prise en charge des objets encombrants, assurance complète</li>
+                            </ul>
+                            <p class="mt-4 text-slate-600">Tous nos services incluent une assurance responsabilité civile et la garantie d'un suivi personnalisé.</p>
+                        </div>
+                    </div>
+                    <div class="faq-question bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 cursor-pointer transition-all duration-300 border border-slate-200/80" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center justify-between" onclick="toggleFaqAnswer(this)">
+                            <h3 class="text-xl font-bold text-slate-900">Quelle zone couvrez-vous ?</h3>
+                            <i data-feather="chevron-down" class="faq-icon w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+                        </div>
+                        <div class="faq-answer hidden mt-4">
+                            <p class="text-slate-600 leading-relaxed">Nous couvrons l'ensemble de l'Île-de-France et ses départements :</p>
+                            <ul class="grid grid-cols-2 gap-2 mt-2 text-slate-600">
+                                <li>• Paris (75)</li>
+                                <li>• Seine-et-Marne (77)</li>
+                                <li>• Yvelines (78)</li>
+                                <li>• Essonne (91)</li>
+                                <li>• Hauts-de-Seine (92)</li>
+                                <li>• Seine-Saint-Denis (93)</li>
+                                <li>• Val-de-Marne (94)</li>
+                                <li>• Val-d'Oise (95)</li>
+                            </ul>
+                            <p class="mt-4 text-slate-600">Pour les déménagements hors Île-de-France ou internationaux, nous travaillons avec un réseau de partenaires spécialisés. Contactez-nous pour une étude personnalisée de votre projet.</p>
+                        </div>
+                    </div>
+                    <div class="faq-question bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 cursor-pointer transition-all duration-300 border border-slate-200/80" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center justify-between" onclick="toggleFaqAnswer(this)">
+                            <h3 class="text-xl font-bold text-slate-900">Quelle est votre disponibilité ?</h3>
+                            <i data-feather="chevron-down" class="faq-icon w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+                        </div>
+                        <div class="faq-answer hidden mt-4">
+                            <p class="text-slate-600 leading-relaxed">Nous offrons une grande flexibilité pour répondre à vos besoins :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-600">
+                                <li><strong>Service standard</strong> : Du lundi au samedi de 8h à 20h</li>
+                                <li><strong>Service étendu</strong> : Dimanches et jours fériés sur demande</li>
+                                <li><strong>Déménagement urgent</strong> : Organisation possible sous 48h</li>
+                                <li><strong>Contact client</strong> : Du lundi au samedi de 9h à 19h</li>
+                            </ul>
+                            <p class="mt-4 text-slate-600">Pour les créneaux horaires spécifiques (tôt le matin, tard le soir), merci de nous contacter directement pour vérifier la disponibilité de nos équipes.</p>
+                        </div>
+                    </div>
+                    <div class="faq-question bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 cursor-pointer transition-all duration-300 border border-slate-200/80" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex items-center justify-between" onclick="toggleFaqAnswer(this)">
+                            <h3 class="text-xl font-bold text-slate-900">Quels sont vos tarifs ?</h3>
+                            <i data-feather="chevron-down" class="faq-icon w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+                        </div>
+                        <div class="faq-answer hidden mt-4">
+                            <p class="text-slate-600 leading-relaxed">Nos tarifs varient en fonction de plusieurs critères :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-600">
+                                <li><strong>Distance du déménagement</strong> : Local, régional, national ou international</li>
+                                <li><strong>Volume à déménager</strong> : Taille du logement et quantité de biens</li>
+                                <li><strong>Services choisis</strong> : Pack Essentiel, Confort ou Premium</li>
+                                <li><strong>Services additionnels</strong> : Démontage, emballage, garde-meuble, etc.</li>
+                                <li><strong>Accessibilité</strong> : Présence d'ascenseur, étage, parking disponible</li>
+                            </ul>
+                            <p class="mt-4 text-slate-600">Pour obtenir un devis personnalisé et gratuit, remplissez notre <a href="#quote" class="text-accent-gold hover:underline">formulaire en ligne</a> ou contactez-nous directement. Nous vous proposerons jusqu'à 3 devis adaptés à votre budget.</p>
+                        </div>
+                    </div>
+                    <div class="faq-question bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 cursor-pointer transition-all duration-300 border border-slate-200/80" data-aos="fade-up" data-aos-delay="600">
+                        <div class="flex items-center justify-between" onclick="toggleFaqAnswer(this)">
+                            <h3 class="text-xl font-bold text-slate-900">Les déménageurs sont-ils assurés ?</h3>
+                            <i data-feather="chevron-down" class="faq-icon w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+                        </div>
+                        <div class="faq-answer hidden mt-4">
+                            <p class="text-slate-600 leading-relaxed">Oui, absolument ! La sécurité de vos biens est notre priorité :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-600">
+                                <li><strong>Assurance responsabilité civile</strong> : Tous nos partenaires sont couverts</li>
+                                <li><strong>Assurance transport</strong> : Protection de vos biens pendant le déménagement</li>
+                                <li><strong>Vérification des professionnels</strong> : Chaque déménageur est vérifié et certifié</li>
+                                <li><strong>Assurance complémentaire</strong> : Disponible pour les objets de valeur</li>
+                            </ul>
+                            <p class="mt-4 text-slate-600">En cas de sinistre, notre équipe est là pour vous accompagner dans les démarches. N'hésitez pas à nous demander les détails de nos garanties lors de votre devis.</p>
+                        </div>
+                    </div>
+                    <div class="faq-question bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 cursor-pointer transition-all duration-300 border border-slate-200/80" data-aos="fade-up" data-aos-delay="700">
+                        <div class="flex items-center justify-between" onclick="toggleFaqAnswer(this)">
+                            <h3 class="text-xl font-bold text-slate-900">Combien de temps à l'avance dois-je réserver ?</h3>
+                            <i data-feather="chevron-down" class="faq-icon w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+                        </div>
+                        <div class="faq-answer hidden mt-4">
+                            <p class="text-slate-600 leading-relaxed">Nous recommandons de réserver votre déménagement :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-600">
+                                <li><strong>Déménagement standard</strong> : 2 à 4 semaines à l'avance (idéal)</li>
+                                <li><strong>Période estivale</strong> : 4 à 6 semaines à l'avance (juin-août)</li>
+                                <li><strong>Déménagement urgent</strong> : Possible sous 48h selon disponibilité</li>
+                                <li><strong>Déménagement international</strong> : 6 à 8 semaines à l'avance</li>
+                            </ul>
+                            <p class="mt-4 text-slate-600">Même pour un déménagement de dernière minute, contactez-nous ! Nous ferons notre maximum pour trouver une solution adaptée à vos contraintes.</p>
+                        </div>
+                    </div>
+                    <div class="faq-question bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 cursor-pointer transition-all duration-300 border border-slate-200/80" data-aos="fade-up" data-aos-delay="800">
+                        <div class="flex items-center justify-between" onclick="toggleFaqAnswer(this)">
+                            <h3 class="text-xl font-bold text-slate-900">Puis-je modifier mon devis après acceptation ?</h3>
+                            <i data-feather="chevron-down" class="faq-icon w-6 h-6 transform transition-transform duration-300 text-primary-dark"></i>
+                        </div>
+                        <div class="faq-answer hidden mt-4">
+                            <p class="text-slate-600 leading-relaxed">Bien sûr ! Nous comprenons que vos besoins peuvent évoluer :</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-2 text-slate-600">
+                                <li><strong>Ajout de services</strong> : Possible jusqu'à 48h avant le déménagement</li>
+                                <li><strong>Changement de date</strong> : Modifiable selon disponibilité (sous réserve de frais)</li>
+                                <li><strong>Modification du volume</strong> : Ajustement du devis en fonction des changements</li>
+                                <li><strong>Annulation</strong> : Conditions selon le délai avant la date prévue</li>
+                            </ul>
+                            <p class="mt-4 text-slate-600">Contactez-nous dès que possible pour toute modification. Nous ajusterons votre devis en toute transparence et vous informerons de tout impact sur le prix final.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="gradient-divider w-full"></div>
+    </main>
+
+    <!-- Footer - Même fond que la section stats (hero-fond) -->
+    <footer class="bg-primary-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/hero-fond.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <div class="absolute inset-0 bg-primary-dark/75"></div>
+        </div>
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent"></div>
+        <div class="container mx-auto px-6 md:px-12 py-12 md:py-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="logo.svg" alt="Alliance Mobilité" class="w-10 h-10">
+                        <h3 class="text-2xl font-extrabold">Alliance Mobilité</h3>
+                    </div>
+                    <p class="text-white/80 leading-relaxed mb-4">
+                        Votre partenaire de confiance pour un déménagement sans souci. Rejoignez notre réseau de professionnels.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Liens Rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Accueil
+                        </a></li>
+                        <li><a href="index.html#about" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Qui sommes-nous
+                        </a></li>
+                        <li><a href="index.html#services" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Nos Services
+                        </a></li>
+                        <li><a href="index.html#quote" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Demande de devis
+                        </a></li>
+                        <li><a href="espace-pro.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Espace Pro
+                        </a></li>
+                        <li><a href="comercial.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Espace Commercial
+                        </a></li>
+                        <li><a href="professionals.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Rejoindre le Réseau
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Contact</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="map-pin" class="w-5 h-5 mr-3 text-accent-gold mt-1 flex-shrink-0"></i>
+                            <span class="text-white/80">14 rue Jules Guesde<br>94190 Villeneuve Saint-George</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="phone" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
+                            <a href="tel:+33668144698" class="text-white/80 hover:text-accent-gold transition-colors duration-300">+33 6 68 14 46 98</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
+                            <a href="mailto:alliancemobilite1@gmail.com" class="text-white/80 hover:text-accent-gold transition-colors duration-300 break-all">alliancemobilite1@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/20 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-white/60 text-sm mb-4 md:mb-0">
+                        © 2024 Alliance Mobilité. Tous droits réservés.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Mentions légales</a>
+                        <span class="text-white/40">|</span>
+                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Politique de confidentialité</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons for footer
+        feather.replace();
+        // Enhanced animations and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize AOS with smoother settings
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 120,
+                easing: 'ease-out-quart',
+                delay: 100
+            });
+
+            // Initialize Feather Icons
+            feather.replace();
+
+            // Enhanced Vanta.js initialization
+            if (typeof VANTA !== 'undefined') {
+                VANTA.GLOBE({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x1A2D40,
+                    color2: 0xD4AF37,
+                    backgroundColor: 0x1A2D40,
+                    size: 0.8,
+                    speed: 0.5
+                });
+            }
+
+            // Add smooth scroll to all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add scroll reveal effects
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.scroll-animate');
+                elements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        el.classList.add('animate-fadeInUp');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.card, .service-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+            });
+
+            // Add ripple effect to buttons (exclure le bouton submit pour ne pas bloquer la soumission du formulaire)
+            const buttons = document.querySelectorAll('.btn, button:not(#submit-btn):not([type="submit"]), [role="button"]');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const x = e.clientX - e.target.getBoundingClientRect().left;
+                    const y = e.clientY - e.target.getBoundingClientRect().top;
+                    
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+                    ripple.style.left = `${x}px`;
+                    ripple.style.top = `${y}px`;
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 1000);
+                });
+            });
+        });
+// Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('-translate-x-full');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('-translate-x-full');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        closeMenuButton.addEventListener('click', closeMobileMenu);
+
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Stats counter animation
+        function animateCounter(element, target) {
+            // Get current displayed value, or start from 0
+            let currentText = element.textContent.trim();
+            let current = 0;
+            
+            // Try to extract number from current text
+            const currentMatch = currentText.match(/(\d+)/);
+            if (currentMatch && !isNaN(parseInt(currentMatch[1]))) {
+                current = parseInt(currentMatch[1]);
+            }
+            
+            // If already at target, don't animate
+            if (current >= target) {
+                const prefix = element.getAttribute('data-prefix') || '';
+                let suffix = element.getAttribute('data-suffix');
+                if (suffix === null) {
+                    if (target >= 100) {
+                        suffix = '%';
+                    } else if (target >= 24 && !prefix) {
+                        suffix = 'h';
+                    } else {
+                        suffix = '';
+                    }
+                }
+                element.textContent = prefix + target + suffix;
+                return;
+            }
+            
+            const increment = (target - current) / 50;
+            const prefix = element.getAttribute('data-prefix') || '';
+            let suffix = element.getAttribute('data-suffix');
+            
+            // If suffix is not explicitly set, determine it based on target value
+            if (suffix === null) {
+                if (target >= 100) {
+                    suffix = '%';
+                } else if (target >= 24 && !prefix) {
+                    suffix = 'h';
+                } else {
+                    suffix = '';
+                }
+            }
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = prefix + target + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = prefix + Math.floor(current) + suffix;
+                }
+            }, 30);
+        }
+
+        // Intersection Observer for stats
+        const statsSection = document.getElementById('stats-section'); // Targeted by ID
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        // Only animate if not already animated
+                        if (!stat.hasAttribute('data-animated')) {
+                            const target = parseInt(stat.getAttribute('data-target'));
+                            if (!isNaN(target)) {
+                                stat.setAttribute('data-animated', 'true');
+                                animateCounter(stat, target);
+                            }
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // FAQ - Fonction simple et efficace
+        function toggleFaqAnswer(element) {
+            const faqQuestion = element.closest('.faq-question');
+            const answer = faqQuestion.querySelector('.faq-answer');
+            const icon = faqQuestion.querySelector('.faq-icon');
+            
+            // Fermer toutes les autres réponses
+            document.querySelectorAll('.faq-question').forEach(function(otherQuestion) {
+                if (otherQuestion !== faqQuestion) {
+                    const otherAnswer = otherQuestion.querySelector('.faq-answer');
+                    const otherIcon = otherQuestion.querySelector('.faq-icon');
+                    if (otherAnswer) {
+                        otherAnswer.classList.add('hidden');
+                    }
+                    if (otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                }
+            });
+            
+            // Toggle la réponse actuelle
+            if (answer) {
+                if (answer.classList.contains('hidden')) {
+                    // Ouvrir
+                    answer.classList.remove('hidden');
+                    if (icon) {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                } else {
+                    // Fermer
+                    answer.classList.add('hidden');
+                    if (icon) {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                }
+            }
+            
+            // Réinitialiser les icônes feather
+            feather.replace();
+        }
+
+        // Gestion du formulaire de devis - Fonction globale appelée au clic
+        function handleQuoteSubmit(e) {
+            if (e) e.preventDefault();
+            const quoteForm = document.getElementById('quote-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const errorsDiv = document.getElementById('quote-form-errors');
+            if (!quoteForm || !submitBtn) return;
+
+            // Validation personnalisée - champs obligatoires
+            const requiredFields = [
+                { id: 'firstName', label: 'Prénom' },
+                { id: 'lastName', label: 'Nom' },
+                { id: 'email', label: 'Adresse e-mail' },
+                { id: 'phone', label: 'Numéro de téléphone' },
+                { id: 'moveDate', label: 'Date de déménagement' },
+                { id: 'propertySize', label: 'Taille du logement' },
+                { id: 'fromAddress', label: 'Adresse de départ' },
+                { id: 'toAddress', label: 'Adresse d\'arrivée' },
+                { id: 'packType', label: 'Pack souhaité' },
+                { id: 'moveDistance', label: 'Distance du déménagement' }
+            ];
+            const missing = [];
+            requiredFields.forEach(function(f) {
+                const el = document.getElementById(f.id);
+                if (el && (!el.value || el.value.trim() === '')) {
+                    missing.push(f.label);
+                    el.classList.add('border-error-red');
+                } else if (el) {
+                    el.classList.remove('border-error-red');
+                }
+            });
+
+            if (missing.length > 0) {
+                errorsDiv.innerHTML = '<strong>Veuillez remplir les champs suivants :</strong><ul class="list-disc mt-2 ml-4">' + missing.map(function(m) { return '<li>' + m + '</li>'; }).join('') + '</ul>';
+                errorsDiv.classList.remove('hidden');
+                errorsDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            errorsDiv.classList.add('hidden');
+
+            submitBtn.disabled = true;
+            submitText.textContent = 'Envoi en cours...';
+            
+            const formData = new FormData(quoteForm);
+            const services = Array.from(quoteForm.querySelectorAll('input[name="Services"]:checked')).map(function(cb) { return cb.value; }).join(', ') || 'Aucun';
+            
+            const quoteRequest = {
+                id: Date.now(),
+                clientName: ((formData.get('Prénom') || '') + ' ' + (formData.get('Nom') || '')).trim(),
+                email: formData.get('Email') || '',
+                phone: formData.get('Téléphone') || 'Non renseigné',
+                moveDate: formData.get('Date de déménagement') || 'Non renseigné',
+                propertySize: formData.get('Taille du logement') || 'Non renseigné',
+                fromAddress: formData.get('Adresse de départ') || 'Non renseigné',
+                toAddress: formData.get('Adresse d\'arrivée') || 'Non renseigné',
+                fromFloor: formData.get('Étage départ') || 'Non renseigné',
+                toFloor: formData.get('Étage arrivée') || 'Non renseigné',
+                elevator: formData.get('Ascenseur') || 'Non renseigné',
+                distance: formData.get('Distance') || 'Non renseigné',
+                packType: formData.get('Pack') || 'Non renseigné',
+                volume: formData.get('Volume') || 'Non renseigné',
+                parking: formData.get('Parking') || 'Non renseigné',
+                services: services,
+                details: formData.get('Détails supplémentaires') || 'Aucun',
+                submittedDate: new Date().toISOString(),
+                status: 'nouvelle'
+            };
+            
+            try {
+                const existingQuotes = JSON.parse(localStorage.getItem('quoteRequests') || '[]');
+                existingQuotes.push(quoteRequest);
+                localStorage.setItem('quoteRequests', JSON.stringify(existingQuotes));
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitText.textContent = 'Envoyer ma demande';
+                errorsDiv.innerHTML = '<strong>Erreur lors de la sauvegarde. Veuillez réessayer.</strong>';
+                errorsDiv.classList.remove('hidden');
+                return;
+            }
+            
+            window.location.href = 'merci.html';
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Refresh feather icons on dynamic content
+        setInterval(() => {
+            feather.replace();
+        }, 1000);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejoignez le Réseau - Alliance Mobilité</title>
+    <meta name="description" content="Candidature pour les professionnels du déménagement en Île-de-France. Découvrez les avantages de rejoindre Alliance Mobilité et développez votre activité.">
+    <meta name="keywords" content="devenir déménageur, partenariat déménagement, travail déménagement IDF, rejoindre entreprise déménagement">
+    <meta name="geo.region" content="FR-IDF" />
+    <meta name="geo.placename" content="Île-de-France" />
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1A2D40', // Bleu Nuit
+                        'accent-gold': '#D4AF37',   // Doré
+                        'accent-light-gold': '#F3D8B0', // Lighter Doré for gradients/secondary elements
+                        'neutral-dark': '#000000',  // Pure Black for text
+                        'neutral-light': '#F8F9FA', // Background white/light gray
+                        'success-green': '#4CAF50', // Standard green for positive feedback
+                        'error-red': '#EF4444',     // Standard red for errors
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #000000; /* Pure Black */
+            overflow-x: hidden;
+            background-color: #F8F9FA; /* neutral-light */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Navbar glassmorphism effect */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 2px 30px rgba(26, 45, 64, 0.08);
+        }
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #1A2D40 0%, #D4AF37 50%, #F3D8B0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Card hover effects */
+        .benefit-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 40px rgba(26, 45, 64, 0.08);
+        }
+        .benefit-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(26, 45, 64, 0.12);
+        }
+        
+        /* Pulse animation */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(26, 45, 64, 0.4); } /* primary-dark with opacity */
+            50% { box-shadow: 0 0 40px rgba(26, 45, 64, 0.8); }
+        }
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.3s ease;
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Form input focus effect */
+        input:focus, textarea:focus, select:focus {
+            transform: scale(1.02);
+            transition: transform 0.2s ease;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); /* accent-gold with opacity */
+        }
+        
+        /* Icon animation */
+        .icon-bounce {
+            transition: transform 0.3s ease;
+        }
+        .benefit-card:hover .icon-bounce {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        /* Shimmer effect */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-neutral-light text-neutral-dark">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <img src="logo.svg" alt="Alliance Mobilité" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
+                <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300">Alliance Mobilité</span>
+            </a>
+        </div>
+        <div class="hidden md:flex items-center space-x-4 ml-auto">
+            <a href="#hero" class="text-neutral-dark hover:text-accent-gold font-medium transition-all duration-300 relative group">
+                Devenez Partenaire
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-gold transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#benefits" class="text-neutral-dark hover:text-accent-gold font-medium transition-all duration-300 relative group">
+                Avantages
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-gold transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#registration" class="text-neutral-dark hover:text-accent-gold font-medium transition-all duration-300 relative group">
+                Candidature
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-gold transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="espace-pro.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+                <i data-feather="user" class="w-4 h-4"></i>
+                <span class="font-medium">Espace Pro</span>
+            </a>
+            <a href="comercial.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+                <i data-feather="briefcase" class="w-4 h-4"></i>
+                <span class="font-medium">Espace Commercial</span>
+            </a>
+            <a href="index.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+                <i data-feather="home" class="w-4 h-4"></i>
+                <span class="font-medium">Accueil</span>
+            </a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
+            <i data-feather="menu" class="w-7 h-7"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay - Raccourcis Rejoindre -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gradient-to-br from-primary-dark to-neutral-dark bg-opacity-98 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out">
+        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300">
+            <i data-feather="x" class="w-8 h-8"></i>
+        </button>
+        <a href="espace-pro.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+            <i data-feather="user" class="w-6 h-6"></i>
+            <span>Espace Pro</span>
+        </a>
+        <a href="comercial.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+            <i data-feather="briefcase" class="w-6 h-6"></i>
+            <span>Espace Commercial</span>
+        </a>
+        <a href="index.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+            <i data-feather="home" class="w-6 h-6"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#hero" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Devenez Partenaire</a>
+        <a href="#benefits" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Avantages</a>
+        <a href="#registration" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Candidature</a>
+    </div>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="relative bg-primary-dark text-white py-24 md:py-36 overflow-hidden min-h-[80vh] flex items-center">
+            <div class="absolute inset-0 z-0">
+                <img src="./images/hero-fond.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+                <div class="absolute inset-0 bg-primary-dark/75"></div>
+            </div>
+            <div class="container mx-auto px-6 md:px-12 max-w-6xl text-center relative z-10" data-aos="fade-up" data-aos-duration="1200">
+                <div class="float-animation">
+                    <div class="inline-block mb-6 px-4 py-2 bg-accent-gold/20 text-accent-gold rounded-full text-sm font-semibold backdrop-filter backdrop-blur-lg">
+                        Devenez Partenaire
+                    </div>
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight mb-8 tracking-tight">
+                        Rejoignez Notre <span class="text-accent-gold">Réseau</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed">
+                        Accédez à de nouvelles opportunités de clients qualifiés en Île-de-France et développez votre activité de déménagement avec Alliance Mobilité.
+</p>
+                    <a href="#registration" class="group inline-flex items-center justify-center bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-10 py-5 rounded-xl text-xl font-bold hover:from-white hover:to-neutral-light transition-all duration-300 shadow-2xl transform hover:scale-110 pulse-glow">
+                        Candidater maintenant
+                        <i data-feather="arrow-right" class="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+                <i data-feather="chevron-down" class="w-8 h-8 text-accent-gold"></i>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="py-20 md:py-28 bg-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-accent-gold rounded-full opacity-5 blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary-dark rounded-full opacity-5 blur-3xl"></div>
+            <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <div class="inline-block mb-4 px-4 py-2 bg-accent-light-gold text-accent-gold rounded-full text-sm font-semibold">
+                        Avantages
+                    </div>
+                    <h2 class="text-5xl font-extrabold mb-6 text-neutral-dark">
+                        Pourquoi Rejoindre Alliance Mobilité ?
+                    </h2>
+                    <p class="text-xl max-w-3xl mx-auto text-slate-600 leading-relaxed">
+                        Découvrez les avantages de faire partie de notre réseau de professionnels vérifiés et développez votre activité avec confiance.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
+                            <i data-feather="users" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Nouveaux Clients</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Accédez à un flux régulier de demandes de devis qualifiées et développez votre portefeuille client de manière constante.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
+                            <i data-feather="shield" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Visibilité Accrue</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Bénéficiez d'une présence en ligne renforcée et d'une mise en avant auprès de clients potentiels dans votre zone d'intervention.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
+                            <i data-feather="trending-up" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Croissance Garantie</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Développez votre activité grâce à notre accompagnement personnalisé et nos outils de gestion performants.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
+                            <i data-feather="check-circle" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Processus Simplifié</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Gérez vos devis et vos missions depuis une plateforme intuitive et centralisée, accessible 24/7.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
+                            <i data-feather="headphones" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Support Dédié</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Profitez d'un accompagnement personnalisé et d'un support réactif pour toutes vos questions et besoins.
+                        </p>
+                    </div>
+
+                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
+                            <i data-feather="award" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Réputation Renforcée</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Associez votre entreprise à une marque reconnue et fiable dans le secteur du déménagement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 md:py-20 bg-gradient-to-r from-accent-gold to-accent-light-gold text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+            </div>
+            <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div data-aos="zoom-in" data-aos-delay="100">
+                        <div class="text-5xl font-extrabold mb-2">150+</div>
+                        <p class="text-lg font-semibold">Professionnels</p>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-delay="200">
+                        <div class="text-5xl font-extrabold mb-2">+100</div>
+                        <p class="text-lg font-semibold">Missions Réalisées</p>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-delay="300">
+                        <div class="text-5xl font-extrabold mb-2">98%</div>
+                        <p class="text-lg font-semibold">Taux de Satisfaction</p>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-delay="400">
+                        <div class="text-5xl font-extrabold mb-2">24h</div>
+                        <p class="text-lg font-semibold">Délai de Réponse</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Form Section -->
+        <section id="registration" class="py-20 md:py-28 bg-white relative overflow-hidden">
+            <div class="container mx-auto px-6 md:px-12 max-w-4xl relative z-10">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <div class="inline-block mb-4 px-4 py-2 bg-accent-gold/20 text-accent-gold rounded-full text-sm font-semibold">
+                        Candidature
+                    </div>
+                    <h2 class="text-5xl font-extrabold text-primary-dark mb-6">
+                        Rejoignez Notre <span class="text-accent-gold">Réseau</span>
+                    </h2>
+                    <p class="text-xl max-w-2xl mx-auto text-slate-600 leading-relaxed">
+                        Remplissez le formulaire ci-dessous pour candidater et intégrer notre réseau de professionnels. Notre équipe vous contactera sous 48h.
+                    </p>
+                </div>
+                <form id="registration-form" action="merci.html" method="GET" class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl space-y-6 border-2 border-slate-200" data-aos="fade-up" data-aos-delay="200">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="companyName" class="block text-neutral-dark text-sm font-semibold mb-2">Nom de l'entreprise *</label>
+                            <input type="text" id="companyName" name="companyName" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="Votre entreprise" required>
+                        </div>
+                        <div>
+                            <label for="siret" class="block text-neutral-dark text-sm font-semibold mb-2">Numéro SIRET *</label>
+                            <input type="text" id="siret" name="siret" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="123 456 789 00012" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="contactName" class="block text-neutral-dark text-sm font-semibold mb-2">Nom du contact *</label>
+                            <input type="text" id="contactName" name="contactName" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="Votre nom" required>
+                        </div>
+                        <div>
+                            <label for="contactEmail" class="block text-neutral-dark text-sm font-semibold mb-2">Email professionnel *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="contact@entreprise.fr" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="contactPhone" class="block text-neutral-dark text-sm font-semibold mb-2">Téléphone *</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="+33 X XX XX XX XX" required>
+                        </div>
+                        <div>
+                            <label for="serviceArea" class="block text-neutral-dark text-sm font-semibold mb-2">Zone d'intervention *</label>
+                            <select id="serviceArea" name="serviceArea" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" required>
+                                <option value="">Sélectionnez une zone</option>
+                                <option value="local">Local (région)</option>
+                                <option value="national">National</option>
+                                <option value="international">International</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="experience" class="block text-neutral-dark text-sm font-semibold mb-2">Années d'expérience *</label>
+                        <select id="experience" name="experience" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" required>
+                            <option value="">Sélectionnez</option>
+                            <option value="0-2">0-2 ans</option>
+                            <option value="3-5">3-5 ans</option>
+                            <option value="6-10">6-10 ans</option>
+                            <option value="10+">Plus de 10 ans</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="additionalInfo" class="block text-neutral-dark text-sm font-semibold mb-2">Informations complémentaires</label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="5" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300 resize-none" placeholder="Parlez-nous de votre entreprise, vos spécialités, vos certifications..."></textarea>
+                    </div>
+
+                    <div class="flex items-start bg-neutral-light p-4 rounded-xl">
+                        <input type="checkbox" id="terms" name="terms" class="mt-1 mr-3 w-5 h-5 text-accent-gold focus:ring-accent-gold rounded" required>
+                        <label for="terms" class="text-neutral-dark text-sm">
+                            J'accepte les <a href="#" class="text-accent-gold hover:underline font-semibold">conditions générales</a> et la <a href="#" class="text-accent-gold hover:underline font-semibold">politique de confidentialité</a> *
+                        </label>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button type="submit" class="group inline-flex items-center justify-center bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-10 py-5 rounded-xl text-xl font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-2xl transform hover:scale-105">
+                            <span id="submit-text">Envoyer ma candidature</span>
+                            <i data-feather="send" class="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer - Même fond que la section stats (hero-fond) -->
+    <footer class="bg-primary-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/hero-fond.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <div class="absolute inset-0 bg-primary-dark/75"></div>
+        </div>
+        <div class="container mx-auto px-6 md:px-12 py-12 md:py-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="truck" class="w-8 h-8 text-accent-gold"></i>
+                        <h3 class="text-2xl font-extrabold">Alliance Mobilité</h3>
+                    </div>
+                    <p class="text-white/80 leading-relaxed mb-4">
+                        Votre partenaire de confiance pour un déménagement sans souci. Rejoignez notre réseau de professionnels.
+                    </p>
+                </div>
+
+                <!-- Quick Links - Raccourcis pour la page Rejoindre -->
+                <div class="text-right">
+                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Liens Rapides</h4>
+                    <ul class="space-y-2 flex flex-col items-end">
+                        <li><a href="index.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Accueil
+                        </a></li>
+                        <li><a href="espace-pro.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Espace Pro
+                        </a></li>
+                        <li><a href="comercial.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Espace Commercial
+                        </a></li>
+                        <li><a href="#hero" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Devenez Partenaire
+                        </a></li>
+                        <li><a href="#benefits" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Avantages
+                        </a></li>
+                        <li><a href="#registration" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Candidature
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Contact</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="map-pin" class="w-5 h-5 mr-3 text-accent-gold mt-1 flex-shrink-0"></i>
+                            <span class="text-white/80">14 rue Jules Guesde<br>94190 Villeneuve Saint-George</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="phone" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
+                            <a href="tel:+33668144698" class="text-white/80 hover:text-accent-gold transition-colors duration-300">+33 6 68 14 46 98</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
+                            <a href="mailto:alliancemobilite1@gmail.com" class="text-white/80 hover:text-accent-gold transition-colors duration-300 break-all">alliancemobilite1@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/20 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-white/60 text-sm mb-4 md:mb-0">
+                        © 2024 Alliance Mobilité. Tous droits réservés.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Mentions légales</a>
+                        <span class="text-white/40">|</span>
+                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Politique de confidentialité</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons for footer
+        feather.replace();
+        // Initialize AOS
+        AOS.init({
+            duration: 1200,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('-translate-x-full');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('-translate-x-full');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        closeMenuButton.addEventListener('click', closeMobileMenu);
+
+
+        // Form submission
+        const registrationForm = document.getElementById('registration-form');
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', function(e) {
+                const submitText = document.getElementById('submit-text');
+                submitText.textContent = 'Envoi en cours...';
+                // Allow default form submission to proceed to merci.html
+            });
+        }
+// Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Refresh feather icons on dynamic content
+        setInterval(() => {
+            feather.replace();
+        }, 1000);
+    </script>
+</body>
+</html>

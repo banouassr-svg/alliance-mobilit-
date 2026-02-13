@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espace Commercial - Alliance Mobilité</title>
+    <meta name="description" content="Espace réservé aux commerciaux d'Alliance Mobilité Île-de-France pour gérer et publier les annonces de déménagement.">
+    <meta name="keywords" content="espace commercial déménagement, gestion annonces déménagement IDF">
+    <meta name="geo.region" content="FR-IDF" />
+    <meta name="geo.placename" content="Île-de-France" />
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1A2D40', // Bleu Nuit
+                        'accent-gold': '#D4AF37',   // Doré
+                        'accent-light-gold': '#F3D8B0', // Lighter Doré for gradients/secondary elements
+                        'neutral-dark': '#000000',  // Pure Black for text
+                        'neutral-light': '#F8F9FA', // Background white/light gray
+                        'success-green': '#4CAF50', // Standard green for positive feedback
+                        'error-red': '#EF4444',     // Standard red for errors
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--neutral-dark);
+            overflow-x: hidden;
+            background-color: var(--neutral-light);
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Navbar glassmorphism effect */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 2px 30px rgba(26, 45, 64, 0.08);
+        }
+/* Login overlay */
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 45, 64, 0.95); /* primary-dark with opacity */
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+        .login-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #1A2D40 0%, #D4AF37 50%, #F3D8B0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Form input focus effect */
+        input:focus, textarea:focus, select:focus {
+            transform: scale(1.02);
+            transition: transform 0.2s ease;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); /* accent-gold with opacity */
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-neutral-light text-neutral-dark">
+
+<!-- Login Overlay -->
+<div id="login-overlay" class="login-overlay">
+    <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-md w-full mx-4 relative" data-aos="zoom-in">
+        <a href="index.html" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 text-neutral-dark hover:text-accent-gold hover:bg-neutral-light" title="Retour à l'accueil">
+            <i data-feather="x" class="w-6 h-6"></i>
+        </a>
+        <div class="text-center mb-8">
+            <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 bg-primary-dark">
+                <i data-feather="briefcase" class="w-10 h-10 text-white"></i>
+            </div>
+            <h2 class="text-3xl font-extrabold mb-2 text-neutral-dark">Espace Commercial</h2>
+            <p class="text-slate-600">Accès réservé aux commerciaux</p>
+        </div>
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label for="username" class="block text-sm font-semibold mb-2 text-neutral-dark">Identifiant</label>
+                <div class="relative">
+                    <input type="text" id="username" name="username" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl transition-all duration-300 focus:border-accent-gold focus:shadow-md text-slate-800" placeholder="Entrez votre identifiant" required autocomplete="username">
+                    <i data-feather="user" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400"></i>
+                </div>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-semibold mb-2 text-neutral-dark">Mot de passe</label>
+                <div class="relative">
+                    <input type="password" id="password" name="password" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl transition-all duration-300 focus:border-accent-gold focus:shadow-md text-slate-800" placeholder="Entrez votre mot de passe" required autocomplete="current-password">
+                    <button type="button" id="toggle-password" class="absolute right-3 top-1/2 transform -translate-y-1/2 transition-colors text-slate-400 hover:text-accent-gold">
+                        <i data-feather="eye" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="login-error" class="hidden bg-error-red/10 border border-error-red/30 text-error-red px-4 py-3 rounded-lg text-sm">
+                Identifiant ou mot de passe incorrect. Veuillez réessayer.
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-6 py-4 rounded-xl text-lg font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-lg transform hover:scale-105">
+                Se connecter
+            </button>
+        </form>
+        <div class="mt-6 text-center text-sm text-slate-500">
+            <p>Mot de passe oublié ? <a href="mailto:alliancemobilite@gmail.com" class="text-accent-gold hover:underline">Contactez-nous</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar -->
+<nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+        <a href="index.html" class="flex items-center space-x-3 group">
+            <img src="logo.svg" alt="Alliance Mobilité" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
+            <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300">Alliance Mobilité</span>
+        </a>
+    </div>
+    <div class="hidden md:flex items-center space-x-4">
+        <a href="index.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+            <i data-feather="home" class="w-4 h-4"></i>
+            <span class="font-medium">Accueil</span>
+        </a>
+<a href="espace-pro.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+            <i data-feather="user" class="w-4 h-4"></i>
+            <span class="font-medium">Espace Pro</span>
+        </a>
+<a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
+            <i data-feather="user-plus" class="w-4 h-4"></i>
+            <span class="font-medium">Rejoindre</span>
+        </a>
+<button id="logout-btn" class="bg-primary-dark text-white px-5 py-2 rounded-lg hover:bg-accent-gold transition-colors duration-300 flex items-center space-x-2 hidden">
+            <i data-feather="log-out" class="w-4 h-4"></i>
+            <span class="font-medium">Déconnexion</span>
+        </button>
+    </div>
+    <button id="mobile-menu-button" class="md:hidden p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
+        <i data-feather="menu" class="w-7 h-7"></i>
+    </button>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 bg-gradient-to-br from-primary-dark to-neutral-dark bg-opacity-98 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out">
+    <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300">
+        <i data-feather="x" class="w-8 h-8"></i>
+    </button>
+            <a href="index.html" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Accueil</a>
+            <a href="index.html#about" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Qui sommes-nous</a>
+            <a href="index.html#services" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Nos Services</a>
+            <a href="index.html#quote" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Demande de devis</a>
+<a href="index.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+        <i data-feather="home" class="w-6 h-6"></i>
+        <span>Accueil</span>
+    </a>
+</div>
+
+<main class="pt-20">
+    <!-- Header Section -->
+    <section class="bg-primary-dark text-white py-16 md:py-20 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/hero-fond.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+            <div class="absolute inset-0 bg-primary-dark/75"></div>
+        </div>
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
+            <div class="text-center" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 bg-accent-gold/20 text-accent-gold rounded-full text-sm font-semibold backdrop-filter backdrop-blur-lg">
+                    Espace Commercial
+                </div>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6">
+                    Gestion des <span class="text-accent-gold">Annonces</span>
+                </h1>
+                <p class="text-xl max-w-3xl mx-auto opacity-90 mb-10">
+                    Créez, modifiez et suivez les annonces de déménagement pour nos partenaires.
+                </p>
+                <a href="#create-announcement" class="group inline-flex items-center justify-center bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-8 py-4 rounded-xl text-xl font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-2xl transform hover:scale-105">
+                    <i data-feather="plus-circle" class="mr-3 w-6 h-6 group-hover:rotate-90 transition-transform duration-300"></i>
+                    Créer une Annonce
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Announcement Form Section -->
+    <section id="create-announcement" class="py-16 md:py-24 bg-neutral-light">
+        <div class="container mx-auto px-6 md:px-12 max-w-4xl">
+            <h2 class="text-3xl font-extrabold text-neutral-dark mb-8 text-center" data-aos="fade-up">
+                Créer une Nouvelle Annonce
+            </h2>
+            <form id="announcement-form" class="bg-white bg-opacity-95 backdrop-filter backdrop-blur-lg p-8 md:p-12 rounded-3xl shadow-2xl space-y-6 border border-white border-opacity-20" data-aos="fade-up" data-aos-delay="100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="clientName" class="block text-neutral-dark text-sm font-semibold mb-2">Nom du Client *</label>
+                        <input type="text" id="clientName" name="clientName" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" placeholder="Nom du client" required>
+                    </div>
+                    <div>
+                        <label for="moveDate" class="block text-neutral-dark text-sm font-semibold mb-2">Date de déménagement souhaitée *</label>
+                        <input type="date" id="moveDate" name="moveDate" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fromLocation" class="block text-neutral-dark text-sm font-semibold mb-2">Lieu de départ *</label>
+                        <input type="text" id="fromLocation" name="fromLocation" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" placeholder="Ex: Paris 75001" required>
+                    </div>
+                    <div>
+                        <label for="toLocation" class="block text-neutral-dark text-sm font-semibold mb-2">Lieu d'arrivée *</label>
+                        <input type="text" id="toLocation" name="toLocation" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" placeholder="Ex: Lyon 69001" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="moveType" class="block text-neutral-dark text-sm font-semibold mb-2">Type de déménagement *</label>
+                        <select id="moveType" name="moveType" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" required>
+                            <option value="">Sélectionnez un type</option>
+                            <option value="Appartement Studio">Appartement Studio</option>
+                            <option value="Appartement T2">Appartement T2</option>
+                            <option value="Appartement T3">Appartement T3</option>
+                            <option value="Appartement T4 et plus">Appartement T4 et plus</option>
+                            <option value="Maison">Maison</option>
+                            <option value="Bureau">Bureau</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="estimatedBudget" class="block text-neutral-dark text-sm font-semibold mb-2">Budget estimé (€) *</label>
+                        <input type="number" id="estimatedBudget" name="estimatedBudget" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300" placeholder="Ex: 1500" min="1" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="details" class="block text-neutral-dark text-sm font-semibold mb-2">Détails supplémentaires</label>
+                    <textarea id="details" name="details" rows="5" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300 resize-none" placeholder="Description du déménagement, spécificités, services requis..."></textarea>
+                </div>
+
+                <div class="text-center pt-4">
+                    <button type="submit" class="group inline-flex items-center justify-center bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-10 py-5 rounded-xl text-xl font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-2xl transform hover:scale-105">
+                        <span id="submit-announcement-text">Publier l'Annonce</span>
+                        <i data-feather="plus-circle" class="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Quote Requests Section -->
+    <section id="quote-requests" class="py-16 md:py-24 bg-gradient-to-br from-primary-dark to-neutral-dark">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="inline-block mb-4 px-4 py-2 bg-accent-gold/20 rounded-full text-sm font-semibold text-accent-gold">
+                    Demandes de Devis
+                </div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+                    Demandes de Devis en Ligne
+                </h2>
+                <p class="text-white/80 max-w-2xl mx-auto">
+                    Consultez les demandes de devis soumises par les prospects via le formulaire en ligne.
+                </p>
+            </div>
+            <div id="quote-requests-list" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Quote requests will be dynamically inserted here -->
+            </div>
+            <div id="no-quote-requests" class="text-center py-16 p-8 bg-white/10 backdrop-blur-sm rounded-3xl shadow-inner border border-white/20" data-aos="fade-up" data-aos-delay="200">
+                <i data-feather="file-text" class="w-16 h-16 text-white/50 mx-auto mb-4 opacity-70"></i>
+                <p class="text-xl text-white font-semibold">Aucune demande de devis pour le moment.</p>
+                <p class="text-md text-white/70 mt-2">Les demandes soumises via le formulaire en ligne apparaîtront ici.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Published Announcements Section -->
+    <section id="my-announcements" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-7xl">
+            <h2 class="text-3xl font-extrabold text-primary-dark mb-8 text-center">
+                Mes Annonces Publiées
+            </h2>
+            <div id="announcements-list" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Announcements will be dynamically inserted here -->
+            </div>
+            <div id="no-published-announcements" class="text-center py-16 p-8 bg-neutral-light rounded-3xl shadow-inner border border-slate-100" data-aos="fade-up" data-aos-delay="200">
+                <i data-feather="clipboard" class="w-16 h-16 text-slate-400 mx-auto mb-4 opacity-70"></i>
+                <p class="text-xl text-slate-600 font-semibold">Aucune annonce publiée pour le moment.</p>
+                <p class="text-md text-slate-500 mt-2">Utilisez le formulaire ci-dessus pour ajouter une nouvelle annonce.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <!-- Footer - Même fond que la section stats (hero-fond) -->
+    <footer class="bg-primary-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/hero-fond.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <div class="absolute inset-0 bg-primary-dark/75"></div>
+        </div>
+        <div class="container mx-auto px-6 md:px-12 py-12 md:py-16 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-8">
+                <!-- Company Info -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="truck" class="w-8 h-8 text-accent-gold"></i>
+                        <h3 class="text-2xl font-extrabold">Alliance Mobilité</h3>
+                    </div>
+                    <p class="text-white/80 leading-relaxed mb-4">
+                        Votre partenaire de confiance pour un déménagement sans souci. Rejoignez notre réseau de professionnels.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Liens Rapides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Accueil
+                        </a></li>
+                        <li><a href="index.html#about" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Qui sommes-nous
+                        </a></li>
+                        <li><a href="index.html#services" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Nos Services
+                        </a></li>
+                        <li><a href="index.html#quote" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Demande de devis
+                        </a></li>
+                        <li><a href="espace-pro.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Espace Pro
+                        </a></li>
+                        <li><a href="comercial.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Espace Commercial
+                        </a></li>
+                        <li><a href="professionals.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Rejoindre le Réseau
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Contact</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="map-pin" class="w-5 h-5 mr-3 text-accent-gold mt-1 flex-shrink-0"></i>
+                            <span class="text-white/80">14 rue Jules Guesde<br>94190 Villeneuve Saint-George</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="phone" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
+                            <a href="tel:+33668144698" class="text-white/80 hover:text-accent-gold transition-colors duration-300">+33 6 68 14 46 98</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-feather="mail" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
+                            <a href="mailto:alliancemobilite1@gmail.com" class="text-white/80 hover:text-accent-gold transition-colors duration-300 break-all">alliancemobilite1@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/20 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-white/60 text-sm mb-4 md:mb-0">
+                        © 2024 Alliance Mobilité. Tous droits réservés.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Mentions légales</a>
+                        <span class="text-white/40">|</span>
+                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Politique de confidentialité</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+        // Initialize Feather Icons for footer
+        feather.replace();
+    // Initialize AOS
+    AOS.init({
+        duration: 1200,
+        once: true,
+        offset: 100
+    });
+
+    // Initialize Feather Icons
+    feather.replace();
+
+    // Credentials for commercial login
+    const COMMERCIAL_USERNAME = 'Rayan94190';
+    const COMMERCIAL_PASSWORD = 'Mh3rxanc';
+
+    // Check if user is logged in
+    function isLoggedIn() {
+        return localStorage.getItem('commercialLoggedIn') === 'true';
+    }
+
+    // Login function
+    function login() {
+        localStorage.setItem('commercialLoggedIn', 'true');
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('logout-btn').classList.remove('hidden');
+        loadCommercialAnnouncements();
+    }
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem('commercialLoggedIn');
+        document.getElementById('login-overlay').classList.remove('hidden');
+        document.getElementById('logout-btn').classList.add('hidden');
+        document.getElementById('announcements-list').innerHTML = '';
+        document.getElementById('no-published-announcements').classList.remove('hidden');
+        // Clear form
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    }
+
+    // Login form handler
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('login-error');
+
+        if (username === COMMERCIAL_USERNAME && password === COMMERCIAL_PASSWORD) {
+            errorDiv.classList.add('hidden');
+            login();
+        } else {
+            errorDiv.classList.remove('hidden');
+            document.getElementById('password').value = '';
+        }
+    });
+
+    // Toggle password visibility
+    document.getElementById('toggle-password').addEventListener('click', () => {
+        const passwordInput = document.getElementById('password');
+        const icon = document.querySelector('#toggle-password i');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.setAttribute('data-feather', 'eye-off');
+        } else {
+            passwordInput.type = 'password';
+            icon.setAttribute('data-feather', 'eye');
+        }
+        feather.replace();
+    });
+
+    // Logout button
+    document.getElementById('logout-btn').addEventListener('click', logout);
+
+    // Check login status on page load
+    if (isLoggedIn()) {
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('logout-btn').classList.remove('hidden');
+        loadCommercialAnnouncements();
+    }
+
+    // --- Announcement Management Functions ---
+    // Functions to manage announcements for *this commercial's dashboard* (their own published list)
+    function getCommercialAnnouncements() {
+        const announcements = localStorage.getItem('commercialAnnouncements');
+        return announcements ? JSON.parse(announcements) : [];
+    }
+
+    function saveCommercialAnnouncements(announcements) {
+        localStorage.setItem('commercialAnnouncements', JSON.stringify(announcements));
+    }
+
+    // Functions to manage announcements for the *public professional space* (auction.html)
+    function getPublicAnnouncements() {
+        const announcements = localStorage.getItem('alliancemobiliteAnnouncements');
+        return announcements ? JSON.parse(announcements) : [];
+    }
+
+    function savePublicAnnouncements(announcements) {
+        localStorage.setItem('alliancemobiliteAnnouncements', JSON.stringify(announcements));
+    }
+
+    function renderCommercialAnnouncements() {
+        const container = document.getElementById('announcements-list');
+        const noAnnouncementsMessage = document.getElementById('no-published-announcements');
+        const announcements = getCommercialAnnouncements(); // Use commercial's own list
+
+        if (announcements.length === 0) {
+            container.classList.add('hidden');
+            noAnnouncementsMessage.classList.remove('hidden');
+        } else {
+            container.classList.remove('hidden');
+            noAnnouncementsMessage.classList.add('hidden');
+            container.innerHTML = announcements.map(announcement => `
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-slate-200 hover:border-accent-gold transition-all duration-300 transform hover:scale-[1.01]" data-aos="fade-up">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary-dark mb-2">${announcement.moveType}</h3>
+                                <p class="text-slate-700 flex items-center">
+                                    <i data-feather="user" class="w-4 h-4 mr-2 text-accent-gold"></i>
+                                    Client: <strong>${announcement.clientName}</strong>
+                                </p>
+                            </div>
+                            <button onclick="deleteAnnouncement(${announcement.id})" class="p-2 rounded-full text-error-red hover:bg-error-red/10 transition-colors duration-300" title="Supprimer l'annonce">
+                                <i data-feather="trash-2" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+                        <div class="space-y-3 mb-4">
+                            <p class="flex items-center text-slate-600">
+                                <i data-feather="calendar" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                                Date souhaitée : <strong>${new Date(announcement.moveDate).toLocaleDateString('fr-FR')}</strong>
+                            </p>
+                            <p class="flex items-center text-slate-600">
+                                <i data-feather="map-pin" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                                <span>De <strong>${announcement.fromLocation}</strong> à <strong>${announcement.toLocation}</strong></span>
+                            </p>
+                            <p class="flex items-center text-slate-600">
+                                <i data-feather="dollar-sign" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                                <span>Budget estimé : <strong>${announcement.estimatedBudget}€</strong></span>
+                            </p>
+                            <div class="bg-neutral-light p-4 rounded-lg text-sm text-slate-700 border border-slate-100">
+                                <p class="font-semibold mb-1">Détails :</p>
+                                <p>${announcement.details || 'Aucun détail supplémentaire fourni.'}</p>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            feather.replace();
+        }
+    }
+
+    document.getElementById('announcement-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const newAnnouncement = {
+            id: Date.now(), // Unique ID
+            clientName: form.clientName.value,
+            moveDate: form.moveDate.value,
+            fromLocation: form.fromLocation.value,
+            toLocation: form.toLocation.value,
+            moveType: form.moveType.value,
+            estimatedBudget: form.estimatedBudget.value,
+            details: form.details.value,
+            publishedDate: new Date().toISOString(),
+            status: 'open', // New: status for auction (e.g., open, closed, awarded)
+            bids: []    // New: Array to store bids from professionals
+        };
+
+        // Save to this commercial's dashboard list
+        const commercialAnnouncements = getCommercialAnnouncements();
+        commercialAnnouncements.push(newAnnouncement);
+        saveCommercialAnnouncements(commercialAnnouncements);
+
+        // Also save to the public announcements list for auction.html
+        const publicAnnouncements = getPublicAnnouncements();
+        publicAnnouncements.push(newAnnouncement);
+        savePublicAnnouncements(publicAnnouncements);
+
+        renderCommercialAnnouncements();
+        form.reset();
+
+        const submitText = document.getElementById('submit-announcement-text');
+        const originalText = submitText.textContent;
+        submitText.textContent = 'Annonce publiée !';
+        submitText.parentElement.classList.add('bg-success-green', 'hover:bg-success-green');
+
+        setTimeout(() => {
+            submitText.textContent = originalText;
+            submitText.parentElement.classList.remove('bg-success-green', 'hover:bg-success-green');
+        }, 3000);
+    });
+
+    window.deleteAnnouncement = function(id) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette annonce ?')) {
+            // Remove from this commercial's dashboard list
+            let commercialAnnouncements = getCommercialAnnouncements();
+            commercialAnnouncements = commercialAnnouncements.filter(announcement => announcement.id !== id);
+            saveCommercialAnnouncements(commercialAnnouncements);
+
+            // Also remove from the public announcements list
+            let publicAnnouncements = getPublicAnnouncements();
+            publicAnnouncements = publicAnnouncements.filter(announcement => announcement.id !== id);
+            savePublicAnnouncements(publicAnnouncements);
+
+            renderCommercialAnnouncements();
+        }
+    };
+
+    function loadCommercialAnnouncements() {
+        renderCommercialAnnouncements(); // This will now use getCommercialAnnouncements()
+        renderQuoteRequests(); // Load quote requests
+    }
+
+    // --- Quote Requests Management Functions ---
+    function getQuoteRequests() {
+        const quotes = localStorage.getItem('quoteRequests');
+        return quotes ? JSON.parse(quotes) : [];
+    }
+
+    function deleteQuoteRequest(id) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette demande de devis ?')) {
+            let quotes = getQuoteRequests();
+            quotes = quotes.filter(quote => quote.id !== id);
+            localStorage.setItem('quoteRequests', JSON.stringify(quotes));
+            renderQuoteRequests();
+        }
+    }
+
+    function markQuoteAsProcessed(id) {
+        let quotes = getQuoteRequests();
+        const quote = quotes.find(q => q.id === id);
+        if (quote) {
+            quote.status = 'traité';
+            localStorage.setItem('quoteRequests', JSON.stringify(quotes));
+            renderQuoteRequests();
+        }
+    }
+
+    function renderQuoteRequests() {
+        const container = document.getElementById('quote-requests-list');
+        const noQuotesMessage = document.getElementById('no-quote-requests');
+        const quotes = getQuoteRequests();
+
+        if (quotes.length === 0) {
+            container.classList.add('hidden');
+            noQuotesMessage.classList.remove('hidden');
+        } else {
+            container.classList.remove('hidden');
+            noQuotesMessage.classList.add('hidden');
+            
+            // Trier par date (plus récentes en premier)
+            const sortedQuotes = quotes.sort((a, b) => new Date(b.submittedDate) - new Date(a.submittedDate));
+            
+            container.innerHTML = sortedQuotes.map(quote => {
+                const statusClass = quote.status === 'traité' ? 'bg-success-green/20 text-success-green' : 'bg-accent-gold/20 text-accent-gold';
+                const statusText = quote.status === 'traité' ? 'Traité' : 'Nouvelle';
+                
+                return `
+                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg p-6 border-2 border-white/30 hover:border-accent-gold transition-all duration-300 transform hover:scale-[1.01]" data-aos="fade-up">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold ${statusClass}">${statusText}</span>
+                                    <span class="text-xs text-slate-500">${new Date(quote.submittedDate).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-primary-dark mb-2">${quote.clientName}</h3>
+                                <div class="space-y-1 text-sm text-slate-600">
+                                    <p class="flex items-center">
+                                        <i data-feather="mail" class="w-4 h-4 mr-2 text-accent-gold"></i>
+                                        ${quote.email}
+                                    </p>
+                                    ${quote.phone !== 'Non renseigné' ? `<p class="flex items-center"><i data-feather="phone" class="w-4 h-4 mr-2 text-accent-gold"></i>${quote.phone}</p>` : ''}
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                ${quote.status !== 'traité' ? `<button onclick="markQuoteAsProcessed(${quote.id})" class="p-2 rounded-full text-success-green hover:bg-success-green/10 transition-colors duration-300" title="Marquer comme traité">
+                                    <i data-feather="check" class="w-5 h-5"></i>
+                                </button>` : ''}
+                                <button onclick="deleteQuoteRequest(${quote.id})" class="p-2 rounded-full text-error-red hover:bg-error-red/10 transition-colors duration-300" title="Supprimer">
+                                    <i data-feather="trash-2" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 mb-4">
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div>
+                                    <p class="text-slate-500 mb-1">Date souhaitée</p>
+                                    <p class="font-semibold text-slate-700">${quote.moveDate !== 'Non renseigné' ? new Date(quote.moveDate).toLocaleDateString('fr-FR') : 'Non renseigné'}</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500 mb-1">Taille logement</p>
+                                    <p class="font-semibold text-slate-700">${quote.propertySize}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-50 p-3 rounded-lg">
+                                <p class="text-slate-500 text-xs mb-1">Départ</p>
+                                <p class="text-slate-700 font-medium">${quote.fromAddress}</p>
+                                ${quote.fromFloor !== 'Non renseigné' ? `<p class="text-xs text-slate-500 mt-1">Étage: ${quote.fromFloor}</p>` : ''}
+                            </div>
+                            
+                            <div class="bg-slate-50 p-3 rounded-lg">
+                                <p class="text-slate-500 text-xs mb-1">Arrivée</p>
+                                <p class="text-slate-700 font-medium">${quote.toAddress}</p>
+                                ${quote.toFloor !== 'Non renseigné' ? `<p class="text-xs text-slate-500 mt-1">Étage: ${quote.toFloor}</p>` : ''}
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+                                <div>
+                                    <p class="text-slate-500 mb-1">Distance</p>
+                                    <p class="font-semibold text-slate-700">${quote.distance}</p>
+                                </div>
+                                <div>
+                                    <p class="text-slate-500 mb-1">Pack</p>
+                                    <p class="font-semibold text-slate-700">${quote.packType}</p>
+                                </div>
+                            </div>
+                            
+                            ${quote.services !== 'Aucun' ? `<div class="bg-accent-gold/10 p-3 rounded-lg">
+                                <p class="text-slate-500 text-xs mb-1">Services supplémentaires</p>
+                                <p class="text-slate-700 text-sm">${quote.services}</p>
+                            </div>` : ''}
+                            
+                            ${quote.details !== 'Aucun' ? `<div class="bg-neutral-light p-3 rounded-lg text-sm text-slate-700 border border-slate-200">
+                                <p class="font-semibold mb-1">Informations complémentaires :</p>
+                                <p>${quote.details}</p>
+                            </div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            feather.replace();
+        }
+    }
+
+    window.deleteQuoteRequest = deleteQuoteRequest;
+    window.markQuoteAsProcessed = markQuoteAsProcessed;
+
+    // Check login status on page load
+    if (isLoggedIn()) {
+        login();
+    } else {
+        document.getElementById('login-overlay').classList.remove('hidden');
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.pageYOffset > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function openMobileMenu() {
+        mobileMenu.classList.remove('-translate-x-full');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        mobileMenu.classList.add('-translate-x-full');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuButton.addEventListener('click', openMobileMenu);
+    closeMenuButton.addEventListener('click', closeMobileMenu);
+</script>
+</body>
+</html>
+```

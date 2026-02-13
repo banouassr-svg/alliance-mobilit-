@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merci - Alliance Mobilité</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1A2D40',
+                        'accent-gold': '#D4AF37',
+                        'accent-light-gold': '#F3D8B0',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        @keyframes checkmark {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .check-animation { animation: checkmark 0.6s ease-out forwards; }
+        .card-glow { box-shadow: 0 25px 80px rgba(26, 45, 64, 0.2); }
+    </style>
+</head>
+<body class="bg-primary-dark min-h-screen flex items-center justify-center p-6">
+    <div class="absolute inset-0 overflow-hidden">
+        <img src="./images/hero-fond.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
+        <div class="absolute inset-0 bg-primary-dark/75"></div>
+    </div>
+    <div class="relative z-10 text-center max-w-2xl w-full">
+        <div class="bg-white rounded-3xl shadow-2xl p-12 md:p-16 card-glow border border-white/20 backdrop-blur-sm">
+            <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-8 check-animation shadow-lg shadow-green-500/30">
+                <i data-feather="check" class="w-14 h-14 text-white stroke-[3]"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-primary-dark mb-4">Merci pour votre demande !</h1>
+            <p class="text-xl text-slate-600 mb-10 leading-relaxed">
+                Votre demande de devis a été envoyée avec succès. Notre équipe vous contactera dans les plus brefs délais.
+            </p>
+            <a href="index.html" class="inline-flex items-center justify-center bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-10 py-4 rounded-2xl text-lg font-bold hover:from-primary-dark hover:to-black hover:text-white transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105">
+                Retour à l'accueil
+                <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+            </a>
+        </div>
+    </div>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
