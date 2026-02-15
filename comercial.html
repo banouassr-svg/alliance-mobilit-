@@ -232,6 +232,10 @@
                 <i data-feather="user-plus" class="w-5 h-5"></i>
                 <span>Rejoindre</span>
             </a>
+            <button id="logout-btn-mobile" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl mt-4 border border-white/30 hover:bg-white/10" onclick="closeMobileMenu(); if(typeof logout==='function') logout();" style="display: none;">
+                <i data-feather="log-out" class="w-5 h-5"></i>
+                <span>Déconnexion</span>
+            </button>
     </div>
     <!-- Version tablette (481px+) : tous les liens -->
     <div class="relative z-10 flex flex-col items-center space-y-5 overflow-y-auto py-8 max-h-[85vh] max-[480px]:hidden min-[481px]:flex">
@@ -255,6 +259,10 @@
                 <i data-feather="user-plus" class="w-5 h-5"></i>
                 <span>Rejoindre le Réseau</span>
             </a>
+            <button id="logout-btn-mobile-tablet" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl mt-4 border border-white/30 hover:bg-white/10" onclick="closeMobileMenu(); if(typeof logout==='function') logout();" style="display: none;">
+                <i data-feather="log-out" class="w-5 h-5"></i>
+                <span>Déconnexion</span>
+            </button>
     </div>
 </div>
 
@@ -508,6 +516,10 @@
         localStorage.setItem('commercialLoggedIn', 'true');
         document.getElementById('login-overlay').classList.add('hidden');
         document.getElementById('logout-btn').classList.remove('hidden');
+        ['logout-btn-mobile', 'logout-btn-mobile-tablet'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'flex';
+        });
         loadCommercialAnnouncements();
     }
 
@@ -516,6 +528,10 @@
         localStorage.removeItem('commercialLoggedIn');
         document.getElementById('login-overlay').classList.remove('hidden');
         document.getElementById('logout-btn').classList.add('hidden');
+        ['logout-btn-mobile', 'logout-btn-mobile-tablet'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
         document.getElementById('announcements-list').innerHTML = '';
         document.getElementById('no-published-announcements').classList.remove('hidden');
         // Clear form
@@ -560,6 +576,10 @@
     if (isLoggedIn()) {
         document.getElementById('login-overlay').classList.add('hidden');
         document.getElementById('logout-btn').classList.remove('hidden');
+        ['logout-btn-mobile', 'logout-btn-mobile-tablet'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'flex';
+        });
         loadCommercialAnnouncements();
     }
 
