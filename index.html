@@ -317,7 +317,7 @@
 <body class="bg-slate-100" style="--primary: #1A2D40; --accent: #D4AF37; --accent-light: #F3D8B0;">
 
     <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 bg-white/95 backdrop-blur-xl py-3 px-6 md:px-12 flex items-center justify-between border-b border-slate-200/50">
+    <nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
         <div class="flex items-center space-x-3">
             <a href="index.html" class="flex items-center space-x-3 group">
                 <img src="logo.svg" alt="Alliance Mobilité - Logo" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
@@ -367,32 +367,28 @@
             <img src="./images/fond-texture.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
             <div class="absolute inset-0 bg-primary-dark/90"></div>
         </div>
-        <div class="absolute top-6 left-6 flex items-center space-x-2 z-10">
-            <img src="logo.svg" alt="Logo" class="w-10 h-10">
-            <span class="text-white font-bold">Alliance Mobilité</span>
-        </div>
-        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white focus:outline-none transition-colors duration-300 hover:text-accent-gold z-10">
+        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300 z-10">
             <i data-feather="x" class="w-8 h-8"></i>
         </button>
         <div class="relative z-10 flex flex-col items-center space-y-8">
-        <a href="#hero" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Accueil</a>
-        <a href="#about" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Qui sommes-nous</a>
-        <a href="#services" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Nos Services</a>
-        <a href="#quote" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Demande de devis</a>
-        <a href="espace-pro.html" class="text-primary-dark px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--accent-gold), var(--accent-light-gold));" onmouseover="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white';" onmouseout="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)'">
-                    <i data-feather="lock" class="w-6 h-6"></i>
-                    <span>Espace Pro</span>
-                </a>
-<a href="comercial.html" class="text-primary-dark px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--accent-gold), var(--accent-light-gold));" onmouseover="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white';" onmouseout="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)'">
-<i data-feather="briefcase" class="w-6 h-6"></i>
-                    <span>Espace Commercial</span>
-                </a>
-<a href="professionals.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-            <i data-feather="user-plus" class="w-6 h-6 text-white"></i>
-            <span>Rejoindre</span>
-        </a>
+            <a href="#hero" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Accueil</a>
+            <a href="#about" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Qui sommes-nous</a>
+            <a href="#services" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Nos Services</a>
+            <a href="#quote" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Demande de devis</a>
+            <a href="espace-pro.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+                <i data-feather="user" class="w-6 h-6"></i>
+                <span>Espace Pro</span>
+            </a>
+            <a href="comercial.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+                <i data-feather="briefcase" class="w-6 h-6"></i>
+                <span>Espace Commercial</span>
+            </a>
+            <a href="professionals.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+                <i data-feather="user-plus" class="w-6 h-6"></i>
+                <span>Rejoindre</span>
+            </a>
         </div>
-</div>
+    </div>
 
     <main class="pt-20">
         <!-- Hero Section - Image de fond immersive -->
