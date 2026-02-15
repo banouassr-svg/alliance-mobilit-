@@ -70,10 +70,15 @@
             opacity: 0;
             pointer-events: none;
         }
-        /* Navbar et menu mobile au-dessus du login sur smartphone */
+        /* Sur smartphone : laisser la navbar visible en haut (zone des 3 barres) */
         @media (max-width: 768px) {
             #navbar { z-index: 10001 !important; }
             #mobile-menu { z-index: 10002 !important; }
+            .login-overlay:not(.hidden) {
+                top: 72px !important;
+                align-items: flex-start;
+                padding-top: 1rem;
+            }
         }
 
         /* Gradient text */
