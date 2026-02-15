@@ -167,11 +167,16 @@
     </button>
 </nav>
 
-<!-- Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 bg-gradient-to-br from-primary-dark to-neutral-dark bg-opacity-98 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out">
-    <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300">
+<!-- Mobile Menu Overlay - Même fond que le reste du site -->
+<div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="./images/fond-texture.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
+        <div class="absolute inset-0 bg-primary-dark/90"></div>
+    </div>
+    <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300 z-10">
         <i data-feather="x" class="w-8 h-8"></i>
     </button>
+    <div class="relative z-10 flex flex-col items-center space-y-8">
             <a href="index.html" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Accueil</a>
             <a href="index.html#about" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Qui sommes-nous</a>
             <a href="index.html#services" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Nos Services</a>
@@ -180,13 +185,14 @@
         <i data-feather="home" class="w-6 h-6"></i>
         <span>Accueil</span>
     </a>
+    </div>
 </div>
 
 <main class="pt-20">
     <!-- Header Section -->
     <section class="bg-primary-dark text-white py-16 md:py-20 relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./images/hero-fond.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+            <img src="./images/fond-texture.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
         </div>
         <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
@@ -314,10 +320,10 @@
     </section>
 </main>
 
-    <!-- Footer - Même fond que la section stats (hero-fond) -->
+    <!-- Footer - Fond texture -->
     <footer class="bg-primary-dark text-white relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./images/hero-fond.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <img src="./images/fond-texture.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
         </div>
         <div class="container mx-auto px-6 md:px-12 py-12 md:py-16 relative z-10">

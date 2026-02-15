@@ -180,10 +180,15 @@
     </nav>
 
     <!-- Mobile Menu Overlay - Raccourcis Rejoindre -->
-    <div id="mobile-menu" class="fixed inset-0 bg-gradient-to-br from-primary-dark to-neutral-dark bg-opacity-98 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out">
-        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300">
+    <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/fond-texture.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
+            <div class="absolute inset-0 bg-primary-dark/90"></div>
+        </div>
+        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300 z-10">
             <i data-feather="x" class="w-8 h-8"></i>
         </button>
+        <div class="relative z-10 flex flex-col items-center space-y-8">
         <a href="espace-pro.html" class="text-white px-8 py-4 rounded-lg text-2xl font-bold transition-all duration-300 flex items-center space-x-3 shadow-xl transform hover:scale-105" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
             <i data-feather="user" class="w-6 h-6"></i>
             <span>Espace Pro</span>
@@ -199,13 +204,14 @@
         <a href="#hero" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Devenez Partenaire</a>
         <a href="#benefits" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Avantages</a>
         <a href="#registration" class="text-white text-3xl font-semibold hover:text-accent-gold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()">Candidature</a>
+        </div>
     </div>
 
     <main class="pt-20">
         <!-- Hero Section -->
         <section id="hero" class="relative bg-primary-dark text-white py-24 md:py-36 overflow-hidden min-h-[80vh] flex items-center">
             <div class="absolute inset-0 z-0">
-                <img src="./images/hero-fond.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+                <img src="./images/fond-texture.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
                 <div class="absolute inset-0 bg-primary-dark/75"></div>
             </div>
             <div class="container mx-auto px-6 md:px-12 max-w-6xl text-center relative z-10" data-aos="fade-up" data-aos-duration="1200">
@@ -425,10 +431,10 @@
         </section>
     </main>
 
-    <!-- Footer - Même fond que la section stats (hero-fond) -->
+    <!-- Footer - Fond texture -->
     <footer class="bg-primary-dark text-white relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./images/hero-fond.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <img src="./images/fond-texture.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
         </div>
         <div class="container mx-auto px-6 md:px-12 py-12 md:py-16 relative z-10">

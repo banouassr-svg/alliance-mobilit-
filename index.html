@@ -34,6 +34,10 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Formspree : remplacez YOUR_FORM_ID par votre ID Formspree (formspree.io) pour recevoir les demandes sur tous vos appareils -->
+    <script>
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    </script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -338,15 +342,20 @@
         </button>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out bg-gradient-to-br from-primary-dark to-black">
-        <div class="absolute top-6 left-6 flex items-center space-x-2">
+    <!-- Mobile Menu Overlay - Même fond que le reste du site -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/fond-texture.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
+            <div class="absolute inset-0 bg-primary-dark/90"></div>
+        </div>
+        <div class="absolute top-6 left-6 flex items-center space-x-2 z-10">
             <img src="logo.svg" alt="Logo" class="w-10 h-10">
             <span class="text-white font-bold">Alliance Mobilité</span>
         </div>
-        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white focus:outline-none transition-colors duration-300 hover:text-accent-gold">
+        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white focus:outline-none transition-colors duration-300 hover:text-accent-gold z-10">
             <i data-feather="x" class="w-8 h-8"></i>
         </button>
+        <div class="relative z-10 flex flex-col items-center space-y-8">
         <a href="#hero" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Accueil</a>
         <a href="#about" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Qui sommes-nous</a>
         <a href="#services" class="text-white text-3xl font-semibold transition-all duration-300 transform hover:scale-110" onclick="closeMobileMenu()" onmouseover="this.style.color='var(--accent-gold)'" onmouseout="this.style.color='white'">Nos Services</a>
@@ -363,6 +372,7 @@
             <i data-feather="user-plus" class="w-6 h-6 text-white"></i>
             <span>Rejoindre</span>
         </a>
+        </div>
 </div>
 
     <main class="pt-20">
@@ -402,7 +412,7 @@
         <!-- Statistics Section - Dessus de l'image en fond -->
         <section id="stats-section" class="py-16 md:py-20 text-white relative overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="./images/hero-fond.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+                <img src="./images/fond-texture.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
                 <div class="absolute inset-0 bg-primary-dark/75"></div>
             </div>
             <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
@@ -430,7 +440,7 @@
         <!-- About Us Section - Image de fond visible -->
         <section id="about" class="py-20 md:py-28 relative overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=90" alt="Équipe déménagement" class="w-full h-full object-cover opacity-20">
+                <img src="./images/fond-texture.png?v=1" alt="Équipe déménagement" class="w-full h-full object-cover opacity-20">
                 <div class="absolute inset-0 bg-white/85"></div>
                 <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-accent-gold/10 to-transparent"></div>
             </div>
@@ -471,10 +481,10 @@
             </div>
         </section>
 
-        <!-- Our Services/Packs Section - Fond cartons -->
+        <!-- Our Services/Packs Section - Fond texture -->
         <section id="services" class="py-20 md:py-28 relative overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=90" alt="Cartons déménagement" class="w-full h-full object-cover opacity-25">
+                <img src="./images/fond-texture.png?v=1" alt="Cartons déménagement" class="w-full h-full object-cover opacity-25">
                 <div class="absolute inset-0 bg-gradient-to-b from-white/92 via-white/95 to-white/92"></div>
                 <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl bg-accent-gold/40"></div>
                 <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-15 blur-3xl bg-primary-dark/30"></div>
@@ -626,10 +636,10 @@
                 </div>
             </div>
         </section>
-        <!-- Testimonials Section - Fond clients satisfaits -->
+        <!-- Testimonials Section - Fond texture -->
         <section class="py-20 md:py-28 text-neutral-dark relative overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=90" alt="Clients satisfaits" class="w-full h-full object-cover opacity-15">
+                <img src="./images/fond-texture.png?v=1" alt="Clients satisfaits" class="w-full h-full object-cover opacity-15">
                 <div class="absolute inset-0 bg-gradient-to-b from-white/90 via-white/95 to-white/90"></div>
             </div>
             <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
@@ -711,7 +721,7 @@
         <!-- Quote Request Form Section - Version Complète -->
         <section id="quote" class="py-20 md:py-28 text-white relative overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="./images/hero-fond.png?v=1" alt="Devis déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+                <img src="./images/fond-texture.png?v=1" alt="Devis déménagement" class="w-full h-full object-cover" style="object-position: center top;">
                 <div class="absolute inset-0 bg-primary-dark/75"></div>
             </div>
             <div class="container mx-auto px-6 md:px-12 max-w-6xl relative z-10">
@@ -905,7 +915,7 @@
         <!-- FAQ Section - Fond subtil -->
         <section id="faq" class="py-20 md:py-28 relative overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=90" alt="FAQ" class="w-full h-full object-cover opacity-12">
+                <img src="./images/fond-texture.png?v=1" alt="FAQ" class="w-full h-full object-cover opacity-12">
                 <div class="absolute inset-0 bg-slate-50/95"></div>
             </div>
             <div class="container mx-auto px-6 md:px-12 max-w-4xl relative z-10">
@@ -1059,10 +1069,10 @@
         <div class="gradient-divider w-full"></div>
     </main>
 
-    <!-- Footer - Même fond que la section stats (hero-fond) -->
+    <!-- Footer - Fond texture -->
     <footer class="bg-primary-dark text-white relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./images/hero-fond.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <img src="./images/fond-texture.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
         </div>
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent"></div>
@@ -1481,42 +1491,64 @@
             
             const formData = new FormData(quoteForm);
             const services = Array.from(quoteForm.querySelectorAll('input[name="Services"]:checked')).map(function(cb) { return cb.value; }).join(', ') || 'Aucun';
+            formData.append('Services supplémentaires', services);
+            formData.append('_subject', 'Nouvelle demande de devis - Alliance Mobilité');
             
-            const quoteRequest = {
-                id: Date.now(),
-                clientName: ((formData.get('Prénom') || '') + ' ' + (formData.get('Nom') || '')).trim(),
-                email: formData.get('Email') || '',
-                phone: formData.get('Téléphone') || 'Non renseigné',
-                moveDate: formData.get('Date de déménagement') || 'Non renseigné',
-                propertySize: formData.get('Taille du logement') || 'Non renseigné',
-                fromAddress: formData.get('Adresse de départ') || 'Non renseigné',
-                toAddress: formData.get('Adresse d\'arrivée') || 'Non renseigné',
-                fromFloor: formData.get('Étage départ') || 'Non renseigné',
-                toFloor: formData.get('Étage arrivée') || 'Non renseigné',
-                elevator: formData.get('Ascenseur') || 'Non renseigné',
-                distance: formData.get('Distance') || 'Non renseigné',
-                packType: formData.get('Pack') || 'Non renseigné',
-                volume: formData.get('Volume') || 'Non renseigné',
-                parking: formData.get('Parking') || 'Non renseigné',
-                services: services,
-                details: formData.get('Détails supplémentaires') || 'Aucun',
-                submittedDate: new Date().toISOString(),
-                status: 'nouvelle'
-            };
+            const formspreeEndpoint = typeof FORMSPREE_ENDPOINT !== 'undefined' && FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') === -1 ? FORMSPREE_ENDPOINT : null;
             
-            try {
-                const existingQuotes = JSON.parse(localStorage.getItem('quoteRequests') || '[]');
-                existingQuotes.push(quoteRequest);
-                localStorage.setItem('quoteRequests', JSON.stringify(existingQuotes));
-            } catch (err) {
-                submitBtn.disabled = false;
-                submitText.textContent = 'Envoyer ma demande';
-                errorsDiv.innerHTML = '<strong>Erreur lors de la sauvegarde. Veuillez réessayer.</strong>';
-                errorsDiv.classList.remove('hidden');
-                return;
+            if (formspreeEndpoint) {
+                fetch(formspreeEndpoint, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        window.location.href = 'merci.html';
+                    } else {
+                        throw new Error('Erreur serveur');
+                    }
+                })
+                .catch(function(err) {
+                    submitBtn.disabled = false;
+                    submitText.textContent = 'Envoyer ma demande';
+                    errorsDiv.innerHTML = '<strong>Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter par téléphone.</strong>';
+                    errorsDiv.classList.remove('hidden');
+                });
+            } else {
+                const quoteRequest = {
+                    id: Date.now(),
+                    clientName: ((formData.get('Prénom') || '') + ' ' + (formData.get('Nom') || '')).trim(),
+                    email: formData.get('Email') || '',
+                    phone: formData.get('Téléphone') || 'Non renseigné',
+                    moveDate: formData.get('Date de déménagement') || 'Non renseigné',
+                    propertySize: formData.get('Taille du logement') || 'Non renseigné',
+                    fromAddress: formData.get('Adresse de départ') || 'Non renseigné',
+                    toAddress: formData.get('Adresse d\'arrivée') || 'Non renseigné',
+                    fromFloor: formData.get('Étage départ') || 'Non renseigné',
+                    toFloor: formData.get('Étage arrivée') || 'Non renseigné',
+                    elevator: formData.get('Ascenseur') || 'Non renseigné',
+                    distance: formData.get('Distance') || 'Non renseigné',
+                    packType: formData.get('Pack') || 'Non renseigné',
+                    volume: formData.get('Volume') || 'Non renseigné',
+                    parking: formData.get('Parking') || 'Non renseigné',
+                    services: services,
+                    details: formData.get('Détails supplémentaires') || 'Aucun',
+                    submittedDate: new Date().toISOString(),
+                    status: 'nouvelle'
+                };
+                try {
+                    const existingQuotes = JSON.parse(localStorage.getItem('quoteRequests') || '[]');
+                    existingQuotes.push(quoteRequest);
+                    localStorage.setItem('quoteRequests', JSON.stringify(existingQuotes));
+                    window.location.href = 'merci.html';
+                } catch (err) {
+                    submitBtn.disabled = false;
+                    submitText.textContent = 'Envoyer ma demande';
+                    errorsDiv.innerHTML = '<strong>Erreur lors de la sauvegarde. Configurez Formspree pour enregistrer les demandes (voir instructions dans le code).</strong>';
+                    errorsDiv.classList.remove('hidden');
+                }
             }
-            
-            window.location.href = 'merci.html';
         }
 
         // Smooth scroll for anchor links
