@@ -69,6 +69,15 @@
         nav.scrolled {
             box-shadow: 0 4px 40px rgba(26, 45, 64, 0.12);
         }
+        /* Forcer les 3 barres à droite sur smartphone */
+        @media (max-width: 767px) {
+            #navbar #mobile-menu-button {
+                position: absolute !important;
+                right: 1.5rem !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+            }
+        }
 /* Vanta.js background */
         #vanta-bg {
             position: absolute;
@@ -356,9 +365,9 @@
                 </a>
 </div>
         </div>
-        <!-- Smartphone : 3 barres à droite -->
-        <div class="md:hidden flex-1 flex justify-end items-center">
-            <button id="mobile-menu-button" class="p-2 text-neutral-dark focus:outline-none transition-colors duration-300 hover:text-accent-gold">
+        <!-- Smartphone : 3 barres à droite (forcé par CSS) -->
+        <div class="md:hidden flex-1 flex justify-end items-center min-w-0">
+            <button id="mobile-menu-button" class="p-2 text-neutral-dark focus:outline-none transition-colors duration-300 hover:text-accent-gold ml-auto">
                 <i data-feather="menu" class="w-7 h-7"></i>
             </button>
         </div>
