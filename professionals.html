@@ -56,6 +56,15 @@
             background: rgba(255, 255, 255, 0.92);
             box-shadow: 0 2px 30px rgba(26, 45, 64, 0.08);
         }
+        /* Forcer les 3 barres à droite sur smartphone */
+        @media (max-width: 767px) {
+            #navbar #mobile-menu-button {
+                position: absolute !important;
+                right: 1.5rem !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+            }
+        }
         /* Gradient text */
         .gradient-text {
             background: linear-gradient(135deg, #1A2D40 0%, #D4AF37 50%, #F3D8B0 100%);

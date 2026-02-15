@@ -62,7 +62,16 @@
             transition: opacity 0.3s ease;
         }
         .login-overlay.hidden { opacity: 0; pointer-events: none; }
-        /* Sur smartphone : laisser la navbar visible en haut (zone des 3 barres) - comme Espace Commercial */
+        /* Forcer les 3 barres à droite sur smartphone */
+        @media (max-width: 767px) {
+            #navbar #mobile-menu-button {
+                position: absolute !important;
+                right: 1.5rem !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+            }
+        }
+        /* Sur smartphone : laisser la navbar visible en haut (zone des 3 barres) */
         @media (max-width: 768px) {
             #navbar { z-index: 10001 !important; }
             #mobile-menu { z-index: 10002 !important; }
