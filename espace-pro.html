@@ -227,7 +227,10 @@
     <!-- Version smartphone (max 480px) -->
     <div class="relative z-10 flex flex-col items-center space-y-5 overflow-y-auto py-8 max-h-[85vh] max-[480px]:flex min-[481px]:hidden">
         <p class="text-accent-gold font-bold text-sm mb-2">Liens Rapides</p>
-        <a href="index.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Accueil</a>
+        <a href="index.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+            <i data-feather="home" class="w-5 h-5"></i>
+            <span>Accueil</span>
+        </a>
         <a href="comercial.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
             <i data-feather="briefcase" class="w-5 h-5"></i>
             <span>Espace Commercial</span>
@@ -244,7 +247,10 @@
     <!-- Version tablette (481px+) : tous les liens -->
     <div class="relative z-10 flex flex-col items-center space-y-5 overflow-y-auto py-8 max-h-[85vh] max-[480px]:hidden min-[481px]:flex">
         <p class="text-accent-gold font-bold text-sm mb-2">Liens Rapides</p>
-        <a href="index.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Accueil</a>
+        <a href="index.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
+            <i data-feather="home" class="w-5 h-5"></i>
+            <span>Accueil</span>
+        </a>
         <a href="index.html#about" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Qui sommes-nous</a>
         <a href="index.html#services" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Nos Services</a>
         <a href="index.html#quote" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Demande de devis</a>
