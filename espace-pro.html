@@ -525,7 +525,21 @@
     </footer>
 
 <script>
-        // Initialize Feather Icons for footer
+        // Remplacer les icônes du menu mobile en préservant w-5 h-5 (sinon la maisonette n'apparaît pas)
+        function replaceMenuIcons() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu && typeof feather !== 'undefined') {
+                Array.from(menu.querySelectorAll('[data-feather]')).forEach(el => {
+                    const iconName = el.getAttribute('data-feather');
+                    const cls = el.getAttribute('class') || 'w-5 h-5';
+                    if (feather.icons[iconName]) {
+                        el.outerHTML = feather.icons[iconName].toSvg({ class: 'feather feather-' + iconName + ' ' + cls, stroke: 'currentColor' });
+                    }
+                });
+            }
+        }
+        // Menu d'abord (préserve w-5 h-5), puis le reste
+        replaceMenuIcons();
         feather.replace();
     // Initialize AOS
     AOS.init({
@@ -778,6 +792,7 @@
     function openMobileMenu() {
         mobileMenu.classList.remove('-translate-x-full');
         document.body.style.overflow = 'hidden';
+        replaceMenuIcons(); // Au cas où les icônes n'auraient pas été rendues au chargement
         feather.replace();
     }
 
