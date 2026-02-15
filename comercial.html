@@ -165,7 +165,7 @@
     </div>
 </div>
 
-<!-- Navbar - z-index géré en CSS pour smartphone -->
+<!-- Navbar - même structure que Accueil et Rejoindre -->
 <nav id="navbar" class="fixed w-full z-[10001] bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
     <div class="flex items-center space-x-3 flex-1 min-w-0">
         <a href="index.html" class="flex items-center space-x-3 group">
@@ -178,23 +178,25 @@
             <i data-feather="home" class="w-4 h-4"></i>
             <span class="font-medium">Accueil</span>
         </a>
-<a href="espace-pro.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+        <a href="espace-pro.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
             <i data-feather="user" class="w-4 h-4"></i>
             <span class="font-medium">Espace Pro</span>
         </a>
-<a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
+        <a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
             <i data-feather="user-plus" class="w-4 h-4"></i>
             <span class="font-medium">Rejoindre</span>
         </a>
-<button id="logout-btn" class="bg-primary-dark text-white px-5 py-2 rounded-lg hover:bg-accent-gold transition-colors duration-300 flex items-center space-x-2 hidden">
+        <button id="logout-btn" class="bg-primary-dark text-white px-5 py-2 rounded-lg hover:bg-accent-gold transition-colors duration-300 flex items-center space-x-2 hidden">
             <i data-feather="log-out" class="w-4 h-4"></i>
             <span class="font-medium">Déconnexion</span>
         </button>
     </div>
-    <!-- Smartphone : 3 barres à droite -->
-    <button id="mobile-menu-button" class="md:hidden ml-auto p-2 text-primary-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
-        <i data-feather="menu" class="w-7 h-7"></i>
-    </button>
+    <!-- Smartphone : 3 barres à droite (comme Accueil et Rejoindre) -->
+    <div class="flex justify-end flex-1 md:hidden">
+        <button id="mobile-menu-button" class="p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
+            <i data-feather="menu" class="w-7 h-7"></i>
+        </button>
+    </div>
 </nav>
 
 <!-- Mobile Menu Overlay - z-index géré en CSS pour smartphone -->

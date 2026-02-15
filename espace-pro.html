@@ -173,9 +173,9 @@
     </div>
 </div>
 
-<!-- Navbar - Desktop : liens | Smartphone : 3 barres à droite -->
+<!-- Navbar - même structure que Accueil et Rejoindre -->
 <nav id="navbar" class="fixed w-full z-[10001] bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
-    <div class="flex items-center space-x-3">
+    <div class="flex items-center space-x-3 flex-1 min-w-0">
         <a href="index.html" class="flex items-center space-x-3 group">
             <img src="logo.svg" alt="Alliance Mobilité" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
             <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300">Alliance Mobilité</span>
@@ -200,10 +200,12 @@
             <span class="font-medium">Déconnexion</span>
         </button>
     </div>
-    <!-- Smartphone : 3 barres à droite -->
-    <button id="mobile-menu-button" class="md:hidden ml-auto p-2 text-primary-dark hover:text-accent-gold focus:outline-none transition-colors duration-300 relative z-10">
-        <i data-feather="menu" class="w-7 h-7"></i>
-    </button>
+    <!-- Smartphone : 3 barres à droite (comme Accueil et Rejoindre) -->
+    <div class="flex justify-end flex-1 md:hidden">
+        <button id="mobile-menu-button" class="p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300 relative z-10">
+            <i data-feather="menu" class="w-7 h-7"></i>
+        </button>
+    </div>
 </nav>
 
 <!-- Menu mobile (3 barres) - raccourcis Espace Pro -->
