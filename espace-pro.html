@@ -62,13 +62,19 @@
             transition: opacity 0.3s ease;
         }
         .login-overlay.hidden { opacity: 0; pointer-events: none; }
-        /* Sur smartphone : navbar et raccourcis toujours visibles */
+        /* Sur smartphone : navbar toujours visible au-dessus de l'overlay */
         @media (max-width: 768px) {
-            #navbar { z-index: 10001 !important; }
+            #navbar { z-index: 10001 !important; position: fixed !important; top: 0 !important; }
+            .login-overlay { z-index: 9998 !important; }
             .login-overlay:not(.hidden) {
-                top: 72px !important;
+                top: 56px !important;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: 0 !important;
+                height: calc(100vh - 56px) !important;
                 align-items: flex-start;
-                padding-top: 1rem;
+                padding-top: 0.5rem;
+                overflow-y: auto;
             }
         }
         
@@ -119,7 +125,49 @@
 </head>
 <body class="bg-neutral-light text-neutral-dark">
 
-<!-- Login Overlay -->
+<!-- Navbar EN PREMIER - toujours visible sur smartphone -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 bg-white shadow-lg py-3 px-4 md:py-4 md:px-12 flex items-center justify-between" style="z-index: 10001;">
+    <a href="index.html" class="flex items-center space-x-2 md:space-x-3 group flex-shrink-0">
+        <img src="logo.svg" alt="Alliance Mobilité" class="w-10 h-10 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
+        <span class="text-base md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300 hidden sm:inline">Alliance Mobilité</span>
+    </a>
+    <!-- Desktop : liens complets -->
+    <div class="hidden md:flex items-center space-x-4">
+        <a href="index.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+            <i data-feather="home" class="w-4 h-4"></i>
+            <span class="font-medium">Accueil</span>
+        </a>
+        <a href="comercial.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+            <i data-feather="briefcase" class="w-4 h-4"></i>
+            <span class="font-medium">Espace Commercial</span>
+        </a>
+        <a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
+            <i data-feather="user-plus" class="w-4 h-4"></i>
+            <span class="font-medium">Rejoindre</span>
+        </a>
+        <button id="logout-btn" class="bg-primary-dark text-white px-5 py-2 rounded-lg hover:bg-accent-gold transition-colors duration-300 flex items-center space-x-2 hidden">
+            <i data-feather="log-out" class="w-4 h-4"></i>
+            <span class="font-medium">Déconnexion</span>
+        </button>
+    </div>
+    <!-- Smartphone : raccourcis visibles directement -->
+    <div class="flex md:hidden items-center gap-1.5 flex-shrink-0">
+        <a href="index.html" class="text-primary-dark px-2 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white flex items-center gap-1">
+            <i data-feather="home" class="w-3 h-3"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="comercial.html" class="text-primary-dark px-2 py-1.5 rounded-lg text-xs font-semibold bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white flex items-center gap-1">
+            <i data-feather="briefcase" class="w-3 h-3"></i>
+            <span>Commercial</span>
+        </a>
+        <a href="professionals.html" class="text-white px-2 py-1.5 rounded-lg text-xs font-semibold bg-primary-dark hover:bg-neutral-dark flex items-center gap-1">
+            <i data-feather="user-plus" class="w-3 h-3"></i>
+            <span>Rejoindre</span>
+        </a>
+    </div>
+</nav>
+
+<!-- Login Overlay - en dessous de la navbar -->
 <div id="login-overlay" class="login-overlay">
     <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-md w-full mx-4 relative" data-aos="zoom-in">
         <a href="index.html" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-110 text-neutral-dark hover:text-accent-gold hover:bg-neutral-light" title="Retour à l'accueil">
@@ -163,49 +211,7 @@
     </div>
 </div>
 
-<!-- Navbar - z-index géré en CSS pour smartphone -->
-<nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
-    <div class="flex items-center space-x-3">
-        <a href="index.html" class="flex items-center space-x-3 group">
-            <img src="logo.svg" alt="Alliance Mobilité" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
-            <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300">Alliance Mobilité</span>
-        </a>
-    </div>
-    <div class="hidden md:flex items-center space-x-4">
-        <a href="index.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
-            <i data-feather="home" class="w-4 h-4"></i>
-            <span class="font-medium">Accueil</span>
-        </a>
-        <a href="comercial.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
-            <i data-feather="briefcase" class="w-4 h-4"></i>
-            <span class="font-medium">Espace Commercial</span>
-        </a>
-<a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
-            <i data-feather="user-plus" class="w-4 h-4"></i>
-            <span class="font-medium">Rejoindre</span>
-        </a>
-        <button id="logout-btn" class="bg-primary-dark text-white px-5 py-2 rounded-lg hover:bg-accent-gold transition-colors duration-300 flex items-center space-x-2 hidden">
-            <i data-feather="log-out" class="w-4 h-4"></i>
-            <span class="font-medium">Déconnexion</span>
-        </button>
-    </div>
-    <!-- Smartphone : raccourcis visibles directement (sans menu hamburger) -->
-    <div class="flex md:hidden items-center gap-2">
-        <a href="index.html" class="text-primary-dark px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white flex items-center gap-1">
-            <i data-feather="home" class="w-4 h-4"></i>
-            <span>Accueil</span>
-        </a>
-        <a href="comercial.html" class="text-primary-dark px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white flex items-center gap-1">
-            <i data-feather="briefcase" class="w-4 h-4"></i>
-            <span>Commercial</span>
-        </a>
-        <a href="professionals.html" class="text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 bg-primary-dark hover:bg-neutral-dark flex items-center gap-1">
-            <i data-feather="user-plus" class="w-4 h-4"></i>
-            <span>Rejoindre</span>
-        </a>
-    </div>
-</nav>
-<main class="pt-20">
+<main class="pt-16 md:pt-20">
     <!-- Header Section -->
     <section class="bg-primary-dark text-white py-16 md:py-20 relative overflow-hidden">
         <div class="absolute inset-0 z-0">
