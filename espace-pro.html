@@ -170,7 +170,7 @@
     </div>
 </div>
 
-<!-- Navbar - logo + 3 barres uniquement (comme les autres pages) -->
+<!-- Navbar - Desktop : liens | Smartphone : 3 barres uniquement -->
 <nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
     <div class="flex items-center space-x-3">
         <a href="index.html" class="flex items-center space-x-3 group">
@@ -178,7 +178,27 @@
             <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300">Alliance Mobilité</span>
         </a>
     </div>
-    <button id="mobile-menu-button" class="p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
+    <!-- Desktop : liens visibles -->
+    <div class="hidden md:flex items-center space-x-4">
+        <a href="index.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+            <i data-feather="home" class="w-4 h-4"></i>
+            <span class="font-medium">Accueil</span>
+        </a>
+        <a href="comercial.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
+            <i data-feather="briefcase" class="w-4 h-4"></i>
+            <span class="font-medium">Espace Commercial</span>
+        </a>
+        <a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-primary-dark hover:bg-neutral-dark">
+            <i data-feather="user-plus" class="w-4 h-4"></i>
+            <span class="font-medium">Rejoindre</span>
+        </a>
+        <button id="logout-btn" class="bg-primary-dark text-white px-5 py-2 rounded-lg hover:bg-accent-gold transition-colors duration-300 flex items-center space-x-2 hidden">
+            <i data-feather="log-out" class="w-4 h-4"></i>
+            <span class="font-medium">Déconnexion</span>
+        </button>
+    </div>
+    <!-- Smartphone : 3 barres uniquement (md:hidden = visible < 768px) -->
+    <button id="mobile-menu-button" class="md:hidden p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
         <i data-feather="menu" class="w-7 h-7"></i>
     </button>
 </nav>
@@ -510,6 +530,7 @@
     function login() {
         localStorage.setItem('professionalLoggedIn', 'true');
         document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('logout-btn').classList.remove('hidden');
         ['logout-btn-mobile', 'logout-btn-mobile-tablet'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.style.display = 'flex';
@@ -521,6 +542,7 @@
     function logout() {
         localStorage.removeItem('professionalLoggedIn');
         document.getElementById('login-overlay').classList.remove('hidden');
+        document.getElementById('logout-btn').classList.add('hidden');
         ['logout-btn-mobile', 'logout-btn-mobile-tablet'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.style.display = 'none';
@@ -528,6 +550,8 @@
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';
     }
+
+    document.getElementById('logout-btn').addEventListener('click', logout);
 
     // Login form handler
     document.getElementById('login-form').addEventListener('submit', (e) => {
