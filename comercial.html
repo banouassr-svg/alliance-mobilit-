@@ -232,7 +232,7 @@
                 <i data-feather="user-plus" class="w-5 h-5"></i>
                 <span>Rejoindre</span>
             </a>
-            <button id="logout-btn-mobile" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl mt-4 border border-white/30 hover:bg-white/10" onclick="closeMobileMenu(); if(typeof logout==='function') logout();" style="display: none;">
+            <button id="logout-btn-mobile" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl mt-4 border border-white/30 hover:bg-white/10" style="display: none;">
                 <i data-feather="log-out" class="w-5 h-5"></i>
                 <span>Déconnexion</span>
             </button>
@@ -259,7 +259,7 @@
                 <i data-feather="user-plus" class="w-5 h-5"></i>
                 <span>Rejoindre le Réseau</span>
             </a>
-            <button id="logout-btn-mobile-tablet" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl mt-4 border border-white/30 hover:bg-white/10" onclick="closeMobileMenu(); if(typeof logout==='function') logout();" style="display: none;">
+            <button id="logout-btn-mobile-tablet" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl mt-4 border border-white/30 hover:bg-white/10" style="display: none;">
                 <i data-feather="log-out" class="w-5 h-5"></i>
                 <span>Déconnexion</span>
             </button>
@@ -877,8 +877,20 @@
         document.body.style.overflow = '';
     }
 
+    window.closeMobileMenu = closeMobileMenu;
+
     mobileMenuButton.addEventListener('click', openMobileMenu);
     closeMenuButton.addEventListener('click', closeMobileMenu);
+
+    // Boutons déconnexion du menu mobile (raccourcis)
+    document.getElementById('logout-btn-mobile')?.addEventListener('click', function() {
+        closeMobileMenu();
+        logout();
+    });
+    document.getElementById('logout-btn-mobile-tablet')?.addEventListener('click', function() {
+        closeMobileMenu();
+        logout();
+    });
 </script>
 </body>
 </html>
