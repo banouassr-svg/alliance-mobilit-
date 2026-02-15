@@ -30,6 +30,16 @@
         }
         .check-animation { animation: checkmark 0.6s ease-out forwards; }
         .card-glow { box-shadow: 0 25px 80px rgba(26, 45, 64, 0.2); }
+        /* Version smartphone - polices réduites */
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+            body { font-size: 0.875rem; }
+            h1 { font-size: 1.5rem !important; }
+            .text-5xl { font-size: 1.5rem !important; }
+            .text-4xl { font-size: 1.35rem !important; }
+            .text-xl { font-size: 0.95rem !important; }
+            .text-lg { font-size: 0.9rem !important; }
+        }
     </style>
 </head>
 <body class="bg-primary-dark min-h-screen flex items-center justify-center p-6">
