@@ -170,16 +170,23 @@
     </div>
 </div>
 
-<!-- Navbar - Desktop : liens | Smartphone : 3 barres uniquement -->
+<!-- Navbar - Desktop : liens | Smartphone : 3 barres centrées -->
 <nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
-    <div class="flex items-center space-x-3">
+    <div class="flex items-center space-x-3 flex-1 min-w-0">
         <a href="index.html" class="flex items-center space-x-3 group">
             <img src="logo.svg" alt="Alliance Mobilité" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
             <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300">Alliance Mobilité</span>
         </a>
     </div>
+    <!-- Smartphone : 3 barres centrées (logo | bouton | espaceur) -->
+    <div class="flex justify-center flex-1 md:hidden">
+        <button id="mobile-menu-button" class="p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
+            <i data-feather="menu" class="w-7 h-7"></i>
+        </button>
+    </div>
+    <div class="flex-1 md:hidden"></div>
     <!-- Desktop : liens visibles -->
-    <div class="hidden md:flex items-center space-x-4">
+    <div class="hidden md:flex items-center space-x-4 flex-1 justify-end">
         <a href="index.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
             <i data-feather="home" class="w-4 h-4"></i>
             <span class="font-medium">Accueil</span>
@@ -197,10 +204,6 @@
             <span class="font-medium">Déconnexion</span>
         </button>
     </div>
-    <!-- Smartphone : 3 barres uniquement (md:hidden = visible < 768px) -->
-    <button id="mobile-menu-button" class="md:hidden p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
-        <i data-feather="menu" class="w-7 h-7"></i>
-    </button>
 </nav>
 
 <!-- Menu mobile (3 barres) - raccourcis Espace Pro -->
