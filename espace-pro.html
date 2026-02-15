@@ -62,10 +62,9 @@
             transition: opacity 0.3s ease;
         }
         .login-overlay.hidden { opacity: 0; pointer-events: none; }
-        /* Sur smartphone : laisser la navbar visible en haut (zone des 3 barres) */
+        /* Sur smartphone : navbar et raccourcis toujours visibles */
         @media (max-width: 768px) {
             #navbar { z-index: 10001 !important; }
-            #mobile-menu { z-index: 10002 !important; }
             .login-overlay:not(.hidden) {
                 top: 72px !important;
                 align-items: flex-start;
@@ -190,55 +189,22 @@
             <span class="font-medium">Déconnexion</span>
         </button>
     </div>
-    <button id="mobile-menu-button" class="md:hidden p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
-        <i data-feather="menu" class="w-7 h-7"></i>
-    </button>
+    <!-- Smartphone : raccourcis visibles directement (sans menu hamburger) -->
+    <div class="flex md:hidden items-center gap-2">
+        <a href="index.html" class="text-primary-dark px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white flex items-center gap-1">
+            <i data-feather="home" class="w-4 h-4"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="comercial.html" class="text-primary-dark px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white flex items-center gap-1">
+            <i data-feather="briefcase" class="w-4 h-4"></i>
+            <span>Commercial</span>
+        </a>
+        <a href="professionals.html" class="text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-300 bg-primary-dark hover:bg-neutral-dark flex items-center gap-1">
+            <i data-feather="user-plus" class="w-4 h-4"></i>
+            <span>Rejoindre</span>
+        </a>
+    </div>
 </nav>
-
-<!-- Mobile Menu Overlay - z-index géré en CSS pour smartphone -->
-<div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <img src="./images/fond-texture.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
-        <div class="absolute inset-0 bg-primary-dark/90"></div>
-    </div>
-    <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300 z-10">
-        <i data-feather="x" class="w-8 h-8"></i>
-    </button>
-    <!-- Version smartphone uniquement (max 480px) -->
-    <div class="relative z-10 flex flex-col items-center space-y-5 overflow-y-auto py-8 max-h-[85vh] max-[480px]:flex min-[481px]:hidden">
-        <p class="text-accent-gold font-bold text-sm mb-2">Liens Rapides</p>
-            <a href="index.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Accueil</a>
-            <a href="comercial.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="briefcase" class="w-5 h-5"></i>
-                <span>Espace Commercial</span>
-            </a>
-            <a href="professionals.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="user-plus" class="w-5 h-5"></i>
-                <span>Rejoindre</span>
-            </a>
-    </div>
-    <!-- Version tablette (481px+) : tous les liens -->
-    <div class="relative z-10 flex flex-col items-center space-y-5 overflow-y-auto py-8 max-h-[85vh] max-[480px]:hidden min-[481px]:flex">
-        <p class="text-accent-gold font-bold text-sm mb-2">Liens Rapides</p>
-            <a href="index.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Accueil</a>
-            <a href="index.html#about" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Qui sommes-nous</a>
-            <a href="index.html#services" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Nos Services</a>
-            <a href="index.html#quote" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Demande de devis</a>
-            <a href="espace-pro.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="user" class="w-5 h-5"></i>
-                <span>Espace Pro</span>
-            </a>
-            <a href="comercial.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="briefcase" class="w-5 h-5"></i>
-                <span>Espace Commercial</span>
-            </a>
-            <a href="professionals.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="user-plus" class="w-5 h-5"></i>
-                <span>Rejoindre le Réseau</span>
-            </a>
-    </div>
-</div>
-
 <main class="pt-20">
     <!-- Header Section -->
     <section class="bg-primary-dark text-white py-16 md:py-20 relative overflow-hidden">
@@ -727,23 +693,6 @@
         }
     });
 
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const closeMenuButton = document.getElementById('close-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    function openMobileMenu() {
-        mobileMenu.classList.remove('-translate-x-full');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeMobileMenu() {
-        mobileMenu.classList.add('-translate-x-full');
-        document.body.style.overflow = '';
-    }
-
-    mobileMenuButton.addEventListener('click', openMobileMenu);
-    closeMenuButton.addEventListener('click', closeMobileMenu);
 </script>
 </body>
 </html>
