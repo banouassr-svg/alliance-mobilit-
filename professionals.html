@@ -411,7 +411,7 @@
                         Remplissez le formulaire ci-dessous pour candidater et intégrer notre réseau de professionnels. Notre équipe vous contactera sous 48h.
                     </p>
                 </div>
-                <form id="registration-form" action="merci.html" method="GET" class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl space-y-6 border-2 border-slate-200" data-aos="fade-up" data-aos-delay="200">
+                <form id="registration-form" class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl space-y-6 border-2 border-slate-200" data-aos="fade-up" data-aos-delay="200">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="companyName" class="block text-neutral-dark text-sm font-semibold mb-2">Nom de l'entreprise *</label>
@@ -576,6 +576,7 @@
     </footer>
 
     <script>
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbdaybap';
         // Initialize Feather Icons for footer
         feather.replace();
         // Initialize AOS
@@ -621,13 +622,36 @@
         closeMenuButton.addEventListener('click', closeMobileMenu);
 
 
-        // Form submission
+        // Form submission - envoi via Formspree pour recevoir les candidatures par email
         const registrationForm = document.getElementById('registration-form');
         if (registrationForm) {
             registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const submitBtn = registrationForm.querySelector('button[type="submit"]');
                 const submitText = document.getElementById('submit-text');
-                submitText.textContent = 'Envoi en cours...';
-                // Allow default form submission to proceed to merci.html
+                if (submitBtn) submitBtn.disabled = true;
+                if (submitText) submitText.textContent = 'Envoi en cours...';
+
+                const formData = new FormData(registrationForm);
+                formData.append('_subject', 'Nouvelle candidature - Alliance Mobilité');
+
+                fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        window.location.href = 'merci.html?type=candidature';
+                    } else {
+                        throw new Error('Erreur serveur');
+                    }
+                })
+                .catch(function() {
+                    if (submitBtn) submitBtn.disabled = false;
+                    if (submitText) submitText.textContent = 'Envoyer ma candidature';
+                    alert('Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter par téléphone.');
+                });
             });
         }
 // Smooth scroll for anchor links
