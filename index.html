@@ -1533,6 +1533,27 @@
             const formspreeEndpoint = typeof FORMSPREE_ENDPOINT !== 'undefined' && FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') === -1 ? FORMSPREE_ENDPOINT : null;
             
             if (formspreeEndpoint) {
+                const quoteRequest = {
+                    id: Date.now(),
+                    clientName: ((formData.get('Prénom') || '') + ' ' + (formData.get('Nom') || '')).trim(),
+                    email: formData.get('Email') || '',
+                    phone: formData.get('Téléphone') || 'Non renseigné',
+                    moveDate: formData.get('Date de déménagement') || 'Non renseigné',
+                    propertySize: formData.get('Taille du logement') || 'Non renseigné',
+                    fromAddress: formData.get('Adresse de départ') || 'Non renseigné',
+                    toAddress: formData.get('Adresse d\'arrivée') || 'Non renseigné',
+                    fromFloor: formData.get('Étage départ') || 'Non renseigné',
+                    toFloor: formData.get('Étage arrivée') || 'Non renseigné',
+                    elevator: formData.get('Ascenseur') || 'Non renseigné',
+                    distance: formData.get('Distance') || 'Non renseigné',
+                    packType: formData.get('Pack') || 'Non renseigné',
+                    volume: formData.get('Volume') || 'Non renseigné',
+                    parking: formData.get('Parking') || 'Non renseigné',
+                    services: services,
+                    details: formData.get('Détails supplémentaires') || 'Aucun',
+                    submittedDate: new Date().toISOString(),
+                    status: 'nouvelle'
+                };
                 fetch(formspreeEndpoint, {
                     method: 'POST',
                     body: formData,
@@ -1540,6 +1561,11 @@
                 })
                 .then(function(response) {
                     if (response.ok) {
+                        try {
+                            const existingQuotes = JSON.parse(localStorage.getItem('quoteRequests') || '[]');
+                            existingQuotes.push(quoteRequest);
+                            localStorage.setItem('quoteRequests', JSON.stringify(existingQuotes));
+                        } catch (e) { /* localStorage full ou indisponible */ }
                         window.location.href = 'merci.html';
                     } else {
                         throw new Error('Erreur serveur');
