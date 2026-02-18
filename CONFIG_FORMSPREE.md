@@ -1,6 +1,6 @@
-# Configuration Formspree - Demandes de devis
+# Configuration Formspree - Emails pour devis et candidatures
 
-Pour recevoir et consulter les demandes de devis sur **tous vos appareils** (ordinateur, téléphone, tablette), suivez ces étapes :
+Formspree envoie les demandes de devis et les candidatures professionnelles par **email** à **alliancemobilite2@gmail.com**.
 
 ## 1. Créer un compte Formspree (gratuit)
 
@@ -8,32 +8,28 @@ Pour recevoir et consulter les demandes de devis sur **tous vos appareils** (ord
 2. Cliquez sur **"Get Started"** ou **"Sign Up"**
 3. Créez un compte (gratuit, 50 envois/mois)
 
-## 2. Créer un formulaire
+## 2. Formulaire pour les demandes de devis
 
 1. Une fois connecté, cliquez sur **"New Form"**
-2. Donnez un nom : par exemple **"Demandes de devis Alliance Mobilité"**
-3. Indiquez votre email : **alliancemobilite2@gmail.com** (ou votre email professionnel)
-4. Cliquez sur **"Create Form"**
+2. Nom : **"Demandes de devis Alliance Mobilité"**
+3. Email : **alliancemobilite2@gmail.com**
+4. Créez le formulaire et notez l'ID (ex: `mbdaybap`)
+5. Dans **index.html**, configurez : `FORMSPREE_ENDPOINT = 'https://formspree.io/f/VOTRE_ID'`
 
-## 3. Récupérer votre ID Formspree
+## 3. Formulaire pour les candidatures professionnelles
 
-Après création, vous verrez une URL du type :
-```
-https://formspree.io/f/xyzabcde
-```
+1. Cliquez sur **"New Form"** (2e formulaire)
+2. Nom : **"Candidatures professionnels Alliance Mobilité"**
+3. Email : **alliancemobilite2@gmail.com**
+4. Créez le formulaire et notez l'ID (ex: `xyzabcde`)
+5. Ouvrez **professionals.html**
+6. Cherchez : `FORMSPREE_CANDIDATURE_ENDPOINT`
+7. Remplacez par : `'https://formspree.io/f/VOTRE_ID_CANDIDATURE'`
 
-Le **ID** est la partie après `/f/` : `xyzabcde`
-
-## 4. Configurer le site
-
-1. Ouvrez le fichier **index.html**
-2. Cherchez la ligne : `const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';`
-3. Remplacez **YOUR_FORM_ID** par votre ID (ex: `xyzabcde`)
-4. La ligne devient : `const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xyzabcde';`
-5. Sauvegardez et republiez votre site
+> 💡 **Astuce :** Vous pouvez utiliser le **même** formulaire Formspree pour les deux (devis + candidatures). Dans ce cas, mettez le même ID dans les deux fichiers. Les emails auront des sujets différents : "Nouvelle demande de devis" vs "Nouvelle candidature".
 
 ## Résultat
 
-- Chaque demande de devis vous sera envoyée par **email**
-- Vous pourrez consulter toutes les demandes dans votre **tableau de bord Formspree** (accessible depuis n'importe quel appareil)
-- Les visiteurs seront redirigés vers la page "Merci" après envoi
+- **Demandes de devis** → email avec sujet "Nouvelle demande de devis - Alliance Mobilité"
+- **Candidatures** → email avec sujet "Nouvelle candidature - Alliance Mobilité"
+- Les deux arrivent à **alliancemobilite2@gmail.com** (ou l'email configuré dans Formspree)
