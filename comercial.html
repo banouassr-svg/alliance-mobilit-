@@ -30,6 +30,11 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://mvnwreiremiajnkypeze.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im12bndyZWlyZW1pYWpua3lwZXplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNDQ0MzIsImV4cCI6MjA4NjkyMDQzMn0.bta-CPOVGUN1FJ4NZ1jiBkEqz7BxURLpsAeSVSLtzhM';
+    </script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -713,39 +718,83 @@
     };
 
     function loadCommercialAnnouncements() {
-        renderCommercialAnnouncements(); // This will now use getCommercialAnnouncements()
-        renderQuoteRequests(); // Load quote requests
+        renderCommercialAnnouncements();
+        loadQuoteRequests();
     }
 
-    // --- Quote Requests Management Functions ---
-    function getQuoteRequests() {
-        const quotes = localStorage.getItem('quoteRequests');
-        return quotes ? JSON.parse(quotes) : [];
+    // --- Quote Requests Management (Supabase = tous appareils, sinon localStorage) ---
+    function normalizeQuote(row) {
+        return {
+            id: row.id,
+            clientName: row.client_name || row.clientName,
+            email: row.email,
+            phone: row.phone || 'Non renseigné',
+            moveDate: row.move_date || row.moveDate,
+            propertySize: row.property_size || row.propertySize,
+            fromAddress: row.from_address || row.fromAddress,
+            toAddress: row.to_address || row.toAddress,
+            fromFloor: row.from_floor || row.fromFloor,
+            toFloor: row.to_floor || row.toFloor,
+            elevator: row.elevator,
+            distance: row.distance,
+            packType: row.pack_type || row.packType,
+            volume: row.volume,
+            parking: row.parking,
+            services: row.services,
+            details: row.details,
+            status: row.status || 'nouvelle',
+            submittedDate: row.submitted_date || row.submittedDate || row.created_at
+        };
+    }
+
+    async function loadQuoteRequests() {
+        const supabaseUrl = typeof SUPABASE_URL !== 'undefined' && SUPABASE_URL && SUPABASE_URL.indexOf('VOTRE_') === -1 ? SUPABASE_URL : null;
+        const supabaseKey = typeof SUPABASE_ANON_KEY !== 'undefined' && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY.indexOf('VOTRE_') === -1 ? SUPABASE_ANON_KEY : null;
+        let quotes = [];
+        if (supabaseUrl && supabaseKey && typeof supabase !== 'undefined' && supabase.createClient) {
+            try {
+                const sb = supabase.createClient(supabaseUrl, supabaseKey);
+                const { data, error } = await sb.from('quote_requests').select('*').order('submitted_date', { ascending: false });
+                if (!error && data) quotes = data.map(normalizeQuote);
+            } catch (e) { /* fallback */ }
+        }
+        if (quotes.length === 0) {
+            const local = localStorage.getItem('quoteRequests');
+            quotes = local ? JSON.parse(local).map(normalizeQuote) : [];
+        }
+        renderQuoteRequests(quotes);
     }
 
     function deleteQuoteRequest(id) {
-        if (confirm('Êtes-vous sûr de vouloir supprimer cette demande de devis ?')) {
-            let quotes = getQuoteRequests();
-            quotes = quotes.filter(quote => quote.id !== id);
+        if (!confirm('Êtes-vous sûr de vouloir supprimer cette demande de devis ?')) return;
+        const supabaseUrl = typeof SUPABASE_URL !== 'undefined' && SUPABASE_URL && SUPABASE_URL.indexOf('VOTRE_') === -1 ? SUPABASE_URL : null;
+        const supabaseKey = typeof SUPABASE_ANON_KEY !== 'undefined' && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY.indexOf('VOTRE_') === -1 ? SUPABASE_ANON_KEY : null;
+        if (supabaseUrl && supabaseKey && typeof supabase !== 'undefined' && supabase.createClient) {
+            supabase.createClient(supabaseUrl, supabaseKey).from('quote_requests').delete().eq('id', id).then(() => loadQuoteRequests());
+        } else {
+            let quotes = JSON.parse(localStorage.getItem('quoteRequests') || '[]').filter(q => q.id !== id);
             localStorage.setItem('quoteRequests', JSON.stringify(quotes));
-            renderQuoteRequests();
+            renderQuoteRequests(quotes.map(normalizeQuote));
         }
     }
 
     function markQuoteAsProcessed(id) {
-        let quotes = getQuoteRequests();
-        const quote = quotes.find(q => q.id === id);
-        if (quote) {
-            quote.status = 'traité';
-            localStorage.setItem('quoteRequests', JSON.stringify(quotes));
-            renderQuoteRequests();
+        const supabaseUrl = typeof SUPABASE_URL !== 'undefined' && SUPABASE_URL && SUPABASE_URL.indexOf('VOTRE_') === -1 ? SUPABASE_URL : null;
+        const supabaseKey = typeof SUPABASE_ANON_KEY !== 'undefined' && SUPABASE_ANON_KEY && SUPABASE_ANON_KEY.indexOf('VOTRE_') === -1 ? SUPABASE_ANON_KEY : null;
+        if (supabaseUrl && supabaseKey && typeof supabase !== 'undefined' && supabase.createClient) {
+            supabase.createClient(supabaseUrl, supabaseKey).from('quote_requests').update({ status: 'traité' }).eq('id', id).then(() => loadQuoteRequests());
+        } else {
+            let quotes = JSON.parse(localStorage.getItem('quoteRequests') || '[]');
+            const q = quotes.find(x => x.id === id);
+            if (q) { q.status = 'traité'; localStorage.setItem('quoteRequests', JSON.stringify(quotes)); }
+            renderQuoteRequests(quotes.map(normalizeQuote));
         }
     }
 
-    function renderQuoteRequests() {
+    function renderQuoteRequests(quotes) {
         const container = document.getElementById('quote-requests-list');
         const noQuotesMessage = document.getElementById('no-quote-requests');
-        const quotes = getQuoteRequests();
+        if (!quotes || !Array.isArray(quotes)) quotes = [];
 
         if (quotes.length === 0) {
             container.classList.add('hidden');
