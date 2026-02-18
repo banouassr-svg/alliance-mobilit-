@@ -12,7 +12,7 @@ Pour recevoir et consulter les demandes de devis sur **tous vos appareils** (ord
 
 1. Une fois connecté, cliquez sur **"New Form"**
 2. Donnez un nom : par exemple **"Demandes de devis Alliance Mobilité"**
-3. Indiquez votre email : **alliancemobilite1@gmail.com** (ou votre email professionnel)
+3. Indiquez votre email : **alliancemobilite2@gmail.com** (ou votre email professionnel)
 4. Cliquez sur **"Create Form"**
 
 ## 3. Récupérer votre ID Formspree
