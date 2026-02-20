@@ -239,13 +239,14 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; font-weig
 .form-progress { height: 4px; background: #e2e8f0; border-radius: 2px; margin-bottom: 2rem; overflow: hidden; }
 .form-progress-bar { height: 100%; background: var(--accent-gold); transition: width 0.3s; width: 0%; }
 .form-group { margin-bottom: 1.25rem; }
-.form-group label { display: block; font-weight: 600; margin-bottom: 0.35rem; font-size: 0.9rem; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 0.35rem; font-size: 0.9rem; font-family: 'Inter', sans-serif; }
 .form-group input, .form-group select, .form-group textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 2px solid #e2e8f0;
   border-radius: 0.5rem;
   font-size: 1rem;
+  font-family: 'Inter', sans-serif;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
@@ -258,9 +259,9 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; font-weig
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
 .checkbox-group { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-.checkbox-group label { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; cursor: pointer; }
+.checkbox-group label { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; }
 .checkbox-group input { width: auto; }
-.form-submit { width: 100%; padding: 1rem 2rem; background: linear-gradient(135deg, var(--accent-gold), var(--accent-light-gold)); color: var(--primary-dark); border: none; border-radius: 0.75rem; font-weight: 700; font-size: 1.125rem; cursor: pointer; transition: all 0.3s; margin-top: 1rem; }
+.form-submit { width: 100%; padding: 1rem 2rem; background: linear-gradient(135deg, var(--accent-gold), var(--accent-light-gold)); color: var(--primary-dark); border: none; border-radius: 0.75rem; font-weight: 700; font-size: 1.125rem; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.3s; margin-top: 1rem; }
 .form-submit:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(212,175,55,0.4); }
 .form-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
 .success-message { display: none; text-align: center; padding: 3rem; }
