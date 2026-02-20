@@ -3,676 +3,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rejoignez le Réseau - Alliance Mobilité</title>
-    <meta name="description" content="Candidature pour les professionnels du déménagement en Île-de-France. Découvrez les avantages de rejoindre Alliance Mobilité et développez votre activité.">
-    <meta name="keywords" content="devenir déménageur, partenariat déménagement, travail déménagement IDF, rejoindre entreprise déménagement">
-    <meta name="geo.region" content="FR-IDF" />
-    <meta name="geo.placename" content="Île-de-France" />
-<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary-dark': '#1A2D40', // Bleu Nuit
-                        'accent-gold': '#D4AF37',   // Doré
-                        'accent-light-gold': '#F3D8B0', // Lighter Doré for gradients/secondary elements
-                        'neutral-dark': '#000000',  // Pure Black for text
-                        'neutral-light': '#F8F9FA', // Background white/light gray
-                        'success-green': '#4CAF50', // Standard green for positive feedback
-                        'error-red': '#EF4444',     // Standard red for errors
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <title>Rejoignez le Réseau - Partenaires Déménagement | Alliance Mobilité</title>
+    <meta name="description" content="Devenez partenaire Alliance Mobilité. Rejoignez notre réseau de 150+ professionnels du déménagement en Île-de-France. Candidature en 2 minutes, réponse sous 48h.">
+    <meta name="keywords" content="devenir déménageur, partenariat déménagement, travail déménagement IDF, rejoindre entreprise déménagement, partenaire déménagement">
+    <meta name="geo.region" content="FR-IDF">
+    <meta name="geo.placename" content="Île-de-France">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Rejoignez le Réseau - Alliance Mobilité">
+    <meta property="og:description" content="Devenez partenaire déménageur. 150+ partenaires, 2400+ missions, 98% de satisfaction. Candidature en 2 min.">
+    <meta property="og:image" content="https://alliance-mobilite.fr/images/hero-puzzle.png">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://alliance-mobilite.fr/professionals.html">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <!-- Above-the-fold critical CSS -->
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #000000; /* Pure Black */
-            overflow-x: hidden;
-            background-color: #F8F9FA; /* neutral-light */
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        /* Navbar glassmorphism effect */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.92);
-            box-shadow: 0 2px 30px rgba(26, 45, 64, 0.08);
-        }
-        /* Forcer les 3 barres à droite sur smartphone */
-        @media (max-width: 767px) {
-            #navbar #mobile-menu-button {
-                position: absolute !important;
-                right: 1.5rem !important;
-                top: 50% !important;
-                transform: translateY(-50%) !important;
-            }
-        }
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, #1A2D40 0%, #D4AF37 50%, #F3D8B0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Card hover effects */
-        .benefit-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 40px rgba(26, 45, 64, 0.08);
-        }
-        .benefit-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(26, 45, 64, 0.12);
-        }
-        
-        /* Pulse animation */
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(26, 45, 64, 0.4); } /* primary-dark with opacity */
-            50% { box-shadow: 0 0 40px rgba(26, 45, 64, 0.8); }
-        }
-        .pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-        
-        /* Floating animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        /* Back to top button */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: all 0.3s ease;
-        }
-        #back-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Form input focus effect */
-        input:focus, textarea:focus, select:focus {
-            transform: scale(1.02);
-            transition: transform 0.2s ease;
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); /* accent-gold with opacity */
-        }
-        
-        /* Icon animation */
-        .icon-bounce {
-            transition: transform 0.3s ease;
-        }
-        .benefit-card:hover .icon-bounce {
-            transform: scale(1.2) rotate(5deg);
-        }
-        
-        /* Shimmer effect */
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            background-size: 1000px 100%;
-            animation: shimmer 3s infinite;
-        }
-        /* Version smartphone - polices réduites */
-        @media (max-width: 768px) {
-            html { font-size: 14px; }
-            body { font-size: 0.875rem; }
-            .hero-title, h1 { font-size: 1.75rem !important; line-height: 1.3 !important; }
-            h2 { font-size: 1.5rem !important; }
-            h3 { font-size: 1.25rem !important; }
-            h4 { font-size: 1.1rem !important; }
-            .text-5xl { font-size: 1.5rem !important; }
-            .text-4xl { font-size: 1.35rem !important; }
-            .text-3xl { font-size: 1.2rem !important; }
-            .text-2xl { font-size: 1.1rem !important; }
-            .text-xl { font-size: 0.95rem !important; }
-            .text-lg { font-size: 0.9rem !important; }
-            nav .text-xl, nav .text-2xl { font-size: 0.9rem !important; }
-        }
+        :root{--primary-dark:#1A2D40;--accent-gold:#D4AF37;--accent-light-gold:#F3D8B0;--neutral-light:#F8F9FA}
+        body{margin:0;font-family:Inter,sans-serif;background:var(--neutral-light)}
+        .nav-sticky{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px)}
+        .hero-min{min-height:70vh;display:flex;align-items:center;justify-content:center}
     </style>
+    <link rel="stylesheet" href="professionals.css">
+    <link rel="stylesheet" href="hero-bg-inline.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-neutral-light text-neutral-dark">
+<body>
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between">
-        <div class="flex items-center space-x-3 min-w-0 md:flex-1">
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <img src="logo.svg" alt="Alliance Mobilité" class="w-12 h-12 md:w-14 md:h-14 transition-transform duration-300 group-hover:scale-110">
-                <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-dark group-hover:text-accent-gold transition-colors duration-300">Alliance Mobilité</span>
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Alliance Mobilité",
+        "description": "Réseau de professionnels du déménagement en Île-de-France",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "14 rue Jules Guesde",
+            "addressLocality": "Villeneuve-Saint-Georges",
+            "postalCode": "94190"
+        },
+        "telephone": "+33668144698",
+        "email": "alliancemobilite2@gmail.com",
+        "url": "https://alliance-mobilite.fr"
+    }
+    </script>
+
+    <!-- Navigation - Navbar unique responsive -->
+    <header class="nav-sticky">
+        <nav class="navbar" role="navigation" aria-label="Navigation principale">
+            <a href="index.html" class="nav-logo" aria-label="Alliance Mobilité - Accueil">
+                <img src="logo.svg" alt="" width="48" height="48" loading="eager">
+                <span>Alliance Mobilité</span>
             </a>
-        </div>
-        <div class="hidden md:flex items-center space-x-4 ml-auto flex-1 justify-end">
-            <a href="#hero" class="text-neutral-dark hover:text-accent-gold font-medium transition-all duration-300 relative group" style="white-space: nowrap;">
-                Devenez&nbsp;Partenaire
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-gold transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#benefits" class="text-neutral-dark hover:text-accent-gold font-medium transition-all duration-300 relative group">
-                Avantages
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-gold transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#registration" class="text-neutral-dark hover:text-accent-gold font-medium transition-all duration-300 relative group">
-                Candidature
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-gold transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="index.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-slate-700 hover:bg-slate-600">
-                <i data-feather="home" class="w-4 h-4"></i>
-                <span class="font-medium">Accueil</span>
-            </a>
-            <a href="espace-pro.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
-                <i data-feather="user" class="w-4 h-4"></i>
-                <span class="font-medium">Espace Pro</span>
-            </a>
-            <a href="comercial.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-gradient-to-r from-accent-gold to-accent-light-gold hover:from-primary-dark hover:to-neutral-dark hover:text-white">
-                <i data-feather="briefcase" class="w-4 h-4"></i>
-                <span class="font-medium">Espace Commercial</span>
-            </a>
-        </div>
-        <!-- Smartphone : 3 barres à droite -->
-        <div class="md:hidden flex-1 flex justify-end items-center">
-            <button id="mobile-menu-button" class="p-2 text-neutral-dark hover:text-accent-gold focus:outline-none transition-colors duration-300">
-                <i data-feather="menu" class="w-7 h-7"></i>
+            <div class="nav-links">
+                <a href="#hero" class="nav-link active">Devenez Partenaire</a>
+                <a href="#benefits" class="nav-link">Avantages</a>
+                <a href="#how" class="nav-link">Comment ça marche</a>
+                <a href="#registration" class="nav-link">Candidature</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="index.html" class="btn-nav btn-nav-secondary">Accueil</a>
+                <a href="espace-pro.html" class="btn-nav btn-nav-primary">Espace Pro</a>
+                <a href="comercial.html" class="btn-nav btn-nav-primary">Espace Commercial</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
+                <span></span><span></span><span></span>
             </button>
+        </nav>
+        <!-- Mobile menu -->
+        <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu mobile">
+            <button class="mobile-close" id="mobile-close" aria-label="Fermer le menu">&times;</button>
+            <a href="#hero" onclick="closeMobile()">Devenez Partenaire</a>
+            <a href="#benefits" onclick="closeMobile()">Avantages</a>
+            <a href="#how" onclick="closeMobile()">Comment ça marche</a>
+            <a href="#registration" onclick="closeMobile()">Candidature</a>
+            <a href="#faq" onclick="closeMobile()">FAQ</a>
+            <a href="index.html" onclick="closeMobile()">Accueil</a>
+            <a href="espace-pro.html" onclick="closeMobile()">Espace Pro</a>
+            <a href="comercial.html" onclick="closeMobile()">Espace Commercial</a>
         </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Menu Overlay - Raccourcis Rejoindre -->
-    <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="./images/fond-texture.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
-            <div class="absolute inset-0 bg-primary-dark/90"></div>
-        </div>
-        <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300 z-10">
-            <i data-feather="x" class="w-8 h-8"></i>
-        </button>
-        <!-- Version smartphone uniquement (max 480px) -->
-        <div class="relative z-10 flex flex-col items-center space-y-5 overflow-y-auto py-8 max-h-[85vh] max-[480px]:flex min-[481px]:hidden">
-        <p class="text-accent-gold font-bold text-sm mb-2">Liens Rapides</p>
-            <a href="#hero" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" style="white-space: nowrap;" onclick="closeMobileMenu()">Devenez&nbsp;Partenaire</a>
-            <a href="#benefits" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Avantages</a>
-            <a href="#registration" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Candidature</a>
-            <a href="index.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl bg-slate-700 hover:bg-slate-600 border border-white/20" onclick="closeMobileMenu()">
-                <i data-feather="home" class="w-5 h-5"></i>
-                <span>Accueil</span>
-            </a>
-            <a href="espace-pro.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="user" class="w-5 h-5"></i>
-                <span>Espace Pro</span>
-            </a>
-            <a href="comercial.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="briefcase" class="w-5 h-5"></i>
-                <span>Espace Commercial</span>
-            </a>
-        </div>
-        <!-- Version tablette (481px+) : tous les liens -->
-        <div class="relative z-10 flex flex-col items-center space-y-5 overflow-y-auto py-8 max-h-[85vh] max-[480px]:hidden min-[481px]:flex">
-        <p class="text-accent-gold font-bold text-sm mb-2">Liens Rapides</p>
-            <a href="index.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl bg-slate-700 hover:bg-slate-600 border border-white/20" onclick="closeMobileMenu()">
-                <i data-feather="home" class="w-5 h-5"></i>
-                <span>Accueil</span>
-            </a>
-            <a href="index.html#about" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Qui sommes-nous</a>
-            <a href="index.html#services" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Nos Services</a>
-            <a href="index.html#quote" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Demande de devis</a>
-            <a href="espace-pro.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="user" class="w-5 h-5"></i>
-                <span>Espace Pro</span>
-            </a>
-            <a href="comercial.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
-                <i data-feather="briefcase" class="w-5 h-5"></i>
-                <span>Espace Commercial</span>
-            </a>
-            <a href="professionals.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl bg-primary-dark hover:bg-neutral-dark border border-white/20" onclick="closeMobileMenu()">
-                <i data-feather="user-plus" class="w-5 h-5"></i>
-                <span>Rejoindre le Réseau</span>
-            </a>
-        </div>
-    </div>
-
-    <main class="pt-20">
+    <main>
         <!-- Hero Section -->
-        <section id="hero" class="relative bg-primary-dark text-white py-24 md:py-36 overflow-hidden min-h-[80vh] flex items-center">
-            <div class="absolute inset-0 z-0">
-                <img src="./images/fond-texture.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
-                <div class="absolute inset-0 bg-primary-dark/75"></div>
-            </div>
-            <div class="container mx-auto px-6 md:px-12 max-w-6xl text-center relative z-10" data-aos="fade-up" data-aos-duration="1200">
-                <div class="float-animation">
-                    <div class="inline-block mb-6 px-4 py-2 bg-accent-gold/20 text-accent-gold rounded-full text-sm font-semibold backdrop-filter backdrop-blur-lg" style="white-space: nowrap;">
-                        Devenez&nbsp;Partenaire
-                    </div>
-                    <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight mb-8 tracking-tight">
-                        Rejoignez Notre <span class="text-accent-gold">Réseau</span>
-                    </h1>
-                    <p class="text-xl md:text-2xl mb-12 opacity-90 max-w-3xl mx-auto leading-relaxed">
-                        Accédez à de nouvelles opportunités de clients qualifiés en Île-de-France et développez votre activité de déménagement avec Alliance Mobilité.
-</p>
-                    <a href="#registration" class="group inline-flex items-center justify-center bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-10 py-5 rounded-xl text-xl font-bold hover:from-white hover:to-neutral-light transition-all duration-300 shadow-2xl transform hover:scale-110 pulse-glow">
-                        Candidater maintenant
-                        <i data-feather="arrow-right" class="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
-                    </a>
+        <section id="hero" class="hero" aria-labelledby="hero-title">
+            <div class="hero-bg" role="img" aria-label="Collaboration partenaires"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="hero-badge">Réseau vérifié • Réponse sous 48h</span>
+                <h1 id="hero-title">Rejoignez Notre <span>Réseau</span></h1>
+                <p class="hero-subtitle">Accédez à de nouvelles opportunités de clients qualifiés en Île-de-France et développez votre activité de déménagement avec Alliance Mobilité.</p>
+                <div class="hero-ctas">
+                    <a href="#registration" class="cta-primary">Candidater maintenant →</a>
+                    <a href="#benefits" class="cta-secondary">En savoir plus</a>
                 </div>
-            </div>
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-                <i data-feather="chevron-down" class="w-8 h-8 text-accent-gold"></i>
-            </div>
-        </section>
-
-        <!-- Benefits Section -->
-        <section id="benefits" class="py-20 md:py-28 bg-white relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-accent-gold rounded-full opacity-5 blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary-dark rounded-full opacity-5 blur-3xl"></div>
-            <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <div class="inline-block mb-4 px-4 py-2 bg-accent-light-gold text-accent-gold rounded-full text-sm font-semibold">
-                        Avantages
-                    </div>
-                    <h2 class="text-5xl font-extrabold mb-6 text-neutral-dark">
-                        Pourquoi Rejoindre Alliance Mobilité ?
-                    </h2>
-                    <p class="text-xl max-w-3xl mx-auto text-slate-600 leading-relaxed">
-                        Découvrez les avantages de faire partie de notre réseau de professionnels vérifiés et développez votre activité avec confiance.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
-                            <i data-feather="users" class="w-10 h-10 text-white"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Nouveaux Clients</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Accédez à un flux régulier de demandes de devis qualifiées et développez votre portefeuille client de manière constante.
-                        </p>
-                    </div>
-
-                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
-                            <i data-feather="shield" class="w-10 h-10 text-white"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Visibilité Accrue</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Bénéficiez d'une présence en ligne renforcée et d'une mise en avant auprès de clients potentiels dans votre zone d'intervention.
-                        </p>
-                    </div>
-
-                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
-                            <i data-feather="trending-up" class="w-10 h-10 text-white"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Croissance Garantie</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Développez votre activité grâce à notre accompagnement personnalisé et nos outils de gestion performants.
-                        </p>
-                    </div>
-
-                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
-                            <i data-feather="check-circle" class="w-10 h-10 text-white"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Processus Simplifié</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Gérez vos devis et vos missions depuis une plateforme intuitive et centralisée, accessible 24/7.
-                        </p>
-                    </div>
-
-                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="500">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
-                            <i data-feather="headphones" class="w-10 h-10 text-white"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Support Dédié</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Profitez d'un accompagnement personnalisé et d'un support réactif pour toutes vos questions et besoins.
-                        </p>
-                    </div>
-
-                    <div class="benefit-card bg-gradient-to-br from-white to-neutral-light rounded-3xl p-8 shadow-xl border-2 border-neutral-light hover:border-accent-gold" data-aos="zoom-in" data-aos-delay="600">
-                        <div class="w-20 h-20 bg-gradient-to-br from-accent-gold to-accent-light-gold rounded-2xl flex items-center justify-center mb-6 icon-bounce shadow-lg">
-                            <i data-feather="award" class="w-10 h-10 text-white"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-primary-dark mb-4">Réputation Renforcée</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Associez votre entreprise à une marque reconnue et fiable dans le secteur du déménagement.
-                        </p>
-                    </div>
+                <div class="hero-trust">
+                    <span>✓ 150+ Partenaires actifs</span>
+                    <span>✓ 2 400+ Missions réalisées</span>
+                    <span>✓ 98% Satisfaction</span>
                 </div>
             </div>
         </section>
 
-        <!-- Stats Section -->
-        <section class="py-16 md:py-20 bg-gradient-to-r from-accent-gold to-accent-light-gold text-white relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10">
-                <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"1\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-            </div>
-            <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div data-aos="zoom-in" data-aos-delay="100">
-                        <div class="text-5xl font-extrabold mb-2">150+</div>
-                        <p class="text-lg font-semibold">Professionnels</p>
-                    </div>
-                    <div data-aos="zoom-in" data-aos-delay="200">
-                        <div class="text-5xl font-extrabold mb-2">+100</div>
-                        <p class="text-lg font-semibold">Missions Réalisées</p>
-                    </div>
-                    <div data-aos="zoom-in" data-aos-delay="300">
-                        <div class="text-5xl font-extrabold mb-2">98%</div>
-                        <p class="text-lg font-semibold">Taux de Satisfaction</p>
-                    </div>
-                    <div data-aos="zoom-in" data-aos-delay="400">
-                        <div class="text-5xl font-extrabold mb-2">24h</div>
-                        <p class="text-lg font-semibold">Délai de Réponse</p>
-                    </div>
+        <!-- Statistiques - Compteurs animés -->
+        <section class="stats" id="stats" aria-labelledby="stats-title">
+            <h2 id="stats-title" class="sr-only">Nos chiffres clés</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" data-count="150">0</div>
+                    <div class="stat-label">Partenaires actifs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="2400">0</div>
+                    <div class="stat-label">Missions réalisées</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="98">0</div>
+                    <div class="stat-label">% Taux de satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" data-count="48">0</div>
+                    <div class="stat-label">h Délai de réponse garanti</div>
                 </div>
             </div>
         </section>
 
-        <!-- Registration Form Section -->
-        <section id="registration" class="py-20 md:py-28 bg-white relative overflow-hidden">
-            <div class="container mx-auto px-6 md:px-12 max-w-4xl relative z-10">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <div class="inline-block mb-4 px-4 py-2 bg-accent-gold/20 text-accent-gold rounded-full text-sm font-semibold">
-                        Candidature
-                    </div>
-                    <h2 class="text-5xl font-extrabold text-primary-dark mb-6">
-                        Rejoignez Notre <span class="text-accent-gold">Réseau</span>
-                    </h2>
-                    <p class="text-xl max-w-2xl mx-auto text-slate-600 leading-relaxed">
-                        Remplissez le formulaire ci-dessous pour candidater et intégrer notre réseau de professionnels. Notre équipe vous contactera sous 48h.
-                    </p>
+        <!-- Avantages -->
+        <section id="benefits" class="section" aria-labelledby="benefits-title">
+            <div class="section-title">
+                <span class="section-badge">Avantages</span>
+                <h2 id="benefits-title">Pourquoi Rejoindre Alliance Mobilité ?</h2>
+                <p class="section-desc">Découvrez les avantages de faire partie de notre réseau de professionnels vérifiés.</p>
+            </div>
+            <div class="benefits-grid">
+                <article class="benefit-card">
+                    <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <h3>Nouveaux Clients</h3>
+                    <p>Accédez à un flux régulier de demandes de devis qualifiées et développez votre portefeuille client.</p>
+                </article>
+                <article class="benefit-card">
+                    <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <h3>Visibilité</h3>
+                    <p>Bénéficiez d'une présence en ligne renforcée auprès des clients potentiels dans votre zone.</p>
+                </article>
+                <article class="benefit-card">
+                    <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    <h3>Croissance</h3>
+                    <p>Développez votre activité grâce à notre accompagnement personnalisé et nos outils de gestion.</p>
+                </article>
+                <article class="benefit-card">
+                    <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <h3>Processus Simplifié</h3>
+                    <p>Gérez vos devis et missions depuis une plateforme intuitive, accessible 24/7.</p>
+                </article>
+                <article class="benefit-card">
+                    <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 4 0v3zm-6 0a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 4 0v3z"/></svg>
+                    <h3>Support Dédié</h3>
+                    <p>Profitez d'un accompagnement personnalisé et d'un support réactif pour toutes vos questions.</p>
+                </article>
+                <article class="benefit-card">
+                    <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    <h3>Réputation</h3>
+                    <p>Associez votre entreprise à une marque reconnue dans le secteur du déménagement.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Comment ça marche -->
+        <section id="how" class="section how-section section-with-bg" aria-labelledby="how-title">
+            <div class="section-bg">
+                <div class="section-bg-overlay"></div>
+            </div>
+            <div class="section-title">
+                <span class="section-badge">Processus</span>
+                <h2 id="how-title">Comment ça marche ?</h2>
+                <p class="section-desc">Intégrez notre réseau en 3 étapes simples.</p>
+            </div>
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="how-step-num">1</div>
+                    <h3>📋 Candidature</h3>
+                    <p>Remplissez le formulaire en 2 minutes avec les informations de votre entreprise.</p>
                 </div>
-                <form id="registration-form" class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl space-y-6 border-2 border-slate-200" data-aos="fade-up" data-aos-delay="200">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="companyName" class="block text-neutral-dark text-sm font-semibold mb-2">Nom de l'entreprise *</label>
-                            <input type="text" id="companyName" name="companyName" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="Votre entreprise" required>
-                        </div>
-                        <div>
-                            <label for="siret" class="block text-neutral-dark text-sm font-semibold mb-2">Numéro SIRET *</label>
-                            <input type="text" id="siret" name="siret" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="123 456 789 00012" required>
+                <div class="how-step">
+                    <div class="how-step-num">2</div>
+                    <h3>✅ Vérification</h3>
+                    <p>Notre équipe étudie votre dossier sous 48h et vous recontacte.</p>
+                </div>
+                <div class="how-step">
+                    <div class="how-step-num">3</div>
+                    <h3>🚀 Intégration</h3>
+                    <p>Accédez immédiatement à notre plateforme et aux missions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Témoignages -->
+        <section id="testimonials" class="section testimonials" aria-labelledby="testimonials-title">
+            <div class="section-title">
+                <span class="section-badge">Témoignages</span>
+                <h2 id="testimonials-title">Ils nous font confiance</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track" id="testimonial-track">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar" style="background:#1A2D40">ML</div>
+                            <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
+                            <div class="testimonial-meta">Marc L., Paris 15e • Partenaire depuis 2 ans</div>
+                            <p class="testimonial-quote">"Alliance Mobilité m'a permis de doubler mon chiffre d'affaires. Les missions sont bien qualifiées et le support réactif."</p>
                         </div>
                     </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="contactName" class="block text-neutral-dark text-sm font-semibold mb-2">Nom du contact *</label>
-                            <input type="text" id="contactName" name="contactName" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="Votre nom" required>
-                        </div>
-                        <div>
-                            <label for="contactEmail" class="block text-neutral-dark text-sm font-semibold mb-2">Email professionnel *</label>
-                            <input type="email" id="contactEmail" name="contactEmail" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="contact@entreprise.fr" required>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar" style="background:#D4AF37;color:#1A2D40">SB</div>
+                            <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
+                            <div class="testimonial-meta">Sophie B., Boulogne • Partenaire depuis 18 mois</div>
+                            <p class="testimonial-quote">"Processus d'inscription simple, plateforme intuitive. Je recommande à tous les déménageurs sérieux de la région."</p>
                         </div>
                     </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="contactPhone" class="block text-neutral-dark text-sm font-semibold mb-2">Téléphone *</label>
-                            <input type="tel" id="contactPhone" name="contactPhone" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" placeholder="+33 X XX XX XX XX" required>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar" style="background:#334155">KD</div>
+                            <div class="testimonial-stars" aria-hidden="true">★★★★★</div>
+                            <div class="testimonial-meta">Karim D., Créteil • Partenaire depuis 1 an</div>
+                            <p class="testimonial-quote">"Un vrai partenariat gagnant-gagnant. Les clients sont pré-qualifiés, ce qui évite les pertes de temps."</p>
                         </div>
-                        <div>
-                            <label for="serviceArea" class="block text-neutral-dark text-sm font-semibold mb-2">Zone d'intervention *</label>
-                            <select id="serviceArea" name="serviceArea" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" required>
-                                <option value="">Sélectionnez une zone</option>
-                                <option value="local">Local (région)</option>
-                                <option value="national">National</option>
-                                <option value="international">International</option>
+                    </div>
+                </div>
+                <div class="testimonial-dots" id="testimonial-dots" role="tablist" aria-label="Navigation témoignages">
+                    <button type="button" role="tab" aria-selected="true" aria-label="Témoignage 1" data-index="0" class="active"></button>
+                    <button type="button" role="tab" aria-selected="false" aria-label="Témoignage 2" data-index="1"></button>
+                    <button type="button" role="tab" aria-selected="false" aria-label="Témoignage 3" data-index="2"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulaire de candidature -->
+        <section id="registration" class="section form-section section-with-bg" aria-labelledby="form-title">
+            <div class="section-bg">
+                <div class="section-bg-overlay"></div>
+            </div>
+            <div class="section-title">
+                <span class="section-badge">Candidature</span>
+                <h2 id="form-title">Rejoignez Notre Réseau</h2>
+                <p class="section-desc">Remplissez le formulaire ci-dessous. Notre équipe vous contactera sous 48h.</p>
+            </div>
+            <div class="form-wrapper">
+                <!-- Indicateur de progression -->
+                <div class="form-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <div class="form-progress-bar" id="form-progress-bar"></div>
+                </div>
+
+                <!-- Message succès (masqué par défaut) -->
+                <div class="success-message" id="success-message">
+                    <h3>✅ Votre candidature a bien été reçue !</h3>
+                    <p>Nous vous contacterons sous 48h.</p>
+                </div>
+
+                <!-- Message erreur réseau -->
+                <div class="error-fallback" id="error-fallback">
+                    <p><strong>Erreur lors de l'envoi.</strong> Vous pouvez nous envoyer votre candidature par email : <a href="mailto:alliancemobilite2@gmail.com">alliancemobilite2@gmail.com</a></p>
+                </div>
+
+                <!-- Formspree : Créez un compte gratuit sur formspree.io, créez un formulaire "Candidatures", et remplacez PLACEHOLDER_ID par votre ID (ex: mbdaybap) -->
+                <form id="registration-form" action="https://formspree.io/f/mbdaybap" method="POST" novalidate>
+                    <input type="hidden" name="_subject" value="Nouvelle candidature - Alliance Mobilité">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="companyName">Nom de l'entreprise *</label>
+                            <input type="text" id="companyName" name="companyName" required aria-required="true" aria-describedby="companyName-error" placeholder="Votre entreprise">
+                            <span class="form-error" id="companyName-error" role="alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="siret">Numéro SIRET * (14 chiffres)</label>
+                            <input type="text" id="siret" name="siret" required aria-required="true" aria-describedby="siret-error" placeholder="12345678900012" pattern="[0-9]{14}" maxlength="14" inputmode="numeric">
+                            <span class="form-error" id="siret-error" role="alert"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactName">Nom du contact *</label>
+                            <input type="text" id="contactName" name="contactName" required aria-required="true" aria-describedby="contactName-error" placeholder="Votre nom">
+                            <span class="form-error" id="contactName-error" role="alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email professionnel *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required aria-required="true" aria-describedby="contactEmail-error" placeholder="contact@entreprise.fr">
+                            <span class="form-error" id="contactEmail-error" role="alert"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Téléphone *</label>
+                        <input type="tel" id="contactPhone" name="contactPhone" required aria-required="true" aria-describedby="contactPhone-error" placeholder="06 12 34 56 78">
+                        <span class="form-error" id="contactPhone-error" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Zones d'intervention *</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="zone" value="Paris"> Paris</label>
+                            <label><input type="checkbox" name="zone" value="Petite Couronne"> Petite Couronne</label>
+                            <label><input type="checkbox" name="zone" value="Grande Couronne"> Grande Couronne</label>
+                            <label><input type="checkbox" name="zone" value="National"> National</label>
+                        </div>
+                        <span class="form-error" id="zones-error" role="alert"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="experience">Années d'expérience *</label>
+                            <select id="experience" name="experience" required aria-required="true" aria-describedby="experience-error">
+                                <option value="">Sélectionnez</option>
+                                <option value="0-2">0-2 ans</option>
+                                <option value="3-5">3-5 ans</option>
+                                <option value="6-10">6-10 ans</option>
+                                <option value="10+">Plus de 10 ans</option>
+                            </select>
+                            <span class="form-error" id="experience-error" role="alert"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="capacity">Capacité mensuelle approximative</label>
+                            <select id="capacity" name="capacity">
+                                <option value="">Sélectionnez</option>
+                                <option value="1-5">1-5 missions</option>
+                                <option value="6-15">6-15 missions</option>
+                                <option value="16-30">16-30 missions</option>
+                                <option value="30+">+30 missions</option>
                             </select>
                         </div>
                     </div>
-
-                    <div>
-                        <label for="experience" class="block text-neutral-dark text-sm font-semibold mb-2">Années d'expérience *</label>
-                        <select id="experience" name="experience" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300" required>
-                            <option value="">Sélectionnez</option>
-                            <option value="0-2">0-2 ans</option>
-                            <option value="3-5">3-5 ans</option>
-                            <option value="6-10">6-10 ans</option>
-                            <option value="10+">Plus de 10 ans</option>
-                        </select>
+                    <div class="form-group">
+                        <label>Types de prestations *</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="prestation" value="Déménagement résidentiel"> Déménagement résidentiel</label>
+                            <label><input type="checkbox" name="prestation" value="Déménagement professionnel"> Déménagement professionnel</label>
+                            <label><input type="checkbox" name="prestation" value="Transport de meubles"> Transport de meubles</label>
+                            <label><input type="checkbox" name="prestation" value="Montage/démontage"> Montage/démontage</label>
+                            <label><input type="checkbox" name="prestation" value="Stockage"> Stockage</label>
+                        </div>
+                        <span class="form-error" id="prestations-error" role="alert"></span>
                     </div>
-
-                    <div>
-                        <label for="additionalInfo" class="block text-neutral-dark text-sm font-semibold mb-2">Informations complémentaires</label>
-                        <textarea id="additionalInfo" name="additionalInfo" rows="5" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:ring-2 focus:ring-accent-gold focus:border-accent-gold text-slate-800 transition-all duration-300 resize-none" placeholder="Parlez-nous de votre entreprise, vos spécialités, vos certifications..."></textarea>
+                    <div class="form-group">
+                        <label for="additionalInfo">Informations complémentaires</label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="5" placeholder="Parlez-nous de votre entreprise, spécialités, certifications..."></textarea>
                     </div>
-
-                    <div class="flex items-start bg-neutral-light p-4 rounded-xl">
-                        <input type="checkbox" id="terms" name="terms" class="mt-1 mr-3 w-5 h-5 text-accent-gold focus:ring-accent-gold rounded" required>
-                        <label for="terms" class="text-neutral-dark text-sm">
-                            J'accepte les <a href="#" class="text-accent-gold hover:underline font-semibold">conditions générales</a> et la <a href="#" class="text-accent-gold hover:underline font-semibold">politique de confidentialité</a> *
+                    <div class="form-group">
+                        <label class="checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required aria-required="true" aria-describedby="terms-error">
+                            <span>J'accepte les <a href="mentions-legales.html">conditions générales</a> et la <a href="confidentialite.html">politique de confidentialité</a> *</span>
                         </label>
+                        <span class="form-error" id="terms-error" role="alert"></span>
                     </div>
-
-                    <div class="text-center pt-4">
-                        <button type="submit" class="group inline-flex items-center justify-center bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-10 py-5 rounded-xl text-xl font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-2xl transform hover:scale-105">
-                            <span id="submit-text">Envoyer ma candidature</span>
-                            <i data-feather="send" class="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
-                        </button>
-                    </div>
+                    <button type="submit" class="form-submit" id="submit-btn">
+                        <span id="submit-text">Envoyer ma candidature</span>
+                    </button>
                 </form>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+            <div class="section-title">
+                <span class="section-badge">FAQ</span>
+                <h2 id="faq-title">Questions fréquentes</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-q">Quelle est la commission prélevée sur les missions ?</button>
+                    <div class="faq-answer" id="faq1" role="region" aria-labelledby="faq1-q">
+                        <div class="faq-answer-inner">Nous appliquons une commission transparente et compétitive, détaillée lors de votre intégration. Aucun frais d'inscription.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-q">Y a-t-il un engagement de durée minimum ?</button>
+                    <div class="faq-answer" id="faq2" role="region" aria-labelledby="faq2-q">
+                        <div class="faq-answer-inner">Non. Vous êtes libre de gérer votre activité. Aucun engagement de durée n'est requis.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-q">Quels documents sont nécessaires pour l'inscription ?</button>
+                    <div class="faq-answer" id="faq3" role="region" aria-labelledby="faq3-q">
+                        <div class="faq-answer-inner">Un extrait Kbis de moins de 3 mois, une assurance RC Pro à jour, et le formulaire de candidature complété. Notre équipe vous guidera.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq4" id="faq4-q">Comment sont attribuées les missions ?</button>
+                    <div class="faq-answer" id="faq4" role="region" aria-labelledby="faq4-q">
+                        <div class="faq-answer-inner">Les missions sont proposées selon votre zone d'intervention, votre disponibilité et votre profil. Vous recevez les demandes et pouvez accepter ou refuser.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq5" id="faq5-q">Puis-je refuser une mission qui ne me convient pas ?</button>
+                    <div class="faq-answer" id="faq5" role="region" aria-labelledby="faq5-q">
+                        <div class="faq-answer-inner">Oui, vous êtes totalement libre d'accepter ou refuser les missions proposées. Aucune obligation.</div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer - Fond texture -->
-    <footer class="bg-primary-dark text-white relative overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="./images/fond-texture.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
-            <div class="absolute inset-0 bg-primary-dark/75"></div>
+    <!-- Footer - même fond que les autres pages -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <img src="./images/fond-texture.png?v=1" alt="" loading="lazy">
+            <div class="footer-overlay"></div>
         </div>
-        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent"></div>
-        <div class="container mx-auto px-6 md:px-12 py-12 md:py-16 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-8">
-                <!-- Company Info -->
-                <div class="lg:col-span-1">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <img src="logo.svg" alt="Alliance Mobilité" class="w-10 h-10">
-                        <h3 class="text-2xl font-extrabold">Alliance Mobilité</h3>
-                    </div>
-                    <p class="text-white/80 leading-relaxed mb-4">
-                        Votre partenaire de confiance pour un déménagement sans souci. Rejoignez notre réseau de professionnels.
-                    </p>
+        <div class="footer-grid">
+            <div>
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem">
+                    <img src="logo.svg" alt="" width="40" height="40" loading="lazy">
+                    <h3 style="font-size:1.25rem;margin:0">Alliance Mobilité</h3>
                 </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Liens Rapides</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
-                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Accueil
-                        </a></li>
-                        <li><a href="index.html#about" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
-                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Qui sommes-nous
-                        </a></li>
-                        <li><a href="index.html#services" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
-                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Nos Services
-                        </a></li>
-                        <li><a href="index.html#quote" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
-                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Demande de devis
-                        </a></li>
-                        <li><a href="espace-pro.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
-                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Espace Pro
-                        </a></li>
-                        <li><a href="comercial.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
-                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Espace Commercial
-                        </a></li>
-                        <li><a href="professionals.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
-                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Rejoindre le Réseau
-                        </a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-accent-gold">Contact</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i data-feather="map-pin" class="w-5 h-5 mr-3 text-accent-gold mt-1 flex-shrink-0"></i>
-                            <span class="text-white/80">14 rue Jules Guesde<br>94190 Villeneuve Saint-George</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i data-feather="phone" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
-                            <a href="tel:+33668144698" class="text-white/80 hover:text-accent-gold transition-colors duration-300">+33 6 68 14 46 98</a>
-                        </li>
-                        <li class="flex items-center">
-                            <i data-feather="mail" class="w-5 h-5 mr-3 text-accent-gold flex-shrink-0"></i>
-                            <a href="mailto:alliancemobilite2@gmail.com" class="text-white/80 hover:text-accent-gold transition-colors duration-300 break-all">alliancemobilite2@gmail.com</a>
-                        </li>
-                    </ul>
+                <p style="opacity:0.85;margin:0">Votre partenaire de confiance pour un déménagement sans souci.</p>
+            </div>
+            <div>
+                <h4>Liens Rapides</h4>
+                <ul style="list-style:none;padding:0;margin:0">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#about">Qui sommes-nous</a></li>
+                    <li><a href="index.html#quote">Demande de devis</a></li>
+                    <li><a href="espace-pro.html">Espace Pro</a></li>
+                    <li><a href="professionals.html">Rejoindre le Réseau</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p style="margin:0 0 0.5rem;opacity:0.85">14 rue Jules Guesde<br>94190 Villeneuve-Saint-Georges</p>
+                <p style="margin:0 0 0.5rem"><a href="tel:+33668144698">+33 6 68 14 46 98</a></p>
+                <p style="margin:0"><a href="mailto:alliancemobilite2@gmail.com">alliancemobilite2@gmail.com</a></p>
+                <div class="social-links" style="margin-top:1rem">
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="Facebook">f</a>
                 </div>
             </div>
-
-            <!-- Copyright -->
-            <div class="border-t border-white/20 pt-8 mt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-white/60 text-sm mb-4 md:mb-0">
-                        © 2024 Alliance Mobilité. Tous droits réservés.
-                    </p>
-                    <div class="flex items-center space-x-4">
-                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Mentions légales</a>
-                        <span class="text-white/40">|</span>
-                        <a href="#" class="text-white/60 hover:text-accent-gold transition-colors duration-300 text-sm">Politique de confidentialité</a>
-                    </div>
-                </div>
+        </div>
+        <div class="footer-bottom">
+            <p style="margin:0;opacity:0.7">© 2025 Alliance Mobilité. Tous droits réservés.</p>
+            <div>
+                <a href="mentions-legales.html">Mentions légales</a>
+                <span style="opacity:0.5">|</span>
+                <a href="confidentialite.html">Politique de confidentialité</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Formspree : formulaire dédié aux candidatures (recevez-les par email)
-        const FORMSPREE_CANDIDATURE_ENDPOINT = 'https://formspree.io/f/mbdaybap';  // Créez un 2e formulaire sur formspree.io pour les candidatures, puis remplacez l'ID
-        // Initialize Feather Icons for footer
-        feather.replace();
-        // Initialize AOS
-        AOS.init({
-            duration: 1200,
-            once: true,
-            offset: 100
-        });
-
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Navbar scroll effect
-        let lastScroll = 0;
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            lastScroll = currentScroll;
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMenuButton = document.getElementById('close-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        function openMobileMenu() {
-            mobileMenu.classList.remove('-translate-x-full');
-            document.body.style.overflow = 'hidden';
-            feather.replace();
-        }
-
-        function closeMobileMenu() {
-            mobileMenu.classList.add('-translate-x-full');
-            document.body.style.overflow = '';
-        }
-
-        mobileMenuButton.addEventListener('click', openMobileMenu);
-        closeMenuButton.addEventListener('click', closeMobileMenu);
-
-
-        // Form submission - envoi via Formspree pour recevoir les candidatures par email
-        const registrationForm = document.getElementById('registration-form');
-        if (registrationForm) {
-            registrationForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const submitBtn = registrationForm.querySelector('button[type="submit"]');
-                const submitText = document.getElementById('submit-text');
-                if (submitBtn) submitBtn.disabled = true;
-                if (submitText) submitText.textContent = 'Envoi en cours...';
-
-                const formData = new FormData(registrationForm);
-                formData.append('_subject', 'Nouvelle candidature - Alliance Mobilité');
-
-                fetch(FORMSPREE_CANDIDATURE_ENDPOINT, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                })
-                .then(function(response) {
-                    if (response.ok) {
-                        window.location.href = 'merci.html?type=candidature';
-                    } else {
-                        throw new Error('Erreur serveur');
-                    }
-                })
-                .catch(function() {
-                    if (submitBtn) submitBtn.disabled = false;
-                    if (submitText) submitText.textContent = 'Envoyer ma candidature';
-                    alert('Erreur lors de l\'envoi. Veuillez réessayer ou nous contacter par téléphone.');
-                });
-            });
-        }
-// Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Refresh feather icons on dynamic content
-        setInterval(() => {
-            feather.replace();
-        }, 1000);
-    </script>
+    <script src="professionals.js"></script>
 </body>
 </html>
