@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A2D40"/>
+      <stop offset="100%" style="stop-color:#0f172a"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C9A227"/>
+      <stop offset="50%" style="stop-color:#D4AF37"/>
+      <stop offset="100%" style="stop-color:#F3D8B0"/>
+    </linearGradient>
+  </defs>
+  <!-- Fond arrondi -->
+  <rect width="120" height="120" rx="24" fill="url(#bg)"/>
+  <!-- Maison (haut) -->
+  <path d="M60 28 L88 52 L32 52 Z" fill="url(#gold)"/>
+  <rect x="36" y="52" width="48" height="28" rx="2" fill="url(#gold)"/>
+  <rect x="52" y="62" width="16" height="18" rx="1" fill="#1A2D40" opacity="0.6"/>
+  <!-- Camion (bas droite) -->
+  <rect x="68" y="68" width="28" height="18" rx="2" fill="url(#gold)"/>
+  <path d="M64 80 L64 68 L68 68 L68 80 Z" fill="url(#gold)"/>
+  <circle cx="68" cy="88" r="5" fill="#0f172a" stroke="url(#gold)" stroke-width="1.5"/>
+  <circle cx="88" cy="88" r="5" fill="#0f172a" stroke="url(#gold)" stroke-width="1.5"/>
+  <!-- Bordure -->
+  <rect width="120" height="120" rx="24" fill="none" stroke="#D4AF37" stroke-width="1.5" opacity="0.6"/>
+</svg>

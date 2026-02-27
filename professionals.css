@@ -72,8 +72,8 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; font-weig
 }
 .btn-nav-primary { background: linear-gradient(135deg, var(--accent-gold), var(--accent-light-gold)); color: var(--primary-dark); }
 .btn-nav-primary:hover { background: var(--primary-dark); color: white; transform: scale(1.02); }
-.btn-nav-secondary { background: var(--slate-700); color: white; }
-.btn-nav-secondary:hover { background: var(--slate-600); }
+.btn-nav-secondary { background: #1e293b; color: white; } /* Gris foncé noir (slate-800) */
+.btn-nav-secondary:hover { background: #0f172a; } /* slate-900 */
 
 /* Hamburger - CSS only animation */
 .hamburger {
