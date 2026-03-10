@@ -6,4 +6,4 @@ Allow: /
 # Disallow: /comercial.html
 # Disallow: /merci.html
 
-Sitemap: https://banouassr-svg.github.io/alliance-mobilit-/sitemap.xml
+Sitemap: https://banouassr-svg.github.io/alliance-mobilit-/sitemap_index.xml
