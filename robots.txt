@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Pages internes à ne pas indexer (optionnel - décommentez si nécessaire)
+# Disallow: /espace-pro.html
+# Disallow: /comercial.html
+# Disallow: /merci.html
+
+Sitemap: https://banouassr-svg.github.io/alliance-mobilit-/sitemap.xml
