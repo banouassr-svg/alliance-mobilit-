@@ -101,8 +101,7 @@ CREATE POLICY "Autoriser suppression publique" ON quote_requests
 
 > 💡 **Astuce :** Cliquez sur le petit bouton **copier** (📋) à côté de chaque valeur pour la copier.
 
----
-
+ 
 ## 5. Mettre dans votre site
 
 1. Ouvrez le fichier **index.html** avec un éditeur de texte
