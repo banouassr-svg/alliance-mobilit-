@@ -20,6 +20,8 @@
     <meta property="og:title" content="Alliance Mobilité - Déménagement Simplifié en Île-de-France">
     <meta property="og:description" content="Alliance Mobilité vous accompagne avec bienveillance pour un déménagement serein. Packs sur mesure, devis gratuit. 150+ partenaires, 98% de satisfaction.">
     <meta property="og:image" content="https://banouassr-svg.github.io/alliance-mobilit-/images/og-alliance-mobilite.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Alliance Mobilité">
     <!-- Twitter Card -->
@@ -28,7 +30,32 @@
     <meta name="twitter:description" content="Alliance Mobilité vous accompagne pour un déménagement serein. Devis gratuit, packs sur mesure.">
     <meta name="twitter:image" content="https://banouassr-svg.github.io/alliance-mobilit-/images/og-alliance-mobilite.jpg">
     <link rel="canonical" href="https://banouassr-svg.github.io/alliance-mobilit-/">
-    <!-- Données structurées pour Google (LocalBusiness) -->
+    <!-- Données structurées pour Google (Organization + LocalBusiness) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Alliance Mobilité",
+        "url": "https://banouassr-svg.github.io/alliance-mobilit-/",
+        "logo": "https://banouassr-svg.github.io/alliance-mobilit-/logo.svg",
+        "description": "Entreprise de déménagement professionnel en Île-de-France. Siège à Villeneuve-Saint-Georges (94).",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "14 rue Jules Guesde",
+            "addressLocality": "Villeneuve-Saint-Georges",
+            "postalCode": "94190",
+            "addressRegion": "Île-de-France"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33668144698",
+            "contactType": "customer service",
+            "areaServed": "FR",
+            "availableLanguage": "French",
+            "hoursAvailable": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "19:00"}
+        }
+    }
+    </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -65,10 +92,12 @@
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {"@type": "Question", "name": "Comment obtenir un devis déménagement ?", "acceptedAnswer": {"@type": "Answer", "text": "Remplissez notre formulaire en ligne pour recevoir jusqu'à 3 devis personnalisés sous 24h, ou contactez-nous au 06 68 14 46 98 ou par email."}},
+            {"@type": "Question", "name": "Comment obtenir un devis déménagement ?", "acceptedAnswer": {"@type": "Answer", "text": "Remplissez notre formulaire en ligne pour recevoir jusqu'à 3 devis personnalisés sous 24h, ou contactez-nous au 06 68 14 46 98 ou par email alliancemobilite2@gmail.com."}},
             {"@type": "Question", "name": "Quels services de déménagement proposez-vous ?", "acceptedAnswer": {"@type": "Answer", "text": "Pack Essentiel (transport), Pack Confort (emballage + transport), Pack Premium (service complet). Services additionnels : garde-meuble, nettoyage, assurance."}},
-            {"@type": "Question", "name": "Quelle zone géographique couvrez-vous ?", "acceptedAnswer": {"@type": "Answer", "text": "Nous couvrons toute l'Île-de-France : Paris (75), Seine-et-Marne (77), Yvelines (78), Essonne (91), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Val-d'Oise (95)."}},
-            {"@type": "Question", "name": "Les déménageurs sont-ils assurés ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Tous nos partenaires ont une assurance responsabilité civile et assurance transport. Assurance complémentaire disponible pour objets de valeur."}}
+            {"@type": "Question", "name": "Quelle zone géographique couvrez-vous ?", "acceptedAnswer": {"@type": "Answer", "text": "Nous couvrons toute l'Île-de-France : Paris (75), Seine-et-Marne (77), Yvelines (78), Essonne (91), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Val-d'Oise (95). Départ IDF, arrivée partout en France."}},
+            {"@type": "Question", "name": "Les déménageurs sont-ils assurés ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Tous nos partenaires ont une assurance responsabilité civile et assurance transport. Assurance complémentaire disponible pour objets de valeur."}},
+            {"@type": "Question", "name": "Quels sont vos tarifs ?", "acceptedAnswer": {"@type": "Answer", "text": "Nos tarifs varient selon la distance, le volume, le pack choisi et les options. Devis gratuit et personnalisé sous 24h."}},
+            {"@type": "Question", "name": "Proposez-vous des solutions pour les entreprises ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Nous proposons des solutions pour déménagements de bureaux, mobilités géographiques et relocalisations. Contactez notre Espace Commercial."}}
         ]
     }
     </script>
@@ -405,7 +434,7 @@
 </head>
 <body class="bg-slate-100" style="--primary: #1A2D40; --accent: #D4AF37; --accent-light: #F3D8B0">
 
-    <header>
+    <header role="banner">
     <nav id="navbar" class="fixed w-full z-50 bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between" role="navigation" aria-label="Navigation principale">
         <div class="flex items-center space-x-3 min-w-0 md:flex-1">
             <a href="index.html" class="flex items-center space-x-3 group">
@@ -414,20 +443,24 @@
             </a>
         </div>
         <div class="hidden md:flex items-center space-x-8">
-            <a href="#about" class="nav-link-index font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
-                Qui sommes-nous
+            <a href="a-propos.html" class="nav-link-index font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+                À propos
                 <span class="nav-link-underline absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
             </a>
-            <a href="#services" class="nav-link-index font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
-                Nos Services
+            <a href="services.html" class="nav-link-index font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+                Services
                 <span class="nav-link-underline absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
             </a>
             <a href="#quote" class="nav-link-index font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
-                Demande de devis
+                Devis
+                <span class="nav-link-underline absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
+            </a>
+            <a href="contact.html" class="nav-link-index font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
+                Contact
                 <span class="nav-link-underline absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
             </a>
             <a href="#faq" class="nav-link-index font-medium transition-all duration-300 relative group text-neutral-dark hover:text-accent-gold">
-                Questions fréquentes
+                FAQ
                 <span class="nav-link-underline absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full bg-accent-gold"></span>
             </a>
 <div class="flex items-center space-x-3">
@@ -442,6 +475,10 @@
                 <a href="professionals.html" class="text-white px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105 bg-slate-800 hover:bg-slate-900 border border-slate-700/50">
                     <i data-feather="user-plus" class="w-4 h-4"></i>
                     <span class="font-medium">Rejoindre</span>
+                </a>
+                <a href="blog.html" class="text-primary-dark px-5 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 hover:text-accent-gold">
+                    <i data-feather="book-open" class="w-4 h-4"></i>
+                    <span class="font-medium">Blog</span>
                 </a>
 </div>
         </div>
@@ -465,10 +502,11 @@
         </button>
         <div class="relative z-10 flex flex-col items-center space-y-5 overflow-y-auto py-8 max-h-[85vh]">
             <p class="text-accent-gold font-bold text-sm mb-2">Liens Rapides</p>
-            <a href="#about" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Qui sommes-nous</a>
-            <a href="#services" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Nos Services</a>
-            <a href="#quote" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Demande de devis</a>
-            <a href="#faq" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Questions fréquentes</a>
+            <a href="a-propos.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">À propos</a>
+            <a href="services.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Services</a>
+            <a href="#quote" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Devis</a>
+            <a href="contact.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Contact</a>
+            <a href="#faq" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">FAQ</a>
             <a href="espace-pro.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
                 <i data-feather="user" class="w-5 h-5"></i>
                 <span>Espace Pro</span>
@@ -481,6 +519,7 @@
                 <i data-feather="user-plus" class="w-5 h-5"></i>
                 <span>Rejoindre le Réseau</span>
             </a>
+            <a href="blog.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Blog</a>
         </div>
     </div>
 
@@ -489,7 +528,7 @@
         <section id="hero" class="relative text-white py-24 md:py-36 overflow-hidden min-h-screen flex items-center justify-center bg-primary-dark" aria-labelledby="hero-title">
             <!-- Image de fond immersive - Déménagement -->
             <div class="absolute inset-0 z-0">
-                <img src="./images/hero-fond.png?v=1" alt="Déménagement professionnel - Nouvelle maison" class="w-full h-full object-cover animate-slow-zoom" style="object-position: center 75%; filter: blur(5px);">
+                <img src="./images/hero-fond.png?v=1" alt="Déménagement professionnel Alliance Mobilité - Nouvelle maison Île-de-France" class="w-full h-full object-cover animate-slow-zoom" style="object-position: center 75%; filter: blur(5px);" fetchpriority="high">
                 <div class="absolute inset-0 bg-gradient-to-b from-primary-dark/35 via-primary-dark/25 to-primary-dark/65"></div>
                 <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/20 to-transparent"></div>
             </div>
@@ -599,8 +638,57 @@
             </div>
         </section>
 
+        <!-- Présentation entreprise étendue - SEO contenu -->
+        <section id="presentation" class="py-16 md:py-20 bg-slate-50 relative" aria-labelledby="presentation-title">
+            <div class="container mx-auto px-6 md:px-12 max-w-7xl">
+                <h2 id="presentation-title" class="text-4xl font-extrabold mb-8 text-neutral-dark">
+                    Alliance Mobilité : <span class="gradient-text">Votre Partenaire Déménagement en Île-de-France</span>
+                </h2>
+                <div class="prose prose-lg max-w-none text-slate-600 space-y-6">
+                    <p class="leading-relaxed">
+                        <strong>Alliance Mobilité</strong> est une entreprise de déménagement professionnel implantée à <strong>Villeneuve-Saint-Georges (94)</strong>, au cœur du Val-de-Marne. Depuis notre création, nous avons accompagné des milliers de particuliers et professionnels dans leurs projets de mobilité résidentielle et professionnelle. Notre réseau de plus de 150 partenaires déménageurs vérifiés nous permet d'intervenir rapidement sur toute l'Île-de-France : Paris (75), Seine-et-Marne (77), Yvelines (78), Essonne (91), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94) et Val-d'Oise (95).
+                    </p>
+                    <p class="leading-relaxed">
+                        Notre philosophie repose sur trois piliers : <strong>la transparence</strong> (devis détaillés sans surprise), <strong>la qualité</strong> (partenaires rigoureusement sélectionnés) et <strong>l'écoute</strong> (accompagnement personnalisé à chaque étape). Que vous déménagiez un studio à Paris, une maison en banlieue ou un local professionnel, nous adaptons nos solutions à vos besoins et votre budget. Découvrez nos <a href="services.html" class="text-accent-gold font-semibold hover:underline">services de déménagement</a> et demandez votre <a href="#quote" class="text-accent-gold font-semibold hover:underline">devis gratuit sous 24h</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions pour entreprises - SEO -->
+        <section id="solutions-entreprises" class="py-16 md:py-20 bg-white relative" aria-labelledby="entreprises-title">
+            <div class="container mx-auto px-6 md:px-12 max-w-7xl">
+                <h2 id="entreprises-title" class="text-4xl font-extrabold mb-8 text-neutral-dark">
+                    Solutions de Mobilité pour <span class="gradient-text">Entreprises et Professionnels</span>
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <article>
+                        <h3 class="text-2xl font-bold mb-4 text-primary-dark">Déménagement de bureaux et locaux professionnels</h3>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            Les entreprises et professionnels ont des besoins spécifiques : respect des délais, gestion des équipements informatiques, archivage, confidentialité. Alliance Mobilité propose des <strong>solutions sur mesure</strong> pour le déménagement de bureaux, cabinets médicaux, commerces et entrepôts. Nos équipes interviennent en dehors des heures d'ouverture si nécessaire et assurent une coordination fluide avec vos équipes.
+                        </p>
+                        <p class="text-slate-600 leading-relaxed">
+                            Nous gérons également les <strong>mobilités géographiques</strong> de vos collaborateurs : déménagement familial, mutation, relocalisation. Un interlocuteur unique, des devis transparents et un suivi personnalisé. <a href="contact.html" class="text-accent-gold font-semibold hover:underline">Contactez notre équipe commerciale</a> pour une étude personnalisée.
+                        </p>
+                    </article>
+                    <article>
+                        <h3 class="text-2xl font-bold mb-4 text-primary-dark">Avantages pour les entreprises</h3>
+                        <ul class="text-slate-600 space-y-3">
+                            <li class="flex items-start"><i data-feather="check" class="w-5 h-5 text-success-green mr-2 mt-0.5 flex-shrink-0"></i> Facturation centralisée et devis détaillés</li>
+                            <li class="flex items-start"><i data-feather="check" class="w-5 h-5 text-success-green mr-2 mt-0.5 flex-shrink-0"></i> Assurance tous risques et responsabilité civile</li>
+                            <li class="flex items-start"><i data-feather="check" class="w-5 h-5 text-success-green mr-2 mt-0.5 flex-shrink-0"></i> Intervention rapide sur toute l'Île-de-France</li>
+                            <li class="flex items-start"><i data-feather="check" class="w-5 h-5 text-success-green mr-2 mt-0.5 flex-shrink-0"></i> Garde-meuble et stockage sécurisé disponibles</li>
+                        </ul>
+                        <p class="text-slate-600 mt-4 leading-relaxed">
+                            <a href="comercial.html" class="text-accent-gold font-semibold hover:underline">Accédez à notre Espace Commercial</a> pour les professionnels et obtenez des conditions adaptées à vos volumes.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- Zone géographique SEO - Contenu enrichi -->
-        <section id="zone-geographique" class="py-16 md:py-20 bg-white relative" aria-labelledby="zone-title">
+        <section id="zone-geographique" class="py-16 md:py-20 bg-slate-50 relative" aria-labelledby="zone-title">
             <div class="container mx-auto px-6 md:px-12 max-w-7xl">
                 <h2 id="zone-title" class="text-4xl font-extrabold mb-8 text-neutral-dark">
                     Déménagement en <span class="gradient-text">Île-de-France</span> : Paris (75), 77, 78, 91, 92, 93, 94, 95
@@ -631,7 +719,7 @@
         <!-- Our Services/Packs Section - Fond texture -->
         <section id="services" class="py-20 md:py-28 relative overflow-hidden" aria-labelledby="services-title">
             <div class="absolute inset-0 z-0">
-                <img src="./images/fond-texture.png?v=1" alt="Cartons déménagement" class="w-full h-full object-cover opacity-25">
+                <img src="./images/fond-texture.png?v=1" alt="Cartons déménagement - Packs déménagement Alliance Mobilité Île-de-France" class="w-full h-full object-cover opacity-25" loading="lazy">
                 <div class="absolute inset-0 bg-gradient-to-b from-white/92 via-white/95 to-white/92"></div>
                 <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl bg-accent-gold/40"></div>
                 <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-15 blur-3xl bg-primary-dark/30"></div>
@@ -1210,7 +1298,7 @@
     </main>
 
     <!-- Footer - Fond texture -->
-    <footer class="bg-primary-dark text-white relative overflow-hidden">
+    <footer class="bg-primary-dark text-white relative overflow-hidden" role="contentinfo">
         <div class="absolute inset-0 z-0">
             <img src="./images/fond-texture.png?v=1" alt="Contact Alliance Mobilité - 14 rue Jules Guesde Villeneuve-Saint-Georges" class="w-full h-full object-cover" style="object-position: center top;" loading="lazy">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
@@ -1233,17 +1321,25 @@
                 <div>
                     <h4 class="text-lg font-bold mb-4 text-accent-gold">Liens Rapides</h4>
                     <ul class="space-y-2">
-                        <li><a href="index.html#about" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                        <li><a href="a-propos.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
                             <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Qui sommes-nous
+                            À propos
                         </a></li>
-                        <li><a href="index.html#services" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                        <li><a href="services.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
                             <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
-                            Nos Services
+                            Services
                         </a></li>
                         <li><a href="index.html#quote" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
                             <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
                             Demande de devis
+                        </a></li>
+                        <li><a href="contact.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Contact
+                        </a></li>
+                        <li><a href="blog.html" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
+                            <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>
+                            Blog
                         </a></li>
                         <li><a href="index.html#zone-geographique" class="text-white/80 hover:text-accent-gold transition-colors duration-300 flex items-center group">
                             <i data-feather="chevron-right" class="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform"></i>

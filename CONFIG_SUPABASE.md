@@ -113,6 +113,31 @@ CREATE POLICY "Autoriser suppression publique" ON quote_requests
 6. Ouvrez le fichier **comercial.html**
 7. Faites les mêmes 2 remplacements (URL et clé)
 
+## 6. (Optionnel) Table des collaborateurs Espace Pro
+
+Pour permettre à chaque nouveau collaborateur de recevoir un identifiant et de choisir son propre mot de passe :
+
+1. Dans le **SQL Editor** de Supabase, exécutez :
+
+```sql
+CREATE TABLE pro_accounts (
+  id BIGSERIAL PRIMARY KEY,
+  identifier TEXT UNIQUE NOT NULL,
+  password_hash TEXT,
+  display_name TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE pro_accounts ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Lecture et écriture publique pro_accounts" ON pro_accounts
+  FOR ALL USING (true) WITH CHECK (true);
+```
+
+2. Les collaborateurs créés depuis l'Espace Commercial pourront ensuite choisir leur mot de passe à la première connexion sur l'Espace Pro.
+
+---
+
 ## Résultat
 
 - Chaque demande de devis est enregistrée dans le cloud Supabase

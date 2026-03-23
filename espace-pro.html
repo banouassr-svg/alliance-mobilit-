@@ -38,6 +38,11 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://mvnwreiremiajnkypeze.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im12bndyZWlyZW1pYWpua3lwZXplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNDQ0MzIsImV4cCI6MjA4NjkyMDQzMn0.bta-CPOVGUN1FJ4NZ1jiBkEqz7BxURLpsAeSVSLtzhM';
+    </script>
     <style>
         html { scroll-behavior: smooth; }
         body {
@@ -163,23 +168,28 @@
             <div>
                 <label for="username" class="block text-sm font-semibold mb-2 text-neutral-dark">Identifiant</label>
                 <div class="relative">
-                    <input type="text" id="username" name="username" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl transition-all duration-300 focus:border-accent-gold focus:shadow-md text-slate-800" placeholder="Entrez votre identifiant" required autocomplete="username">
+                    <input type="text" id="username" name="username" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl transition-all duration-300 focus:border-accent-gold focus:shadow-md text-slate-800" placeholder="Identifiant fourni par votre entreprise" required autocomplete="username">
                     <i data-feather="user" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400"></i>
                 </div>
             </div>
-            <div>
+            <div id="password-field">
                 <label for="password" class="block text-sm font-semibold mb-2 text-neutral-dark">Mot de passe</label>
                 <div class="relative">
-                    <input type="password" id="password" name="password" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl transition-all duration-300 focus:border-accent-gold focus:shadow-md text-slate-800" placeholder="Entrez votre mot de passe" required autocomplete="current-password">
+                    <input type="password" id="password" name="password" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl transition-all duration-300 focus:border-accent-gold focus:shadow-md text-slate-800" placeholder="Votre mot de passe" autocomplete="current-password">
                     <button type="button" id="toggle-password" class="absolute right-3 top-1/2 transform -translate-y-1/2 transition-colors text-slate-400 hover:text-accent-gold">
                         <i data-feather="eye" class="w-5 h-5"></i>
                     </button>
                 </div>
             </div>
+            <div id="password-confirm-wrap" class="hidden">
+                <label for="password-confirm" class="block text-sm font-semibold mb-2 text-neutral-dark">Confirmer le mot de passe</label>
+                <input type="password" id="password-confirm" class="w-full px-4 py-3 border-2 border-neutral-light rounded-xl focus:border-accent-gold text-slate-800" placeholder="Confirmez votre mot de passe">
+                <p id="first-time-msg" class="text-sm text-accent-gold mt-2">Première connexion : choisissez votre mot de passe (min. 6 caractères).</p>
+            </div>
             <div id="login-error" class="hidden bg-error-red/10 border border-error-red/30 text-error-red px-4 py-3 rounded-lg text-sm">
                 Identifiant ou mot de passe incorrect. Veuillez réessayer.
             </div>
-            <button type="submit" class="w-full bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-6 py-4 rounded-xl text-lg font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-lg transform hover:scale-105">
+            <button type="submit" id="login-submit-btn" class="w-full bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-6 py-4 rounded-xl text-lg font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all duration-300 shadow-lg transform hover:scale-105">
                 Se connecter
             </button>
         </form>
@@ -226,7 +236,7 @@
 <!-- Menu mobile (3 barres) - raccourcis Espace Pro -->
 <div id="mobile-menu" class="fixed inset-0 z-[10002] flex flex-col items-center justify-center transform -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img src="./images/fond-texture.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
+        <img src="./images/fond-texture.png?v=1" alt="Fond décoratif Alliance Mobilité - Espace Pro" class="w-full h-full object-cover" loading="lazy" style="object-position: center top;">
         <div class="absolute inset-0 bg-primary-dark/90"></div>
     </div>
     <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300 z-10">
@@ -259,9 +269,10 @@
             <i data-feather="home" class="w-5 h-5"></i>
             <span>Accueil</span>
         </a>
-        <a href="index.html#about" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Qui sommes-nous</a>
-        <a href="index.html#services" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Nos Services</a>
-        <a href="index.html#quote" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Demande de devis</a>
+        <a href="a-propos.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">À propos</a>
+        <a href="services.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Services</a>
+        <a href="index.html#quote" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Devis</a>
+        <a href="contact.html" class="text-white text-lg font-semibold hover:text-accent-gold transition-all duration-300" onclick="closeMobileMenu()">Contact</a>
         <a href="espace-pro.html" class="text-white px-6 py-3 rounded-lg text-base font-bold transition-all duration-300 flex items-center space-x-2 shadow-xl" onclick="closeMobileMenu()" style="background: linear-gradient(to right, var(--primary-dark), var(--neutral-dark));" onmouseover="this.style.background='linear-gradient(to right, var(--accent-gold), var(--accent-light-gold))'; this.style.color='var(--primary-dark)';" onmouseout="this.style.background='linear-gradient(to right, var(--primary-dark), var(--neutral-dark))'; this.style.color='white'">
             <i data-feather="user" class="w-5 h-5"></i>
             <span>Espace Pro</span>
@@ -285,7 +296,7 @@
     <!-- Header Section -->
     <section class="bg-primary-dark text-white py-16 md:py-20 relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./images/fond-texture.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+            <img src="./images/fond-texture.png?v=1" alt="Fond déménagement Alliance Mobilité - Espace Pro" class="w-full h-full object-cover" style="object-position: center top;" loading="lazy">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
         </div>
         <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
@@ -370,7 +381,7 @@
                             </div>
                             <h3 class="text-xl font-bold">Missions en cours</h3>
                         </div>
-                        <div class="text-4xl font-extrabold mb-2 text-primary-dark">0</div>
+                        <div class="text-4xl font-extrabold mb-2 text-primary-dark" data-stat="missions-en-cours">0</div>
                         <p class="text-sm text-slate-600">Aucune mission planifiée</p>
                     </div>
                     
@@ -430,12 +441,13 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-6">
-                <div class="text-center py-16 p-8 bg-white rounded-2xl shadow-lg border-2 border-slate-200" data-aos="fade-up">
-                    <i data-feather="clipboard" class="w-16 h-16 text-slate-400 mx-auto mb-4 opacity-70"></i>
-                    <p class="text-xl text-slate-600 font-semibold">Aucune mission pour le moment</p>
-                    <p class="text-md text-slate-500 mt-2">Les missions apparaîtront ici lorsqu'elles vous seront attribuées.</p>
-                </div>
+            <div id="my-missions-list" class="grid grid-cols-1 gap-6">
+                <!-- Missions attribuées affichées dynamiquement -->
+            </div>
+            <div id="no-my-missions" class="text-center py-16 p-8 bg-white rounded-2xl shadow-lg border-2 border-slate-200" data-aos="fade-up">
+                <i data-feather="clipboard" class="w-16 h-16 text-slate-400 mx-auto mb-4 opacity-70"></i>
+                <p class="text-xl text-slate-600 font-semibold">Aucune mission pour le moment</p>
+                <p class="text-md text-slate-500 mt-2">Les missions apparaîtront ici lorsqu'elles vous seront attribuées.</p>
             </div>
         </div>
     </section>
@@ -444,7 +456,7 @@
     <!-- Footer - Fond texture -->
     <footer class="bg-primary-dark text-white relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./images/fond-texture.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <img src="./images/fond-texture.png?v=1" alt="Footer Alliance Mobilité - Espace Pro" class="w-full h-full object-cover" style="object-position: center top;" loading="lazy">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
         </div>
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent"></div>
@@ -558,17 +570,107 @@
 
     // Initialize Feather Icons
     feather.replace();
-    // Credentials for professional login
-    const PROFESSIONAL_USERNAME = 'Rayan94190';
-    const PROFESSIONAL_PASSWORD = 'Mh3rxanc';
-// Check if user is logged in
+    // Check if user is logged in
     function isLoggedIn() {
         return localStorage.getItem('professionalLoggedIn') === 'true';
+    }
+
+    function getSupabaseClient() {
+        const url = typeof SUPABASE_URL !== 'undefined' && SUPABASE_URL && !SUPABASE_URL.includes('VOTRE_') ? SUPABASE_URL : null;
+        const key = typeof SUPABASE_ANON_KEY !== 'undefined' && SUPABASE_ANON_KEY && !SUPABASE_ANON_KEY.includes('VOTRE_') ? SUPABASE_ANON_KEY : null;
+        return (url && key && typeof supabase !== 'undefined') ? supabase.createClient(url, key) : null;
+    }
+
+    async function hashPassword(password) {
+        const enc = new TextEncoder();
+        const data = enc.encode('AM2024#' + password);
+        const hash = await crypto.subtle.digest('SHA-256', data);
+        return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function getProAccount(identifier) {
+        const sb = getSupabaseClient();
+        if (sb) {
+            const { data } = await sb.from('pro_accounts').select('*').eq('identifier', identifier.trim()).single();
+            return data;
+        }
+        const local = JSON.parse(localStorage.getItem('proAccountsLocal') || '[]');
+        return local.find(c => c.identifier.toLowerCase() === identifier.trim().toLowerCase()) || null;
+    }
+
+    function getCurrentProfessionalName() {
+        return localStorage.getItem('proDisplayName') || 'Mon Entreprise';
+    }
+
+    function getMyAwardedMissions() {
+        const proName = getCurrentProfessionalName();
+        const all = getPublicAnnouncements();
+        return all.filter(ann => ann.status === 'awarded' && ann.awardedTo && 
+            (String(ann.awardedTo.professionalName || '').trim() === String(proName).trim()));
+    }
+
+    function renderMyMissions() {
+        if (!isLoggedIn()) return;
+        const container = document.getElementById('my-missions-list');
+        const noMissionsEl = document.getElementById('no-my-missions');
+        const missions = getMyAwardedMissions();
+
+        if (missions.length === 0) {
+            container.classList.add('hidden');
+            if (noMissionsEl) noMissionsEl.classList.remove('hidden');
+        } else {
+            container.classList.remove('hidden');
+            if (noMissionsEl) noMissionsEl.classList.add('hidden');
+            container.innerHTML = missions.map(ann => {
+                const a = ann.awardedTo || {};
+                return `
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-success-green/50 hover:border-success-green transition-all duration-300" data-aos="fade-up">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-primary-dark mb-2">${ann.moveType}</h3>
+                                <p class="text-slate-700 flex items-center">
+                                    <i data-feather="user" class="w-4 h-4 mr-2 text-accent-gold"></i>
+                                    Client: <strong>${ann.clientName}</strong>
+                                </p>
+                            </div>
+                            <span class="status-badge status-completed">Mission accordée</span>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="flex items-center text-slate-600">
+                                <i data-feather="calendar" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                                Date : <strong>${new Date(ann.moveDate).toLocaleDateString('fr-FR')}</strong>
+                            </p>
+                            <p class="flex items-center text-slate-600">
+                                <i data-feather="map-pin" class="w-5 h-5 mr-3 text-primary-dark"></i>
+                                De <strong>${ann.fromLocation}</strong> à <strong>${ann.toLocation}</strong>
+                            </p>
+                            <p class="flex items-center text-success-green font-bold">
+                                <i data-feather="award" class="w-5 h-5 mr-3"></i>
+                                Montant accordé : <strong>${a.amount}€</strong>
+                            </p>
+                            ${ann.details ? `
+                                <div class="bg-neutral-light p-4 rounded-lg text-sm text-slate-700 border border-slate-100 mt-3">
+                                    <p class="font-semibold mb-1">Détails :</p>
+                                    <p>${ann.details}</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            feather.replace();
+        }
+
+        const missionsEnCoursEl = document.querySelector('[data-stat="missions-en-cours"]');
+        if (missionsEnCoursEl) missionsEnCoursEl.textContent = missions.length;
     }
 
     // Login function
     function login() {
         localStorage.setItem('professionalLoggedIn', 'true');
+        if (!localStorage.getItem('proDisplayName')) {
+            localStorage.setItem('proDisplayName', 'Mon Entreprise');
+        }
         document.getElementById('login-overlay').classList.add('hidden');
         document.getElementById('logout-btn').classList.remove('hidden');
         ['logout-btn-mobile', 'logout-btn-mobile-tablet'].forEach(id => {
@@ -576,6 +678,7 @@
             if (el) el.style.display = 'flex';
         });
         renderAvailableAnnouncements();
+        renderMyMissions();
     }
 
     // Logout function
@@ -593,20 +696,81 @@
 
     document.getElementById('logout-btn').addEventListener('click', logout);
 
-    // Login form handler
-    document.getElementById('login-form').addEventListener('submit', (e) => {
+    // Login form handler (support multi-comptes : identifiant + mot de passe choisi par le collaborateur)
+    let pendingFirstTimeAccount = null;
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value;
+        const confirmWrap = document.getElementById('password-confirm-wrap');
         const errorDiv = document.getElementById('login-error');
 
-        if (username === PROFESSIONAL_USERNAME && password === PROFESSIONAL_PASSWORD) {
+        if (pendingFirstTimeAccount) {
+            const confirmVal = document.getElementById('password-confirm').value;
+            if (password.length < 6) {
+                errorDiv.textContent = 'Le mot de passe doit faire au moins 6 caractères.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            if (password !== confirmVal) {
+                errorDiv.textContent = 'Les deux mots de passe ne correspondent pas.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            const hash = await hashPassword(password);
+            const sb = getSupabaseClient();
+            if (sb) {
+                const { error } = await sb.from('pro_accounts').update({ password_hash: hash }).eq('identifier', username);
+                if (error) { errorDiv.textContent = 'Erreur : ' + error.message; errorDiv.classList.remove('hidden'); return; }
+            } else {
+                const local = JSON.parse(localStorage.getItem('proAccountsLocal') || '[]');
+                const idx = local.findIndex(c => c.identifier.toLowerCase() === username.toLowerCase());
+                if (idx >= 0) { local[idx].password_hash = hash; localStorage.setItem('proAccountsLocal', JSON.stringify(local)); }
+            }
             errorDiv.classList.add('hidden');
+            localStorage.setItem('proDisplayName', username);
+            pendingFirstTimeAccount = null;
+            confirmWrap.classList.add('hidden');
+            document.getElementById('password-confirm').value = '';
+            document.getElementById('password').placeholder = 'Votre mot de passe';
+            document.getElementById('login-submit-btn').textContent = 'Se connecter';
             login();
-        } else {
+            return;
+        }
+
+        let account = await getProAccount(username);
+        if (!account) {
+            if (username === 'Rayan94190' && password === 'Mh3rxanc') {
+                localStorage.setItem('proDisplayName', username);
+                login();
+                return;
+            }
+            errorDiv.textContent = 'Identifiant non reconnu. Contactez votre entreprise pour obtenir un accès.';
+            errorDiv.classList.remove('hidden');
+            return;
+        }
+        if (!account.password_hash) {
+            pendingFirstTimeAccount = account;
+            confirmWrap.classList.remove('hidden');
+            document.getElementById('password').value = '';
+            document.getElementById('password-confirm').value = '';
+            document.getElementById('password').placeholder = 'Choisissez votre mot de passe (min. 6 caractères)';
+            document.getElementById('login-submit-btn').textContent = 'Définir mon mot de passe';
+            errorDiv.classList.add('hidden');
+            document.getElementById('password').focus();
+            return;
+        }
+        const hash = await hashPassword(password);
+        if (hash !== account.password_hash) {
+            errorDiv.textContent = 'Mot de passe incorrect.';
             errorDiv.classList.remove('hidden');
             document.getElementById('password').value = '';
+            return;
         }
+        errorDiv.classList.add('hidden');
+        localStorage.setItem('proDisplayName', account.display_name || username);
+        login();
     });
 
     // Toggle password visibility
@@ -649,7 +813,10 @@
             container.innerHTML = announcements.map(announcement => {
                 const bidsCount = announcement.bids ? announcement.bids.length : 0;
                 const minBid = announcement.bids && announcement.bids.length > 0 
-                    ? Math.min(...announcement.bids.map(b => parseFloat(b.amount))) 
+                    ? (() => {
+                        const amounts = announcement.bids.map(b => parseFloat(b.amount)).filter(n => !isNaN(n));
+                        return amounts.length > 0 ? Math.min(...amounts) : null;
+                    })()
                     : null;
                 return `
                     <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-slate-200 hover:border-accent-gold transition-all duration-300" data-aos="fade-up" data-announcement-id="${announcement.id}">
@@ -694,11 +861,11 @@
                         </div>
 
                         <div class="border-t border-slate-200 pt-4">
-                            <form class="bid-form" data-announcement-id="${announcement.id}" onsubmit="event.preventDefault(); submitBid(${announcement.id});">
+                            <form class="bid-form" data-announcement-id="${announcement.id}" onsubmit="event.preventDefault(); submitBid(${JSON.stringify(announcement.id)}); return false;">
                                 <div class="flex flex-col sm:flex-row gap-3">
                                     <input 
                                         type="number" 
-                                        class="flex-1 px-4 py-3 border-2 border-neutral-light rounded-xl text-slate-800 transition-all duration-300 focus:border-accent-gold focus:shadow-md" 
+                                        class="flex-1 px-4 py-3 border-2 border-slate-300 rounded-xl text-slate-800 transition-all duration-300 focus:border-accent-gold focus:shadow-md" 
                                         placeholder="Montant de votre offre (€)" 
                                         min="1" 
                                         step="0.01"
@@ -728,15 +895,16 @@
             alert('Erreur: champ introuvable');
             return;
         }
-        const amount = parseFloat(amountInput.value);
+        const rawValue = amountInput.value.replace(/\s/g, '').replace(',', '.');
+        const amount = parseFloat(rawValue);
 
         if (isNaN(amount) || amount <= 0) {
-            alert('Veuillez entrer un montant valide');
+            alert('Veuillez entrer un montant valide (ex: 500 ou 500,50)');
             return;
         }
 
         const announcements = getPublicAnnouncements();
-        const announcementIndex = announcements.findIndex(ann => ann.id === announcementId);
+        const announcementIndex = announcements.findIndex(ann => String(ann.id) === String(announcementId));
         
         if (announcementIndex === -1) {
             alert('Annonce introuvable');
@@ -751,7 +919,7 @@
         const newBid = {
             id: Date.now(),
             amount: amount,
-            professionalName: 'Mon Entreprise', // Vous pouvez récupérer le nom depuis le profil
+            professionalName: getCurrentProfessionalName(),
             date: new Date().toISOString()
         };
 
@@ -763,6 +931,7 @@
 
         // Recharger l'affichage
         renderAvailableAnnouncements();
+        renderMyMissions();
 
         // Afficher un message de succès
         alert(`Votre offre de ${amount}€ a été soumise avec succès !`);
@@ -771,13 +940,19 @@
     // Check login status on page load
     if (isLoggedIn()) {
         login();
-        
-        // Rafraîchir les annonces toutes les 2 secondes
+        renderMyMissions();
+
+        // Rafraîchir les annonces et missions toutes les 10 secondes
         setInterval(() => {
             if (isLoggedIn()) {
-                renderAvailableAnnouncements();
+                const activeEl = document.activeElement;
+                const isTypingInBid = activeEl && activeEl.closest && activeEl.closest('.bid-form');
+                if (!isTypingInBid) {
+                    renderAvailableAnnouncements();
+                    renderMyMissions();
+                }
             }
-        }, 2000);
+        }, 10000);
     } else {
         document.getElementById('login-overlay').classList.remove('hidden');
     }

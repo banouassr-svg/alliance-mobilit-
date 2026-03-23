@@ -224,7 +224,7 @@
 <!-- Mobile Menu Overlay - z-index géré en CSS pour smartphone -->
 <div id="mobile-menu" class="fixed inset-0 z-[10002] flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 ease-in-out overflow-hidden">
     <div class="absolute inset-0 z-0">
-        <img src="./images/fond-texture.png?v=1" alt="" class="w-full h-full object-cover" style="object-position: center top;">
+        <img src="./images/fond-texture.png?v=1" alt="Fond décoratif Alliance Mobilité - Espace Commercial" class="w-full h-full object-cover" loading="lazy" style="object-position: center top;">
         <div class="absolute inset-0 bg-primary-dark/90"></div>
     </div>
     <button id="close-menu-button" class="absolute top-6 right-6 p-2 text-white hover:text-accent-gold focus:outline-none transition-colors duration-300 z-10">
@@ -283,7 +283,7 @@
     <!-- Header Section -->
     <section class="bg-primary-dark text-white py-16 md:py-20 relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./images/fond-texture.png?v=1" alt="Déménagement" class="w-full h-full object-cover" style="object-position: center top;">
+            <img src="./images/fond-texture.png?v=1" alt="Fond déménagement Alliance Mobilité - Espace Commercial" class="w-full h-full object-cover" style="object-position: center top;" loading="lazy">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
         </div>
         <div class="container mx-auto px-6 md:px-12 max-w-7xl relative z-10">
@@ -409,12 +409,44 @@
             </div>
         </div>
     </section>
+
+    <!-- Gestion des collaborateurs Espace Pro -->
+    <section id="gestion-collaborateurs" class="py-16 md:py-24 bg-neutral-light">
+        <div class="container mx-auto px-6 md:px-12 max-w-4xl">
+            <h2 class="text-3xl font-extrabold text-primary-dark mb-6 text-center" data-aos="fade-up">
+                Gestion des collaborateurs
+            </h2>
+            <p class="text-slate-600 text-center mb-8 max-w-2xl mx-auto">
+                Créez un identifiant pour chaque nouveau collaborateur. Ils choisiront eux-mêmes leur mot de passe lors de leur première connexion à l'Espace Pro.
+            </p>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-xl border-2 border-slate-200" data-aos="fade-up">
+                <form id="add-collaborator-form" class="space-y-4">
+                    <div>
+                        <label for="collab-identifier" class="block text-primary-dark font-semibold mb-2">Identifiant du collaborateur *</label>
+                        <input type="text" id="collab-identifier" name="collab-identifier" class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-accent-gold" placeholder="Ex: JeanMartin, Marie.D" required>
+                        <p class="text-sm text-slate-500 mt-1">Donnez cet identifiant au collaborateur. Il devra le saisir sur espace-pro.html pour créer son mot de passe.</p>
+                    </div>
+                    <div>
+                        <label for="collab-display-name" class="block text-primary-dark font-semibold mb-2">Nom d'affichage (optionnel)</label>
+                        <input type="text" id="collab-display-name" name="collab-display-name" class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-accent-gold" placeholder="Ex: Jean Martin">
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-accent-gold to-accent-light-gold text-primary-dark px-6 py-4 rounded-xl font-bold hover:from-primary-dark hover:to-neutral-dark hover:text-white transition-all">
+                        <i data-feather="user-plus" class="w-5 h-5 inline mr-2"></i>
+                        Créer le compte collaborateur
+                    </button>
+                </form>
+            </div>
+            <div id="collaborators-list" class="mt-8 space-y-4">
+                <!-- Liste des collaborateurs -->
+            </div>
+        </div>
+    </section>
 </main>
 
     <!-- Footer - Fond texture -->
     <footer class="bg-primary-dark text-white relative overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./images/fond-texture.png?v=1" alt="Footer" class="w-full h-full object-cover" style="object-position: center top;">
+            <img src="./images/fond-texture.png?v=1" alt="Footer Alliance Mobilité - Espace Commercial" class="w-full h-full object-cover" style="object-position: center top;" loading="lazy">
             <div class="absolute inset-0 bg-primary-dark/75"></div>
         </div>
         <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-gold/50 to-transparent"></div>
@@ -620,7 +652,8 @@
     function renderCommercialAnnouncements() {
         const container = document.getElementById('announcements-list');
         const noAnnouncementsMessage = document.getElementById('no-published-announcements');
-        const announcements = getCommercialAnnouncements(); // Use commercial's own list
+        const announcements = getCommercialAnnouncements();
+        const publicAnnouncements = getPublicAnnouncements();
 
         if (announcements.length === 0) {
             container.classList.add('hidden');
@@ -628,7 +661,52 @@
         } else {
             container.classList.remove('hidden');
             noAnnouncementsMessage.classList.add('hidden');
-            container.innerHTML = announcements.map(announcement => `
+            container.innerHTML = announcements.map(announcement => {
+                const publicAnn = publicAnnouncements.find(a => String(a.id) === String(announcement.id));
+                const bids = (publicAnn && publicAnn.bids) ? publicAnn.bids : [];
+                const validBids = bids.map((b, i) => ({ ...b, amount: parseFloat(b.amount), _idx: i })).filter(b => !isNaN(b.amount));
+                const status = (publicAnn && publicAnn.status) ? publicAnn.status : 'open';
+                const awardedTo = (publicAnn && publicAnn.awardedTo) ? publicAnn.awardedTo : null;
+
+                let offersHtml;
+                if (status === 'awarded' && awardedTo) {
+                    offersHtml = `<div class="mt-4 p-4 rounded-xl bg-success-green/15 border-2 border-success-green">
+                            <p class="flex items-center text-success-green font-bold">
+                                <i data-feather="check-circle" class="w-5 h-5 mr-2"></i>
+                                Mission accordée à <strong>${awardedTo.professionalName || 'Un professionnel'}</strong> pour <strong>${awardedTo.amount}€</strong>
+                            </p>
+                            <span class="inline-block mt-2 px-3 py-1 rounded-full text-sm font-semibold bg-success-green/30 text-success-green">Mission attribuée</span>
+                        </div>`;
+                } else if (validBids.length > 0) {
+                    const sortedBids = [...validBids].sort((a, b) => a.amount - b.amount);
+                    offersHtml = `<div class="mt-4 space-y-3">
+                            <p class="font-semibold text-primary-dark flex items-center">
+                                <i data-feather="award" class="w-5 h-5 mr-2 text-accent-gold"></i>
+                                ${validBids.length} offre(s) reçue(s) — Choisir un professionnel
+                            </p>
+                            <div class="space-y-2">
+                                ${sortedBids.map((bid, idx) => `
+                                    <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200 hover:border-accent-gold transition-colors">
+                                        <div>
+                                            <span class="font-semibold text-primary-dark">${bid.professionalName || 'Professionnel'}</span>
+                                            <span class="text-slate-600 ml-2">— <strong>${bid.amount}€</strong></span>
+                                        </div>
+                                        <button onclick="awardMission(${JSON.stringify(announcement.id)}, ${bid._idx})" class="px-4 py-2 bg-success-green hover:bg-success-green/90 text-white font-semibold rounded-lg transition-colors text-sm">
+                                            Accorder la mission
+                                        </button>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>`;
+                } else {
+                    offersHtml = `<div class="mt-4 p-4 rounded-xl bg-slate-100 border border-slate-200">
+                            <p class="flex items-center text-slate-500">
+                                <i data-feather="tag" class="w-5 h-5 mr-2"></i>
+                                Aucune offre reçue
+                            </p>
+                        </div>`;
+                }
+                return `
                     <div class="bg-white rounded-2xl shadow-lg p-6 border-2 border-slate-200 hover:border-accent-gold transition-all duration-300 transform hover:scale-[1.01]" data-aos="fade-up">
                         <div class="flex items-start justify-between mb-4">
                             <div>
@@ -660,9 +738,11 @@
                                 <p class="font-semibold mb-1">Détails :</p>
                                 <p>${announcement.details || 'Aucun détail supplémentaire fourni.'}</p>
                             </div>
+                            ${offersHtml}
                         </div>
                     </div>
-                `).join('');
+                `;
+            }).join('');
             feather.replace();
         }
     }
@@ -725,10 +805,103 @@
         }
     };
 
+    window.awardMission = function(announcementId, bidId) {
+        if (!confirm('Confirmer l\'attribution de cette mission au professionnel sélectionné ?')) return;
+        const publicAnnouncements = getPublicAnnouncements();
+        const annIndex = publicAnnouncements.findIndex(a => String(a.id) === String(announcementId));
+        if (annIndex === -1) {
+            alert('Annonce introuvable');
+            return;
+        }
+        const ann = publicAnnouncements[annIndex];
+        const bids = ann.bids || [];
+        const bid = (typeof bidId === 'number' && bidId >= 0 && bidId < bids.length) 
+            ? bids[bidId] 
+            : bids.find(b => String(b.id) === String(bidId));
+        if (!bid) {
+            alert('Offre introuvable');
+            return;
+        }
+        ann.status = 'awarded';
+        ann.awardedTo = {
+            professionalName: bid.professionalName || 'Un professionnel',
+            amount: parseFloat(bid.amount),
+            date: bid.date || new Date().toISOString()
+        };
+        savePublicAnnouncements(publicAnnouncements);
+        renderCommercialAnnouncements();
+    };
+
     function loadCommercialAnnouncements() {
         renderCommercialAnnouncements();
         loadQuoteRequests();
+        loadCollaborators();
     }
+
+    // --- Gestion des collaborateurs (identifiant + mot de passe choisi par le collaborateur) ---
+    function getSupabaseClient() {
+        const url = typeof SUPABASE_URL !== 'undefined' && SUPABASE_URL && !SUPABASE_URL.includes('VOTRE_') ? SUPABASE_URL : null;
+        const key = typeof SUPABASE_ANON_KEY !== 'undefined' && SUPABASE_ANON_KEY && !SUPABASE_ANON_KEY.includes('VOTRE_') ? SUPABASE_ANON_KEY : null;
+        return (url && key && typeof supabase !== 'undefined') ? supabase.createClient(url, key) : null;
+    }
+
+    async function loadCollaborators() {
+        const container = document.getElementById('collaborators-list');
+        if (!container) return;
+        const sb = getSupabaseClient();
+        if (sb) {
+            const { data } = await sb.from('pro_accounts').select('*').order('created_at', { ascending: false });
+            const list = data || [];
+            renderCollaborators(list, container);
+        } else {
+            const local = JSON.parse(localStorage.getItem('proAccountsLocal') || '[]');
+            renderCollaborators(local, container);
+        }
+        feather.replace();
+    }
+
+    function renderCollaborators(list, container) {
+        if (!container) return;
+        if (list.length === 0) {
+            container.innerHTML = '<p class="text-slate-500 text-center py-4">Aucun collaborateur créé. Utilisez le formulaire ci-dessus.</p>';
+            return;
+        }
+        container.innerHTML = list.map(c => `
+            <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-center justify-between">
+                <div>
+                    <span class="font-semibold text-primary-dark">${c.identifier}</span>
+                    ${c.display_name ? `<span class="text-slate-600 ml-2">(${c.display_name})</span>` : ''}
+                    ${c.password_hash ? '<span class="ml-2 px-2 py-0.5 bg-success-green/20 text-success-green text-xs rounded">Mot de passe défini</span>' : '<span class="ml-2 px-2 py-0.5 bg-accent-gold/20 text-accent-gold text-xs rounded">En attente du mot de passe</span>'}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    document.getElementById('add-collaborator-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const identifier = document.getElementById('collab-identifier').value.trim();
+        const displayName = document.getElementById('collab-display-name').value.trim() || null;
+        const sb = getSupabaseClient();
+        if (sb) {
+            const { error } = await sb.from('pro_accounts').insert({ identifier, display_name: displayName });
+            if (error) {
+                alert(error.code === '23505' ? 'Cet identifiant existe déjà.' : 'Erreur : ' + error.message);
+                return;
+            }
+        } else {
+            const local = JSON.parse(localStorage.getItem('proAccountsLocal') || '[]');
+            if (local.some(c => c.identifier.toLowerCase() === identifier.toLowerCase())) {
+                alert('Cet identifiant existe déjà.');
+                return;
+            }
+            local.push({ identifier, display_name: displayName, password_hash: null, created_at: new Date().toISOString() });
+            localStorage.setItem('proAccountsLocal', JSON.stringify(local));
+        }
+        document.getElementById('collab-identifier').value = '';
+        document.getElementById('collab-display-name').value = '';
+        loadCollaborators();
+        alert(`Compte créé pour "${identifier}". Transmettez cet identifiant au collaborateur. Il pourra choisir son mot de passe sur l'Espace Pro.`);
+    });
 
     // --- Quote Requests Management (Supabase = tous appareils, sinon localStorage) ---
     function normalizeQuote(row) {
