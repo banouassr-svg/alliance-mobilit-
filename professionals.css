@@ -33,7 +33,7 @@ body {
 h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
 
 /* Above-the-fold critical CSS - chargement prioritaire */
-.nav-sticky { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(26,45,64,0.08); }
+.nav-sticky { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); box-shadow: 0 1px 0 rgba(26,45,64,0.06); border-bottom: 1px solid rgba(226,232,240,0.95); }
 .hero-min { min-height: 70vh; display: flex; align-items: center; justify-content: center; }
 
 /* Navbar */
@@ -41,18 +41,15 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; font-weig
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: 0.625rem 1.25rem;
   max-width: 1400px;
   margin: 0 auto;
 }
-.nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--primary-dark); font-weight: 800; font-size: 1.25rem; }
+.nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--primary-dark); }
 .nav-logo:hover { color: var(--accent-gold); }
-.nav-logo img { width: 48px; height: 48px; }
 .nav-links { display: none; }
 @media (min-width: 768px) {
-  .nav-links { display: flex; align-items: center; gap: 1rem; }
-  .nav-logo img { width: 56px; height: 56px; }
-  .nav-logo { font-size: 1.5rem; }
+  .nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.8125rem; }
 }
 .nav-link {
   color: var(--neutral-dark);
